@@ -1,0 +1,37 @@
+# Veröffentlicht die Website auf GitHub Pages.
+# Läuft bei jedem Push auf main und lässt sich unter Actions → "Website veröffentlichen" → "Run workflow" von Hand starten.
+# Voraussetzung: Settings → Pages → Source = "GitHub Actions".
+name: Website veröffentlichen
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code holen
+        uses: actions/checkout@v4
+      - name: Pages einrichten
+        uses: actions/configure-pages@v5
+      - name: Website hochladen
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - name: Veröffentlichen
+        id: deployment
+        uses: actions/deploy-pages@v4
