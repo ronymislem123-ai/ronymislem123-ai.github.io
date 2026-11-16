@@ -1,4 +1,6 @@
 User-agent: *
-Disallow: /
+Allow: /
 Disallow: /zentrale/
-# zentrale
+
+Sitemap: https://www.linua.de/sitemap.xml
+# zentrale: interner Bereich, nicht indexieren
