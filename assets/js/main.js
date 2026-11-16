@@ -282,12 +282,14 @@
         showStatus(`<p class="form-status__title">Danke!</p>`, true);
         return;
       }
+      const mailMode = form.dataset.mode === "mailto";
+      const btnText = submitBtn.querySelector(".btn__label").textContent;
       submitBtn.setAttribute("aria-busy", "true");
       submitBtn.disabled = true;
-      submitBtn.querySelector(".btn__label").textContent = "Wird gesendet …";
+      submitBtn.querySelector(".btn__label").textContent = mailMode ? "Wird vorbereitet …" : "Wird gesendet …";
 
       let sent = false;
-      try {
+      if (!mailMode) try {
         const ctrl = new AbortController();
         const timer = setTimeout(() => ctrl.abort(), 9000);
         const res = await fetch(form.action, { method: "POST", body: data, headers: { Accept: "application/json" }, signal: ctrl.signal });
@@ -307,16 +309,20 @@
         return;
       }
 
-      // Fallback: kein Server-Versand verfügbar → vorbereitete E-Mail, nie "gesendet" behaupten
+      // Kein Server-Versand (Mailto-Modus oder Server nicht erreichbar) → vorbereitete E-Mail, nie "gesendet" behaupten
       const to = form.dataset.mail;
       const subject = `Projektanfrage: ${data.get("projekt")} – ${data.get("name")}`;
       const body = summary(data);
       const mailto = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      if (mailMode) { try { window.location.href = mailto; } catch (_) {} }
+      const intro = mailMode
+        ? `Ihr E-Mail-Programm sollte sich jetzt mit der fertigen Anfrage öffnen. Bitte tippen Sie dort nur noch auf <strong>Senden</strong> – erst dann erreicht mich Ihre Nachricht. Hat sich nichts geöffnet? Öffnen Sie die E-Mail erneut oder kopieren Sie den Text an <strong>${esc(to)}</strong>.`
+        : `Der automatische Versand ist gerade nicht erreichbar – Ihre Anfrage wurde deshalb <strong>noch nicht gesendet</strong>. Sie ist aber fertig vorbereitet: Öffnen Sie sie mit einem Klick in Ihrem E-Mail-Programm oder kopieren Sie den Text an <strong>${esc(to)}</strong>.`;
       showStatus(
-        `<p class="form-status__title">Fast geschafft, ${firstName}.</p>
-         <p class="muted" style="margin-top:.75rem">Der automatische Versand ist gerade nicht erreichbar – Ihre Anfrage wurde deshalb <strong>noch nicht gesendet</strong>. Sie ist aber fertig vorbereitet: Öffnen Sie sie mit einem Klick in Ihrem E-Mail-Programm oder kopieren Sie den Text an <strong>${esc(to)}</strong>.</p>
+        `<p class="form-status__title">${mailMode ? `Fast fertig, ${firstName}.` : `Fast geschafft, ${firstName}.`}</p>
+         <p class="muted" style="margin-top:.75rem">${intro}</p>
          <div class="cluster" style="margin-top:1.25rem">
-           <a class="btn" href="${mailto}"><span>E-Mail öffnen</span><span class="btn__arrow" aria-hidden="true">→</span></a>
+           <a class="btn" href="${mailto}"><span>${mailMode ? "E-Mail erneut öffnen" : "E-Mail öffnen"}</span><span class="btn__arrow" aria-hidden="true">→</span></a>
            <button type="button" class="btn btn--ghost" data-copy>Text kopieren</button>
            <button type="button" class="btn btn--ghost" data-edit>Angaben bearbeiten</button>
          </div>
@@ -335,7 +341,7 @@
       });
       submitBtn.removeAttribute("aria-busy");
       submitBtn.disabled = false;
-      submitBtn.querySelector(".btn__label").textContent = "Anfrage senden";
+      submitBtn.querySelector(".btn__label").textContent = btnText;
     });
   }
 

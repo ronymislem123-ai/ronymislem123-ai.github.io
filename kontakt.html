@@ -106,7 +106,7 @@
 <section class="section section--flush-top" aria-label="Projektanfrage">
   <div class="wrap grid">
     <div class="span-7">
-      <form class="form" id="anfrage-form" action="kontakt.php" method="post" novalidate data-mail="hallo@linua.example">
+      <form class="form" id="anfrage-form" action="kontakt.php" method="post" novalidate data-mail="hallo@linua.example" data-mode="mailto">
         <fieldset class="fieldset" id="fs-projekt">
           <legend>Worum geht es? <span class="field__opt">Pflichtfeld</span></legend>
           <div class="chips">
@@ -180,8 +180,9 @@
         </div>
 
         <div class="form__foot">
-          <button class="btn" type="submit"><span class="btn__label">Anfrage senden</span><span class="btn__arrow" aria-hidden="true">→</span></button>
-          <p class="small muted">Unverbindlich und kostenlos. Ihre Angaben nutze ich nur, um Ihre Anfrage zu beantworten. Mehr in der <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+          <button class="btn" type="submit"><span class="btn__label">Anfrage per E-Mail senden</span><span class="btn__arrow" aria-hidden="true">→</span></button>
+          
+          <p class="small muted">Ihr E-Mail-Programm öffnet sich mit der fertigen Anfrage – Sie senden sie dort selbst ab. Unverbindlich und kostenlos. Mehr in der <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
         </div>
       </form>
       <div class="form-status" id="form-status" tabindex="-1" role="status" aria-live="polite" hidden></div>
