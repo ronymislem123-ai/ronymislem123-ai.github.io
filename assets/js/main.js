@@ -96,14 +96,20 @@
   if (!reduceMotion) $$("[data-split]").forEach(splitWords);
 
   /* ---------- Reveals ---------- */
-  const revealEls = $$("[data-reveal], [data-split]");
+  // Seitenüberschriften stehen immer im ersten Bildschirm: direkt einblenden, ohne auf den Observer zu warten
+  setTimeout(() => $$("[data-split]").forEach((el) => el.classList.add("is-in")), 60);
+  let ioAlive = false;
+  const revealEls = $$("[data-reveal]");
   if ("IntersectionObserver" in window && !reduceMotion) {
     const io = new IntersectionObserver((entries) => {
+      ioAlive = true;
       entries.forEach((e) => {
         if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); }
       });
     }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
     revealEls.forEach((el) => io.observe(el));
+    // Sicherheitsnetz: meldet der Observer sich nie (z. B. eingebettete oder gedrosselte Ansichten), alles zeigen
+    setTimeout(() => { if (!ioAlive) $$("[data-reveal], [data-split]").forEach((el) => el.classList.add("is-in")); }, 2500);
   } else {
     revealEls.forEach((el) => el.classList.add("is-in"));
   }
@@ -158,9 +164,12 @@
       let started = false;
       const go = () => { if (!started) { started = true; setTimeout(run, 120); } };
       const whenVisible = () => {
+        const track = $(".schwelle__track", schwelle);
         if (!("IntersectionObserver" in window)) return go();
         const sio = new IntersectionObserver(([e]) => { if (e.isIntersecting) { sio.disconnect(); go(); } }, { threshold: 0.9 });
-        sio.observe($(".schwelle__track", schwelle));
+        sio.observe(track);
+        // Fallback: liegt die Schwelle schon im Bild, auch ohne Observer-Meldung starten
+        setTimeout(() => { if (track.getBoundingClientRect().top < window.innerHeight) { sio.disconnect(); go(); } }, 1800);
       };
       if (document.fonts && document.fonts.ready) document.fonts.ready.then(whenVisible); else whenVisible();
     }
