@@ -239,6 +239,8 @@
       return errors;
     };
 
+    // Format-Vertrag mit der internen Agentur-Zentrale (/zentrale/): Betreff beginnt mit „Projektanfrage“,
+    // Felder als „Feld: Wert“-Zeilen. Die Zentrale liest solche Mails über Gmail ein und legt den Lead automatisch an.
     const summary = (data) => {
       const lines = [
         `Projekt: ${data.get("projekt") || "–"}`,
@@ -250,7 +252,7 @@
         `Telefon: ${data.get("telefon") || "–"}`,
         `Website: ${data.get("website") || "–"}`,
         "",
-        String(data.get("nachricht") || ""),
+        `Nachricht: ${String(data.get("nachricht") || "")}`,
       ];
       return lines.join("\n");
     };
