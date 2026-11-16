@@ -1,4 +1,4 @@
-/* LIMEN — main.js
+/* LINUA — main.js
    Kleines, abhängigkeitsfreies Skript. Alle Inhalte sind ohne JavaScript sichtbar;
    das Skript ergänzt nur Bewegung, Menü und Formularversand. */
 (() => {
@@ -360,11 +360,11 @@
   const pill = $(".preview-pill");
   if (pill) {
     let hidden = false;
-    try { hidden = sessionStorage.getItem("limen-preview-pill") === "0"; } catch (_) {}
+    try { hidden = sessionStorage.getItem("linua-preview-pill") === "0"; } catch (_) {}
     if (hidden) pill.remove();
     else pill.querySelector("button").addEventListener("click", () => {
       pill.remove();
-      try { sessionStorage.setItem("limen-preview-pill", "0"); } catch (_) {}
+      try { sessionStorage.setItem("linua-preview-pill", "0"); } catch (_) {}
     });
   }
 })();

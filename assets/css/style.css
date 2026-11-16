@@ -1,6 +1,6 @@
 /* ==========================================================================
-   LIMEN — Design System & Styles
-   Leitidee: Die Website ist die Schwelle (lat. limen) zu Ihrem Geschäft.
+   LINUA — Design System & Styles
+   Leitidee: Die Website ist Tür (lat. janua) und Schwelle (lat. limen) zu Ihrem Geschäft.
    Motiv: eine feine Linie (die Schwelle) und ein Punkt (der Besucher).
    ========================================================================== */
 
@@ -318,7 +318,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   display: flex; align-items: center; justify-content: space-between; gap: var(--sp-m);
 }
 .logo { display: inline-flex; align-items: center; color: var(--ink); text-decoration: none; padding: 6px 0; }
-.logo__svg { width: 92px; height: auto; overflow: visible; }
+.logo__svg { width: 80px; height: auto; overflow: visible; }
 .logo__dot { fill: var(--signal); transition: transform var(--dur-base) var(--ease-out); transform-box: fill-box; transform-origin: center; }
 .logo:hover .logo__dot { transform: translateY(-18%); }
 
@@ -926,7 +926,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .footer__word svg { width: 100%; height: auto; }
 .footer__word .logo__dot { fill: var(--signal-bright); }
 
-.footer__logo .logo__svg { width: 120px; }
+.footer__logo .logo__svg { width: 104px; }
 
 /* Mobiler CTA (Daumenreichweite) */
 .mobile-cta {
