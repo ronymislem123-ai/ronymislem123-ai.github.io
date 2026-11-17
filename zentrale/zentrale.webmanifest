@@ -1,7 +1,7 @@
 {
   "name": "LINUA Zentrale",
   "short_name": "Zentrale",
-  "start_url": "/zentrale/?direkt",
+  "start_url": "/zentrale/",
   "scope": "/zentrale/",
   "display": "browser",
   "background_color": "#16150F",

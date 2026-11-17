@@ -4,6 +4,12 @@
 (() => {
   "use strict";
 
+  // Interner Bereich (Agenturzentrale) ohne Seitenübergang öffnen – dort gelten eigene, strengere Regeln
+  addEventListener("pageswap", (e) => {
+    const vt = e.viewTransition; const to = e.activation && e.activation.entry && e.activation.entry.url;
+    if (vt && to && new URL(to).pathname.includes("/zentrale/")) vt.skipTransition();
+  });
+
   const doc = document.documentElement;
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const $ = (sel, ctx = document) => ctx.querySelector(sel);
@@ -97,7 +103,7 @@
 
   /* ---------- Reveals ---------- */
   // Seitenüberschriften stehen immer im ersten Bildschirm: direkt einblenden, ohne auf den Observer zu warten
-  setTimeout(() => $$("[data-split]").forEach((el) => el.classList.add("is-in")), 60);
+  requestAnimationFrame(() => $$("[data-split]").forEach((el) => el.classList.add("is-in")));
   let ioAlive = false;
   const revealEls = $$("[data-reveal]");
   if ("IntersectionObserver" in window && !reduceMotion) {
@@ -109,7 +115,7 @@
     }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
     revealEls.forEach((el) => io.observe(el));
     // Sicherheitsnetz: meldet der Observer sich nie (z. B. eingebettete oder gedrosselte Ansichten), alles zeigen
-    setTimeout(() => { if (!ioAlive) $$("[data-reveal], [data-split]").forEach((el) => el.classList.add("is-in")); }, 2500);
+    setTimeout(() => { if (!ioAlive) $$("[data-reveal], [data-split]").forEach((el) => el.classList.add("is-in")); }, 1200);
   } else {
     revealEls.forEach((el) => el.classList.add("is-in"));
   }
@@ -282,14 +288,26 @@
         showStatus(`<p class="form-status__title">Danke!</p>`, true);
         return;
       }
-      const mailMode = form.dataset.mode === "mailto";
+      const inbox = form.dataset.inbox; // Eingang der Agenturzentrale (Supabase) – wenn eingerichtet
+      const mailMode = form.dataset.mode === "mailto" && !inbox;
       const btnText = submitBtn.querySelector(".btn__label").textContent;
       submitBtn.setAttribute("aria-busy", "true");
       submitBtn.disabled = true;
       submitBtn.querySelector(".btn__label").textContent = mailMode ? "Wird vorbereitet …" : "Wird gesendet …";
 
       let sent = false;
-      if (!mailMode) try {
+      if (inbox) try {
+        const ctrl = new AbortController();
+        const timer = setTimeout(() => ctrl.abort(), 9000);
+        const res = await fetch(inbox, {
+          method: "POST", signal: ctrl.signal, credentials: "omit",
+          headers: { "Content-Type": "application/json", apikey: form.dataset.key, Authorization: `Bearer ${form.dataset.key}`, Prefer: "return=minimal" },
+          body: JSON.stringify({ subject: `Projektanfrage: ${data.get("projekt")} – ${data.get("name")}`.slice(0, 200), body: summary(data).slice(0, 8000), name: String(data.get("name")).trim().slice(0, 200), email: String(data.get("email")).trim(), hp: "" })
+        });
+        clearTimeout(timer);
+        sent = res.ok;
+      } catch (_) { sent = false; }
+      else if (!mailMode) try {
         const ctrl = new AbortController();
         const timer = setTimeout(() => ctrl.abort(), 9000);
         const res = await fetch(form.action, { method: "POST", body: data, headers: { Accept: "application/json" }, signal: ctrl.signal });

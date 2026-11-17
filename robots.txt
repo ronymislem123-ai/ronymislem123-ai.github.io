@@ -3,4 +3,3 @@ Allow: /
 Disallow: /zentrale/
 
 Sitemap: https://www.linua.de/sitemap.xml
-# zentrale: interner Bereich, nicht indexieren

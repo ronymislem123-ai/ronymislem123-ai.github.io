@@ -1,0 +1,26 @@
+/* LINUA-Markenanpassung der Agenturzentrale: lokale Schriften (keine Verbindung zu Google), Farbwelt Papier · Tinte · Zinnober */
+@font-face { font-family: "Inter"; src: url("../../../assets/fonts/inter-400.woff") format("woff"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Inter"; src: url("../../../assets/fonts/inter-500.woff") format("woff"); font-weight: 500 800; font-display: swap; }
+:root {
+  --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --bg: #F3F0E8; --panel: #FFFDF8; --panel-2: #F8F5EE; --sunken: #E8E3D7; --hover: rgba(22, 21, 15, .05);
+  --ink: #16150F; --ink-2: #5C574C; --ink-3: #6B6659; --line: rgba(22, 21, 15, .09); --line-2: rgba(22, 21, 15, .16);
+  --accent: #C2381A; --accent-2: #A52F15; --accent-ink: #FFFFFF; --accent-soft: rgba(194, 56, 26, .08); --accent-line: rgba(194, 56, 26, .38);
+  --accent-dot: #FF6B45;
+  --viz-surface: #FFFDF8; --viz-grid: #E8E3D7; --viz-axis: #CFC9BC;
+}
+:root[data-theme="dark"] {
+  --bg: #100F0B; --panel: #1A1914; --panel-2: #1F1E18; --sunken: #13120E; --hover: rgba(243, 240, 232, .05);
+  --ink: #F3F0E8; --ink-2: #CFC9BC; --ink-3: #A39D8F; --line: rgba(243, 240, 232, .08); --line-2: rgba(243, 240, 232, .15);
+  --accent: #FF6B45; --accent-2: #FF8A6A; --accent-ink: #16150F; --accent-soft: rgba(255, 107, 69, .13); --accent-line: rgba(255, 107, 69, .45);
+  --accent-dot: #FF6B45;
+  --viz-surface: #1A1914; --viz-grid: #2C2A23; --viz-axis: #3A382F;
+}
+.brand .mark { background: var(--ink); color: var(--bg); }
+.brand .mark::after { display: none; }
+.brand .mark svg { display: block; }
+/* Mobile-Korrektur: Ansichtsumschalter (z. B. Projekte) scrollt in sich statt die Seite zu verbreitern */
+.seg { max-width: 100%; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.seg::-webkit-scrollbar { display: none; }
+.seg > * { flex: none; }
