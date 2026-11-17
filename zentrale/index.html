@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Zentrale – LINUA intern</title>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-EiRj5xA/nt8ol7FZDM0porcpEtqv/fh5XLZwmXXi0QQ='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'self'; object-src 'none'">
+<title>Agenturzentrale – Anmeldung | LINUA</title>
 <meta name="robots" content="noindex,nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="theme-color" content="#16150F">
@@ -17,71 +18,60 @@
   @font-face { font-family: "Inter"; src: url("../assets/fonts/inter-500.woff") format("woff"); font-weight: 500 700; font-display: swap; }
   @font-face { font-family: "Inter Display"; src: url("../assets/fonts/inter-display-500.woff") format("woff"); font-weight: 400 700; font-display: swap; }
   @font-face { font-family: "Lora"; src: url("../assets/fonts/lora-italic-450.woff") format("woff"); font-style: italic; font-display: swap; }
-  :root { --ink: #16150F; --ink-2: #201F19; --paper: #F3F0E8; --line: #2C2A23; --mist: #A39D8F; --signal: #FF6B45; --on-signal: #16150F; }
+  :root { --ink: #16150F; --paper: #F3F0E8; --line: #37352D; --mist: #A39D8F; --soft: #CFC9BC; --signal: #FF6B45; }
+  @view-transition { navigation: auto; }
   * { box-sizing: border-box; }
-  html, body { height: 100%; margin: 0; }
-  body { background: var(--ink); color: var(--paper); font-family: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; display: flex; flex-direction: column; min-height: 100dvh; }
+  html, body { margin: 0; }
+  body { background: var(--ink); color: var(--paper); font-family: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; display: flex; flex-direction: column; min-height: 100vh; min-height: 100dvh; }
+  .skip { position: absolute; left: -999px; } .skip:focus { left: 16px; top: 16px; background: var(--paper); color: var(--ink); padding: 8px 12px; border-radius: 4px; }
   .top { display: flex; align-items: center; gap: 12px; padding: max(20px, env(safe-area-inset-top)) 24px 0; }
-  .mark { width: 28px; height: 28px; display: grid; place-items: center; }
-  .word { font-family: "Inter Display", "Inter", sans-serif; font-weight: 600; letter-spacing: .14em; font-size: 13px; }
+  .top a { display: flex; align-items: center; gap: 10px; color: var(--paper); text-decoration: none; }
+  .word { font-family: "Inter Display", "Inter", sans-serif; font-weight: 500; letter-spacing: .14em; font-size: 13px; }
   .tag { margin-left: auto; font-size: 12px; color: var(--mist); border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; }
-  main { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 32px 24px 48px; max-width: 760px; width: 100%; margin: 0 auto; }
-  .threshold { height: 2px; background: linear-gradient(90deg, var(--paper) 0 62%, transparent 62%); opacity: .9; margin: 0 0 34px; position: relative; }
-  .threshold::after { content: ""; position: absolute; left: 62%; top: -9px; width: 20px; height: 20px; border-radius: 50%; background: var(--signal); transform: translateX(-50%); animation: glow 2.4s ease-in-out infinite; }
-  @keyframes glow { 50% { box-shadow: 0 0 0 10px rgba(255, 107, 69, .14); } }
-  h1 { font-family: "Inter Display", "Inter", sans-serif; font-weight: 500; font-size: clamp(2.2rem, 1.4rem + 4vw, 4rem); line-height: 1.02; letter-spacing: -.035em; margin: 0 0 16px; }
+  main { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 40px 24px 56px; max-width: 640px; width: 100%; margin: 0 auto; }
+  .threshold { height: 2px; background: linear-gradient(90deg, var(--paper) 0 62%, transparent 62%); margin: 0 0 36px; position: relative; }
+  .threshold::after { content: ""; position: absolute; left: 62%; top: -9px; width: 20px; height: 20px; border-radius: 50%; background: var(--signal); transform: translateX(-50%); }
+  h1 { font-family: "Inter Display", "Inter", sans-serif; font-weight: 500; font-size: clamp(2.4rem, 1.6rem + 4vw, 4rem); line-height: 1.02; letter-spacing: -.035em; margin: 0 0 18px; }
   h1 em { font-family: "Lora", Georgia, serif; font-style: italic; font-weight: 450; color: var(--signal); }
-  p { color: #CFC9BC; font-size: 1.05rem; line-height: 1.55; margin: 0 0 28px; max-width: 34em; }
-  .btn { display: inline-flex; align-items: center; gap: 12px; background: var(--signal); color: var(--on-signal); font-weight: 600; font-size: 1.05rem; padding: 16px 22px; border-radius: 4px; text-decoration: none; transition: transform .15s ease, background .15s ease; }
-  .btn:hover { background: #ff825f; } .btn:active { transform: translateY(1px); }
-  .btn:focus-visible { outline: 2px solid var(--paper); outline-offset: 3px; }
-  .btn span[aria-hidden] { transition: transform .2s ease; } .btn:hover span[aria-hidden] { transform: translateX(3px); }
-  .status { margin-top: 18px; font-size: 13px; color: var(--mist); min-height: 1.2em; }
-  ul { list-style: none; padding: 0; margin: 40px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }
-  li { background: var(--ink); padding: 16px; font-size: 13px; color: #CFC9BC; line-height: 1.45; }
-  li b { display: block; color: var(--paper); font-weight: 600; margin-bottom: 4px; font-size: 14px; }
-  footer { padding: 0 24px max(20px, env(safe-area-inset-bottom)); font-size: 12px; color: var(--mist); display: flex; gap: 16px; flex-wrap: wrap; }
+  .lead { color: var(--soft); font-size: 1.05rem; line-height: 1.6; margin: 0 0 32px; max-width: 34em; }
+  .btn { display: inline-flex; align-items: center; gap: 12px; background: var(--signal); color: var(--ink); font-weight: 600; font-size: 1.05rem; padding: 16px 26px; border-radius: 999px; text-decoration: none; transition: background .16s ease; min-height: 48px; }
+  .btn:hover { background: #ff825f; }
+  .btn:focus-visible, a:focus-visible { outline: 2px solid var(--paper); outline-offset: 3px; }
+  .btn span[aria-hidden] { transition: transform .16s ease; } .btn:hover span[aria-hidden] { transform: translateX(3px); }
+  .facts { list-style: none; padding: 0; margin: 44px 0 0; border-top: 1px solid var(--line); }
+  .facts li { padding: 16px 0; border-bottom: 1px solid var(--line); color: var(--soft); font-size: .9rem; line-height: 1.5; }
+  .facts b { color: var(--paper); font-weight: 600; }
+  .facts a { color: var(--paper); }
+  footer { padding: 0 24px max(20px, env(safe-area-inset-bottom)); font-size: 12px; color: var(--mist); display: flex; gap: 20px; flex-wrap: wrap; }
   footer a { color: var(--mist); }
-  @media (prefers-reduced-motion: reduce) { .threshold::after { animation: none; } * { transition: none !important; } }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 </head>
 <body>
+<a class="skip" href="#main">Zum Inhalt springen</a>
 <header class="top">
-  <svg class="mark" viewBox="0 0 64 64" aria-hidden="true"><rect x="14" y="41" width="36" height="4" rx="2" fill="#F3F0E8"/><circle cx="32" cy="27" r="7" fill="#FF6B45"/></svg>
-  <span class="word">LINUA</span>
+  <a href="../" aria-label="LINUA – zur Website">
+    <svg width="28" height="28" viewBox="0 0 64 64" aria-hidden="true"><rect x="14" y="41" width="36" height="4" rx="2" fill="#F3F0E8"/><circle cx="32" cy="27" r="7" fill="#FF6B45"/></svg>
+    <span class="word">LINUA</span>
+  </a>
   <span class="tag">Interner Bereich</span>
 </header>
 <main id="main">
   <div class="threshold" aria-hidden="true"></div>
-  <h1>Deine <em>Zentrale</em>.<br>Alles an einem Ort.</h1>
-  <p>Anfragen, Kunden, Pipeline, Projekte, Angebote, Rechnungen und Automatisierungen. Die Daten liegen geschützt in deinem claude.ai-Konto – Anmeldung und Zugriff laufen über claude.ai, nur du hast Zugriff.</p>
-  <div><a class="btn" id="open" href="https://claude.ai/artifact/AaGiLmWDRUZj1waTzpxEgf" rel="noopener"><span>Zentrale öffnen</span><span aria-hidden="true">→</span></a></div>
-  <div class="status" id="status" role="status" aria-live="polite"></div>
-  <ul aria-label="Verknüpfung mit der Website">
-    <li><b>Formular → CRM</b>Anfragen von kontakt.html erreichen als „Projektanfrage“-Mail dein Gmail und werden in der Zentrale automatisch zum Lead – aktiv, sobald im Formular deine echte Adresse steht.</li>
-    <li><b>Freigabe zuerst</b>Antworten, Angebote und Rechnungen gehen erst nach deiner Freigabe raus.</li>
-    <li><b>Zum Home-Bildschirm</b>Teilen → „Zum Home-Bildschirm“ – dann öffnet ein Tipp direkt die Zentrale.</li>
+  <h1>Agentur<em>zentrale</em></h1>
+  <p class="lead">Der interne Verwaltungsbereich von LINUA für Kunden, Anfragen, Projekte, Angebote und Rechnungen. Der Zugang ist ausschließlich autorisierten Personen vorbehalten.</p>
+  <div><a class="btn" id="login" href="https://claude.ai/artifact/AaGiLmWDRUZj1waTzpxEgf" rel="noopener noreferrer"><span>Anmelden</span><span aria-hidden="true">→</span></a></div>
+  <ul class="facts" role="list">
+    <li><b>Geschützte Anmeldung.</b> Anmeldung, Sitzungen und das Zurücksetzen des Passworts laufen über das gesicherte Konto des Inhabers bei claude.ai.</li>
+    <li><b>Getrennt von der Website.</b> Kunden- und Projektdaten liegen nicht auf dieser Website und sind hier nicht abrufbar.</li>
+    <li><b>Kein Zugang?</b> Dann wenden Sie sich bitte an <a href="mailto:hallo@linua.de">hallo@linua.de</a>.</li>
   </ul>
 </main>
 <footer>
   <a href="../">← Zur Website</a>
-  <span>Kein Zugriff? In claude.ai mit deinem Konto anmelden.</span>
+  <a href="../impressum.html">Impressum</a>
+  <a href="../datenschutz.html">Datenschutz</a>
 </footer>
-<script>
-  (function () {
-    var target = document.getElementById('open').href;
-    var stay = /[?&]bleiben\b/.test(location.search);
-    var status = document.getElementById('status');
-    if (stay) { status.textContent = 'Automatische Weiterleitung ist aus.'; return; }
-    var s = 2;
-    status.textContent = 'Weiterleitung in ' + s + ' Sekunden …';
-    var t = setInterval(function () {
-      s -= 1;
-      if (s <= 0) { clearInterval(t); status.textContent = 'Öffne die Zentrale …'; location.replace(target); }
-      else status.textContent = 'Weiterleitung in ' + s + ' Sekunde …';
-    }, 1000);
-    document.addEventListener('visibilitychange', function () { if (document.hidden) clearInterval(t); });
-  })();
-</script>
+<script>if (/[?&]direkt\b/.test(location.search)) location.replace(document.getElementById('login').href);</script>
 </body>
 </html>

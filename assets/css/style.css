@@ -922,6 +922,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .footer__bottom ul { display: flex; gap: 1.25rem; list-style: none; margin: 0; padding: 0; }
 .footer__bottom a { text-decoration: none; }
 .footer__bottom a:hover { color: var(--text); }
+.footer__internal a { font-size: 0.75rem; letter-spacing: 0.02em; color: var(--muted); padding-left: 1.25rem; border-left: 1px solid var(--border); }
 .footer__word { margin-top: var(--sp-xl); color: var(--ink-3); user-select: none; }
 .footer__word svg { width: 100%; height: auto; }
 .footer__word .logo__dot { fill: var(--signal-bright); }

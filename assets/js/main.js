@@ -231,9 +231,9 @@
       const projektSet = $("#fs-projekt");
       if (!projekt) { setInvalid(projektSet, "Bitte wählen Sie aus, worum es geht."); errors.push(projektSet); }
       const name = form.elements.name;
-      if (!name.value.trim()) { setInvalid(name.closest(".field"), "Bitte geben Sie Ihren Namen an, damit ich Sie ansprechen kann."); errors.push(name); }
+      if (!name.value.trim()) { setInvalid(name.closest(".field"), "Bitte geben Sie Ihren Namen an, damit wir Sie ansprechen können."); errors.push(name); }
       const email = form.elements.email;
-      if (!emailRe.test(email.value.trim())) { setInvalid(email.closest(".field"), "Bitte geben Sie eine gültige E-Mail-Adresse an, damit ich Ihnen antworten kann."); errors.push(email); }
+      if (!emailRe.test(email.value.trim())) { setInvalid(email.closest(".field"), "Bitte geben Sie eine gültige E-Mail-Adresse an, damit wir Ihnen antworten können."); errors.push(email); }
       const msg = form.elements.nachricht;
       if (msg.value.trim().length < 20) { setInvalid(msg.closest(".field"), "Ein, zwei Sätze zu Ihrem Vorhaben genügen – mindestens 20 Zeichen."); errors.push(msg); }
       return errors;
@@ -303,7 +303,7 @@
       if (sent) {
         showStatus(
           `<p class="form-status__title">Danke, ${firstName}! Ihre Anfrage ist angekommen.</p>
-           <p class="muted" style="margin-top:.75rem">Ich melde mich innerhalb eines Werktags persönlich bei Ihnen – meist mit einer ersten Einschätzung und einem Terminvorschlag für das kostenlose Erstgespräch.</p>`,
+           <p class="muted" style="margin-top:.75rem">Wir melden uns innerhalb eines Werktags persönlich bei Ihnen – meist mit einer ersten Einschätzung und einem Terminvorschlag für das kostenlose Erstgespräch.</p>`,
           true
         );
         return;
@@ -316,7 +316,7 @@
       const mailto = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       if (mailMode) { try { window.location.href = mailto; } catch (_) {} }
       const intro = mailMode
-        ? `Ihr E-Mail-Programm sollte sich jetzt mit der fertigen Anfrage öffnen. Bitte tippen Sie dort nur noch auf <strong>Senden</strong> – erst dann erreicht mich Ihre Nachricht. Hat sich nichts geöffnet? Öffnen Sie die E-Mail erneut oder kopieren Sie den Text an <strong>${esc(to)}</strong>.`
+        ? `Ihr E-Mail-Programm sollte sich jetzt mit der fertigen Anfrage öffnen. Bitte tippen Sie dort nur noch auf <strong>Senden</strong> – erst dann erreicht uns Ihre Nachricht. Hat sich nichts geöffnet? Öffnen Sie die E-Mail erneut oder kopieren Sie den Text an <strong>${esc(to)}</strong>.`
         : `Der automatische Versand ist gerade nicht erreichbar – Ihre Anfrage wurde deshalb <strong>noch nicht gesendet</strong>. Sie ist aber fertig vorbereitet: Öffnen Sie sie mit einem Klick in Ihrem E-Mail-Programm oder kopieren Sie den Text an <strong>${esc(to)}</strong>.`;
       showStatus(
         `<p class="form-status__title">${mailMode ? `Fast fertig, ${firstName}.` : `Fast geschafft, ${firstName}.`}</p>
