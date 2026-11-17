@@ -310,7 +310,7 @@
         const timer = setTimeout(() => ctrl.abort(), 9000);
         const res = await fetch(inbox, {
           method: "POST", signal: ctrl.signal, credentials: "omit",
-          headers: { "Content-Type": "application/json", apikey: form.dataset.key, Authorization: `Bearer ${form.dataset.key}`, Prefer: "return=minimal" },
+          headers: Object.assign({ "Content-Type": "application/json", apikey: form.dataset.key, Prefer: "return=minimal" }, /^eyJ/.test(form.dataset.key) ? { Authorization: `Bearer ${form.dataset.key}` } : {}),
           body: JSON.stringify({ subject: `Projektanfrage: ${data.get("projekt")} – ${data.get("name")}`.slice(0, 200), body: summary(data).slice(0, 8000), name: String(data.get("name")).trim().slice(0, 200), email: String(data.get("email")).trim(), hp: "" })
         });
         clearTimeout(timer);

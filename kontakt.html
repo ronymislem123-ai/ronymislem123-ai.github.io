@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Du+OJKJSbdUgz5nrHeWWINvez6XKDDU/tyj/5c2uvwo='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; form-action 'self' mailto:; base-uri 'self'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Du+OJKJSbdUgz5nrHeWWINvez6XKDDU/tyj/5c2uvwo='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://cypzmrogwltxksimadpn.supabase.co; form-action 'self' mailto:; base-uri 'self'; object-src 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Kontakt – Projekt anfragen | LINUA Webdesign Leipzig</title>
 <meta name="description" content="Erzählen Sie uns von Ihrem Projekt. Sie erhalten innerhalb eines Werktags eine persönliche Antwort und einen Termin für ein kostenloses Erstgespräch.">
@@ -108,7 +108,7 @@
 <section class="section section--flush-top" aria-label="Projektanfrage">
   <div class="wrap grid">
     <div class="span-7">
-      <form class="form" id="anfrage-form" action="mailto:hallo@linua.de?subject=Projektanfrage" method="post" enctype="text/plain" novalidate data-mail="hallo@linua.de" data-mode="mailto">
+      <form class="form" id="anfrage-form" action="mailto:hallo@linua.de?subject=Projektanfrage" method="post" enctype="text/plain" data-inbox="https://cypzmrogwltxksimadpn.supabase.co/rest/v1/zentrale_inbox" data-key="sb_publishable_Yu05MU7GprLn_WnLR_L3YQ_6nocdpAm" novalidate data-mail="hallo@linua.de" data-mode="mailto">
         <fieldset class="fieldset" id="fs-projekt">
           <legend>Worum geht es? <span class="field__opt">Pflichtfeld</span></legend>
           <div class="chips">
@@ -195,9 +195,9 @@
         </div>
 
         <div class="form__foot">
-          <button class="btn" type="submit"><span class="btn__label">Anfrage per E-Mail senden</span><span class="btn__arrow" aria-hidden="true">→</span></button>
+          <button class="btn" type="submit"><span class="btn__label">Anfrage senden</span><span class="btn__arrow" aria-hidden="true">→</span></button>
           
-          <p class="small muted">Ihr E-Mail-Programm öffnet sich mit der fertigen Anfrage – Sie senden sie dort selbst ab. Unverbindlich und kostenlos. Mehr in der <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+          <p class="small muted">Unverbindlich und kostenlos. Mehr in der <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
         </div>
       </form>
       <div class="form-status" id="form-status" tabindex="-1" role="status" aria-live="polite" hidden></div>
