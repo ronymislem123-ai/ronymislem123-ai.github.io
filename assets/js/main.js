@@ -40,6 +40,7 @@
         progress.style.setProperty("--po", y > 40 ? "1" : "0");
       }
       updateTimeline();
+      updateScrub();
       ticking = false;
     });
   };
@@ -387,6 +388,49 @@
     ends.forEach((el) => eio.observe(el));
   }
 
+
+
+  /* ---------- Redaktionelle Überschriften: Wörter füllen sich beim Scrollen mit Tinte ---------- */
+  const scrubs = [];
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    $$("[data-scrub]").forEach((el) => {
+      const words = [];
+      const wrapText = (node) => {
+        Array.from(node.childNodes).forEach((ch) => {
+          if (ch.nodeType === 3) {
+            const frag = document.createDocumentFragment();
+            ch.textContent.split(/(\s+)/).forEach((part) => {
+              if (!part) return;
+              if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+              const w = document.createElement("span"); w.className = "scrub-w"; w.textContent = part; frag.appendChild(w); words.push(w);
+            });
+            ch.replaceWith(frag);
+          } else if (ch.nodeType === 1) { ch.classList.add("scrub-w"); words.push(ch); }
+        });
+      };
+      wrapText(el);
+      words.forEach((w, i) => w.style.setProperty("--i", i));
+      el.style.setProperty("--n", words.length);
+      el.classList.add("is-scrub");
+      scrubs.push(el);
+    });
+  }
+  function updateScrub() {
+    const vh = window.innerHeight;
+    scrubs.forEach((el) => {
+      const top = el.getBoundingClientRect().top;
+      const p = Math.min(1, Math.max(0, (vh * 0.92 - top) / (vh * 0.4)));
+      el.style.setProperty("--p", p.toFixed(3));
+    });
+  }
+  updateScrub();
+
+  /* ---------- Kontakt: Vorhaben aus dem Link vorauswählen (z. B. von der Preisseite) ---------- */
+  const pre = new URLSearchParams(location.search).get("vorhaben");
+  if (pre) {
+    const radio = $$("#anfrage-form [name=projekt]").find((r) => r.value === pre);
+    if (radio) { radio.checked = true; radio.dispatchEvent(new Event("change", { bubbles: true })); }
+  }
 
   /* ---------- Leistungs-Menü (Desktop): öffnet per Klick, Tastatur oder kurzem Verweilen ---------- */
   const megaBtn = $(".nav__more");
