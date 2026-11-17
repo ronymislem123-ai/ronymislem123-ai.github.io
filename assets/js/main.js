@@ -19,6 +19,7 @@
   const header = $(".site-header");
   const progress = $(".progress");
   let ticking = false;
+  let lastY = window.scrollY;
   const onScroll = () => {
     if (ticking) return;
     ticking = true;
@@ -26,7 +27,14 @@
       const y = window.scrollY;
       const max = Math.max(1, doc.scrollHeight - window.innerHeight);
       const p = Math.min(1, Math.max(0, y / max));
-      if (header) header.classList.toggle("is-scrolled", y > 8);
+      if (header) {
+        header.classList.toggle("is-scrolled", y > 8);
+        // Smart Header: beim Weiterlesen ausweichen, beim Zurückscrollen sofort wieder da
+        const busy = doc.classList.contains("menu-open") || header.classList.contains("mega-open") || header.contains(document.activeElement);
+        if (y < 480 || busy || y < lastY - 6) header.classList.remove("is-tucked");
+        else if (y > lastY + 6) header.classList.add("is-tucked");
+        if (Math.abs(y - lastY) > 6) lastY = y;
+      }
       if (progress) {
         progress.style.setProperty("--p", p.toFixed(4));
         progress.style.setProperty("--po", y > 40 ? "1" : "0");
@@ -377,6 +385,82 @@
       nearEnd = visibleEnds.size > 0; sync();
     });
     ends.forEach((el) => eio.observe(el));
+  }
+
+
+  /* ---------- Leistungs-Menü (Desktop): öffnet per Klick, Tastatur oder kurzem Verweilen ---------- */
+  const megaBtn = $(".nav__more");
+  const mega = $("#mega-leistungen");
+  if (megaBtn && mega && header) {
+    const item = megaBtn.closest(".nav__item--mega");
+    let openTimer = 0, closeTimer = 0;
+    const setMega = (open, focusBack) => {
+      clearTimeout(openTimer); clearTimeout(closeTimer);
+      if (open === !mega.hidden) return;
+      mega.hidden = !open;
+      megaBtn.setAttribute("aria-expanded", String(open));
+      header.classList.toggle("mega-open", open);
+      if (open) header.classList.remove("is-tucked");
+      if (!open && focusBack) megaBtn.focus();
+    };
+    megaBtn.addEventListener("click", () => setMega(mega.hidden));
+    const fine = window.matchMedia("(hover: hover) and (pointer: fine)");
+    const enter = () => { if (!fine.matches) return; clearTimeout(closeTimer); openTimer = setTimeout(() => setMega(true), 140); };
+    const leave = () => { clearTimeout(openTimer); closeTimer = setTimeout(() => setMega(false), 220); };
+    [item, mega].forEach((el) => { el.addEventListener("pointerenter", enter); el.addEventListener("pointerleave", leave); });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !mega.hidden) setMega(false, true); });
+    document.addEventListener("pointerdown", (e) => { if (!mega.hidden && !mega.contains(e.target) && !item.contains(e.target)) setMega(false); });
+    header.addEventListener("focusout", (e) => {
+      const to = e.relatedTarget;
+      if (!mega.hidden && to && !mega.contains(to) && !item.contains(to)) setMega(false);
+    });
+    mega.addEventListener("click", (e) => { if (e.target.closest("a")) setMega(false); });
+  }
+
+  /* ---------- Hero-Bühne: Karten legen sich auf, folgen dezent dem Zeiger ---------- */
+  const stage = $(".hero-stage");
+  if (stage) {
+    const fit = () => { const c = stage.querySelector(".hero-stage__card"); if (c && c.clientWidth) stage.style.setProperty("--k", (c.clientWidth / 640).toFixed(4)); };
+    fit();
+    if ("ResizeObserver" in window) new ResizeObserver(fit).observe(stage);
+    requestAnimationFrame(() => requestAnimationFrame(() => stage.classList.add("is-in")));
+    const hero = stage.closest(".hero");
+    const calm = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const fineP = window.matchMedia("(hover: hover) and (pointer: fine)");
+    let raf = 0, px = 0, py = 0;
+    const apply = () => { raf = 0; stage.style.setProperty("--px", px.toFixed(3)); stage.style.setProperty("--py", py.toFixed(3)); };
+    hero.addEventListener("pointermove", (e) => {
+      if (calm.matches || !fineP.matches || e.pointerType !== "mouse") return;
+      const r = stage.getBoundingClientRect();
+      px = Math.max(-1, Math.min(1, (e.clientX - (r.left + r.width / 2)) / (window.innerWidth / 2)));
+      py = Math.max(-1, Math.min(1, (e.clientY - (r.top + r.height / 2)) / (window.innerHeight / 2)));
+      if (!raf) raf = requestAnimationFrame(apply);
+    });
+    hero.addEventListener("pointerleave", () => { px = 0; py = 0; if (!raf) raf = requestAnimationFrame(apply); });
+  }
+
+  /* ---------- Anfrage-Überblick: zeigt vor dem Absenden, was ankommt ---------- */
+  const summary = $("[data-summary]");
+  const sumForm = $("#anfrage-form");
+  if (summary && sumForm) {
+    const out = (k) => summary.querySelector(`[data-sum="${k}"]`);
+    const set = (k, text, empty) => {
+      const el = out(k); if (!el || el.textContent === text) return;
+      el.textContent = text; el.classList.toggle("is-empty", !!empty);
+      el.classList.remove("is-changed"); void el.offsetWidth; el.classList.add("is-changed");
+    };
+    const refresh = () => {
+      const pr = sumForm.querySelector("[name=projekt]:checked");
+      const bu = sumForm.querySelector("[name=budget]:checked");
+      const ze = sumForm.elements.zeitrahmen;
+      set("projekt", pr ? pr.value : "noch nicht gewählt", !pr);
+      set("budget", bu ? bu.value : "noch nicht gewählt", !bu);
+      set("zeitrahmen", ze && ze.value ? ze.value : "noch nicht gewählt", !(ze && ze.value));
+      set("offer", pr && pr.dataset.offer ? pr.dataset.offer : "Wählen Sie oben Ihr Vorhaben.", !pr);
+    };
+    ["projekt", "budget", "zeitrahmen", "offer"].forEach((k) => { const el = out(k); if (el) el.classList.add("is-empty"); });
+    sumForm.addEventListener("change", refresh);
+    refresh();
   }
 
   /* ---------- Kleinkram ---------- */
