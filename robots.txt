@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /zentrale/
+
+Sitemap: https://www.linua.de/sitemap.xml
