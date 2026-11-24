@@ -6,6 +6,8 @@
   const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
   const mqReduce = matchMedia("(prefers-reduced-motion: reduce)");
   const fine = matchMedia("(pointer: fine)");
+  const root = document.documentElement;
+  const calm = () => mqReduce.matches || root.classList.contains("no-motion");
   const store = {
     get(k) { try { return sessionStorage.getItem(k); } catch (_) { return null; } },
     set(k, v) { try { sessionStorage.setItem(k, v); } catch (_) { /* nicht verfügbar */ } },
@@ -51,7 +53,7 @@
       if (on) {
         a.setAttribute("aria-current", "true");
         const li = a.parentElement;
-        if (pnUl.scrollWidth > pnUl.clientWidth) pnUl.scrollTo({ left: li.offsetLeft - pnUl.clientWidth / 2 + li.offsetWidth / 2, behavior: mqReduce.matches ? "auto" : "smooth" });
+        if (pnUl.scrollWidth > pnUl.clientWidth) pnUl.scrollTo({ left: li.offsetLeft - pnUl.clientWidth / 2 + li.offsetWidth / 2, behavior: calm() ? "auto" : "smooth" });
         if (pnInd) { pnInd.style.width = `${li.offsetWidth}px`; pnInd.style.transform = `translateX(${li.offsetLeft}px)`; pnInd.style.setProperty("--dc", getComputedStyle(a).getPropertyValue("--dot")); pnInd.classList.add("is-on"); }
       }
       else a.removeAttribute("aria-current");
@@ -79,7 +81,7 @@
         setActive(past ? cur : "");
         if (pnInd && !activeId) pnInd.classList.remove("is-on");
       }
-      if (!mqReduce.matches) {
+      if (!calm()) {
         para.forEach((el) => {
           const r = el.getBoundingClientRect();
           const k = Number(el.dataset.parallax) || 0.08;
@@ -109,7 +111,7 @@
     if (el.dataset.done) return;
     el.dataset.done = "1";
     const to = Number(el.dataset.count);
-    if (mqReduce.matches || !to) { el.textContent = fmt.format(to); return; }
+    if (calm() || !to) { el.textContent = fmt.format(to); return; }
     const t0 = performance.now(), dur = Number(el.dataset.dur) || 1400;
     const step = (t) => {
       const p = clamp((t - t0) / dur, 0, 1);
@@ -171,13 +173,13 @@
     const checks = $(".float--checks", rot);
     const url = $(".win__url", rot);
     const n = groups[0].length;
-    let i = 0, timer = 0, paused = mqReduce.matches, hover = false;
+    let i = 0, timer = 0, paused = calm(), hover = false;
     const show = (k) => {
       i = (k + n) % n;
       groups.forEach((g) => g.forEach((s, j) => { s.classList.toggle("is-active", j === i); s.setAttribute("aria-hidden", j !== i); }));
       dots.forEach((d, j) => d.setAttribute("aria-current", j === i ? "true" : "false"));
       if (url) url.textContent = groups[0][i].dataset.url || "";
-      if (checks && !mqReduce.matches) { checks.classList.remove("is-ticked"); void checks.offsetWidth; setTimeout(() => checks.classList.add("is-ticked"), 120); }
+      if (checks && !calm()) { checks.classList.remove("is-ticked"); void checks.offsetWidth; setTimeout(() => checks.classList.add("is-ticked"), 120); }
     };
     const plan = () => { clearTimeout(timer); if (!paused && !hover) timer = setTimeout(() => { show(i + 1); plan(); }, 5200); };
     const setPaused = (p) => {
@@ -192,17 +194,18 @@
     rot.addEventListener("focusin", () => { hover = true; clearTimeout(timer); });
     rot.addEventListener("focusout", () => { hover = false; plan(); });
     show(0);
-    if (checks) setTimeout(() => checks.classList.add("is-ticked"), mqReduce.matches ? 0 : 900);
+    if (checks) setTimeout(() => checks.classList.add("is-ticked"), calm() ? 0 : 900);
     setPaused(paused);
     // Zeiger-Parallax der schwebenden Karten
-    if (fine.matches && !mqReduce.matches) {
+    if (fine.matches && !calm()) {
       const floats = $$("[data-depth]", rot);
       rot.addEventListener("pointermove", (e) => {
         const r = rot.getBoundingClientRect();
         const x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
-        floats.forEach((f) => { const d = Number(f.dataset.depth); f.style.transform = `translate(${(x * d).toFixed(1)}px, ${(y * d).toFixed(1)}px)`; });
+        if (calm()) return;
+        floats.forEach((f) => { const d = Number(f.dataset.depth); f.style.translate = `${(x * d).toFixed(1)}px ${(y * d).toFixed(1)}px`; });
       });
-      rot.addEventListener("pointerleave", () => floats.forEach((f) => { f.style.transform = ""; }));
+      rot.addEventListener("pointerleave", () => floats.forEach((f) => { f.style.translate = ""; }));
     }
   }
 
@@ -216,7 +219,7 @@
       const on = () => { cards.forEach((x) => x.classList.toggle("is-on", x === c)); cmp.dataset.show = c.dataset.hl; if (Number(input.value) > 30) { cmp.classList.add("is-hint"); input.value = 8; set(8); } };
       c.addEventListener("click", on); c.addEventListener("focus", on); c.addEventListener("pointerenter", on);
     });
-    if (!mqReduce.matches && "IntersectionObserver" in window) {
+    if (!calm() && "IntersectionObserver" in window) {
       const io = new IntersectionObserver(([e]) => {
         if (!e.isIntersecting) return;
         io.disconnect();
@@ -243,8 +246,8 @@
       if (next) next.disabled = track.scrollLeft > max - 4;
       if (bar) { const w = clamp(track.clientWidth / track.scrollWidth, 0.15, 1); bar.style.setProperty("--w", `${w * 100}%`); bar.style.setProperty("--x", `${p * (1 - w) * 100}%`); }
     };
-    if (prev) prev.addEventListener("click", () => track.scrollBy({ left: -step(), behavior: mqReduce.matches ? "auto" : "smooth" }));
-    if (next) next.addEventListener("click", () => track.scrollBy({ left: step(), behavior: mqReduce.matches ? "auto" : "smooth" }));
+    if (prev) prev.addEventListener("click", () => track.scrollBy({ left: -step(), behavior: calm() ? "auto" : "smooth" }));
+    if (next) next.addEventListener("click", () => track.scrollBy({ left: step(), behavior: calm() ? "auto" : "smooth" }));
     track.addEventListener("scroll", upd, { passive: true });
     track.addEventListener("keydown", (e) => {
       if (e.key === "ArrowRight") { e.preventDefault(); track.scrollBy({ left: step() }); }
@@ -269,7 +272,7 @@
   function flowUpdate() {
     flows.forEach((f) => {
       const r = f.getBoundingClientRect(), vh = innerHeight;
-      const p = mqReduce.matches ? 1 : clamp((vh * 0.85 - r.top) / (r.height + vh * 0.35), 0, 1);
+      const p = calm() ? 1 : clamp((vh * 0.85 - r.top) / (r.height + vh * 0.35), 0, 1);
       f.style.setProperty("--p", p.toFixed(3));
       const items = $$("li", f);
       items.forEach((li, k) => li.classList.toggle("is-done", p >= (k + 0.35) / items.length));
@@ -434,7 +437,7 @@
   if (tabbar) addEventListener("scroll", () => { const y = scrollY; tabbar.classList.toggle("is-hidden", y > lastY + 4 && y > 200); if (y < lastY - 4) tabbar.classList.remove("is-hidden"); lastY = y; }, { passive: true });
 
   /* ---------- Neigung und Magnet ---------- */
-  if (fine.matches && !mqReduce.matches) {
+  if (fine.matches && !calm()) {
     $$("[data-tilt]").forEach((el) => {
       el.addEventListener("pointermove", (e) => { const r = el.getBoundingClientRect(); const x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5; el.style.transform = `perspective(900px) rotateX(${(-y * 6).toFixed(2)}deg) rotateY(${(x * 8).toFixed(2)}deg) translateY(-4px)`; });
       el.addEventListener("pointerleave", () => { el.style.transform = ""; });
@@ -543,7 +546,7 @@
     next.addEventListener("click", () => { if (!$("input:checked", cards[i])) { $("input", cards[i]).focus(); toast("Bitte wählen Sie eine Antwort"); return; } show(i + 1, 1); $("input", cards[i]).focus({ preventScroll: true }); });
     wiz.addEventListener("change", (e) => {
       const c = e.target.closest(".qcard2"); bar[cards.indexOf(c)].classList.add("is-done");
-      if (wiz.classList.contains("is-wizard") && i < cards.length - 1) setTimeout(() => { show(i + 1, 1); $("input", cards[i]).focus({ preventScroll: true }); }, mqReduce.matches ? 0 : 380);
+      if (wiz.classList.contains("is-wizard") && i < cards.length - 1) setTimeout(() => { show(i + 1, 1); $("input", cards[i]).focus({ preventScroll: true }); }, calm() ? 0 : 380);
     });
     show(0, 1);
     const out = $("[data-check-result]");
@@ -572,9 +575,100 @@
     });
   }
 
+  /* ---------- Wort-Einblendung in Überschriften ---------- */
+  if (innerWidth >= 700) {
+    $$(".hero .h1, .phero .h1, .sec__head .h2, .ctaband .h2").forEach((h) => {
+      if (h.querySelector("*")) return;
+      const words = h.textContent.trim().split(/\s+/);
+      h.innerHTML = words.map((w, k) => `<span class="w"><span style="--wi: ${k}">${esc(w)}</span></span>`).join(" ");
+      h.classList.add("wsplit");
+      if (h.closest(".hero, .phero")) requestAnimationFrame(() => setTimeout(() => h.classList.add("is-on"), 60));
+      else if (revealIO) revealIO.observe(h); else h.classList.add("is-in");
+    });
+  }
+
+  /* ---------- Szenen: Objekte reagieren auf den Zeiger ---------- */
+  if (fine.matches) {
+    $$("[data-scene]").forEach((sc) => {
+      const items = $$("[data-depth]", sc);
+      sc.addEventListener("pointermove", (e) => {
+        if (calm()) return;
+        const r = sc.getBoundingClientRect(); const x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+        items.forEach((f) => { const d = Number(f.dataset.depth); f.style.translate = `${(x * d).toFixed(1)}px ${(y * d).toFixed(1)}px`; });
+      });
+      sc.addEventListener("pointerleave", () => items.forEach((f) => { f.style.translate = ""; }));
+    });
+  }
+
+  /* ---------- Cursor-Punkt (der Besucher) ---------- */
+  if (fine.matches) {
+    const cur = Object.assign(document.createElement("div"), { className: "cursor" });
+    cur.setAttribute("aria-hidden", "true"); cur.innerHTML = "<span></span>"; document.body.append(cur);
+    let tx = -100, ty = -100, cx = -100, cy = -100, raf = 0;
+    const loop = () => { cx += (tx - cx) * 0.22; cy += (ty - cy) * 0.22; cur.style.transform = `translate(${cx.toFixed(1)}px, ${cy.toFixed(1)}px)`; raf = Math.abs(tx - cx) + Math.abs(ty - cy) > 0.3 ? requestAnimationFrame(loop) : 0; };
+    addEventListener("pointermove", (e) => {
+      if (calm() || e.pointerType !== "mouse") { cur.classList.remove("is-on"); return; }
+      tx = e.clientX; ty = e.clientY; cur.classList.add("is-on");
+      const lab = e.target.closest("[data-cursor]");
+      const act = e.target.closest("a, button, label, summary, input, select, textarea");
+      cur.classList.toggle("is-label", !!lab); cur.classList.toggle("is-big", !lab && !!act);
+      if (lab) $("span", cur).textContent = lab.dataset.cursor;
+      if (!raf) raf = requestAnimationFrame(loop);
+    }, { passive: true });
+    document.addEventListener("pointerleave", () => cur.classList.remove("is-on"));
+    addEventListener("scroll", () => cur.classList.remove("is-label", "is-big"), { passive: true });
+  }
+
+  /* ---------- Horizontale Erzählung (Arbeiten) ---------- */
+  const hs = $(".hscroll");
+  const hsTrack = hs ? $(".car__track", hs) : null;
+  const hsBar = hs ? $(".car__prog span", hs) : null;
+  const hsSetup = () => {
+    if (!hs) return;
+    const on = innerWidth >= 1100 && !calm();
+    hs.classList.toggle("is-pinned", on);
+    if (!on) { hs.style.removeProperty("--hs-h"); hsTrack.style.removeProperty("--hx"); return; }
+    const dist = Math.max(0, hsTrack.scrollWidth - hsTrack.clientWidth + 40);
+    hs.dataset.dist = dist;
+    hs.style.setProperty("--hs-h", `${innerHeight + dist}px`);
+    hsUpdate();
+  };
+  function hsUpdate() {
+    if (!hs || !hs.classList.contains("is-pinned")) return;
+    const r = hs.getBoundingClientRect(), dist = Number(hs.dataset.dist);
+    const p = clamp(-r.top / Math.max(1, r.height - innerHeight), 0, 1);
+    hsTrack.style.setProperty("--hx", (p * dist).toFixed(1));
+    if (hsBar) { const w = clamp(hsTrack.clientWidth / hsTrack.scrollWidth, 0.15, 1); hsBar.style.setProperty("--w", `${w * 100}%`); hsBar.style.setProperty("--x", `${p * (1 - w) * 100}%`); }
+  }
+  if (hs) { hsSetup(); addEventListener("resize", hsSetup); addEventListener("scroll", () => requestAnimationFrame(hsUpdate), { passive: true }); addEventListener("load", hsSetup); }
+
+  /* ---------- Hero-Bühne kippt beim Herausscrollen ---------- */
+  const heroStage = $(".hero .stage");
+  if (heroStage) addEventListener("scroll", () => requestAnimationFrame(() => {
+    if (calm()) { heroStage.style.transform = ""; return; }
+    const p = clamp(scrollY / (innerHeight * 0.9), 0, 1);
+    heroStage.style.transform = `perspective(1400px) rotateX(${(p * 10).toFixed(2)}deg) scale(${(1 - p * 0.06).toFixed(3)}) translateY(${(p * 40).toFixed(1)}px)`;
+  }), { passive: true });
+
+  /* ---------- Schalter: Animationen pausieren ---------- */
+  const mt = $("[data-motion-toggle]");
+  const mtSync = () => { const off = root.classList.contains("no-motion"); mt.setAttribute("aria-pressed", off); mt.textContent = off ? "Animationen fortsetzen" : "Animationen pausieren"; };
+  if (mt) {
+    mtSync();
+    mt.addEventListener("click", () => {
+      const off = !root.classList.contains("no-motion");
+      root.classList.toggle("no-motion", off);
+      try { localStorage.setItem("linua-motion", off ? "off" : "on"); } catch (_) { /* nicht verfügbar */ }
+      mtSync(); hsSetup(); onScroll();
+      $$("[data-depth]").forEach((f) => { f.style.translate = ""; });
+      toast(off ? "Animationen pausiert" : "Animationen laufen wieder");
+    });
+  }
+  mqReduce.addEventListener("change", () => { para.forEach((el) => { el.style.translate = ""; }); hsSetup(); onScroll(); });
+
   /* ---------- Start ---------- */
   addEventListener("scroll", onScroll, { passive: true });
   addEventListener("resize", onScroll);
   onScroll();
-  mqReduce.addEventListener("change", () => { para.forEach((el) => { el.style.translate = ""; }); onScroll(); });
+  
 })();

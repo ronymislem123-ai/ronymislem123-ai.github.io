@@ -38,7 +38,7 @@ SITE = {
 NAV = [("leistungen", "leistungen.html", "Leistungen"), ("projekte", "projekte.html", "Arbeiten"),
        ("ablauf", "ablauf.html", "Ablauf"), ("preise", "preise.html", "Preise"), ("ueber", "ueber.html", "Über")]
 
-JS_FLAG = "document.documentElement.classList.add('js')"
+JS_FLAG = "document.documentElement.classList.add('js');try{if(localStorage.getItem('linua-motion')==='off')document.documentElement.classList.add('no-motion')}catch(e){}"
 ICONS = (Path(__file__).resolve().parent / "src" / "icons.svg").read_text(encoding="utf-8")
 
 
@@ -49,8 +49,20 @@ def sha(s):
 ICON = '<svg class="i" aria-hidden="true" focusable="false"><use href="#i-{}"/></svg>'
 
 
+RING_N = [0]
+
+
+def ring(txt):
+    RING_N[0] += 1
+    n = RING_N[0]
+    return (f'<span class="ring" aria-hidden="true"><svg viewBox="0 0 120 120"><defs><path id="rp{n}" d="M60 60m-45 0a45 45 0 1 1 90 0a45 45 0 1 1-90 0"/></defs>'
+            f'<text><textPath href="#rp{n}" textLength="276">{html.escape(txt)}</textPath></text></svg><span class="ring__core"></span></span>')
+
+
 def fill(text, extra):
     text = re.sub(r"\{\{i:([a-z0-9-]+)\}\}", lambda m: ICON.format(m.group(1)), text)
+    text = re.sub(r"\{\{s:([a-z0-9-]+)\}\}", lambda m: f'<svg class="st st--{m.group(1)}" aria-hidden="true" focusable="false"><use href="#{m.group(1) if m.group(1).startswith("ob-") else "st-" + m.group(1)}"/></svg>', text)
+    text = re.sub(r"\{\{ring:([^}]+)\}\}", lambda m: ring(m.group(1)), text)
     vals = dict(SITE, **extra)
     def rep(m):
         key = m.group(1).strip()
@@ -212,7 +224,7 @@ def footer2(root):
   </div>
   <div class="ft__legal">
     <p>© {SITE["year"]} {SITE["name"]}, {SITE["owner"]} · Preise sind Endpreise gemäß § 19 UStG.</p>
-    <ul><li><a href="{root}impressum.html">Impressum</a></li><li><a href="{root}datenschutz.html">Datenschutz</a></li><li><a href="{root}zentrale/" rel="nofollow">Agentur-Zentrale</a></li></ul>
+    <ul><li><button class="ft__motion" type="button" data-motion-toggle aria-pressed="false">Animationen pausieren</button></li><li><a href="{root}impressum.html">Impressum</a></li><li><a href="{root}datenschutz.html">Datenschutz</a></li><li><a href="{root}zentrale/" rel="nofollow">Agentur-Zentrale</a></li></ul>
   </div>
 </footer>'''
 
@@ -244,11 +256,21 @@ def page(meta, body, root, prod):
     title = html.escape(meta["title"])
     desc = html.escape(meta["description"])
     v2 = meta.get("v") == 2
+    if v2 and '<section class="phero"' in body:
+        objs = {"blue": ("ob-torus", "ob-pill"), "ochre": ("ob-pill", "ob-sphere"), "green": ("ob-cone", "ob-torus"),
+                "violet": ("ob-cube", "ob-pill2"), "red": ("ob-sphere", "ob-cube"), "ink": ("ob-torus", "ob-sphere")}[meta.get("c", "red")]
+        deco = (f'<div class="deco3d" aria-hidden="true"><svg class="ob ob--a" data-depth="26"><use href="#{objs[0]}"/></svg>'
+                f'<svg class="ob ob--b" data-depth="-18"><use href="#{objs[1]}"/></svg><svg class="st st--spark sp1" data-depth="12"><use href="#st-spark"/></svg>'
+                f'<svg class="st st--spark sp2" data-depth="-10"><use href="#st-spark"/></svg></div>')
+        body = re.sub(r'(<section class="phero"[^>]*>)', lambda m: m.group(1).replace("<section ", "<section data-scene ") + deco, body, count=1)
     theme = "#FBF8F3" if v2 else ("#5E302D" if meta.get("theme") == "dark" else "#F6F6F3")
     css = "v2.css" if v2 else "site.css"
     js = "v2.js" if v2 else "site.js"
     top = (ICONS + header2(meta, root) + pagenav(meta)) if v2 else (header(meta, root) + spur(meta))
-    foot = (footer2(root) + tabbar(meta, root) + palette(root)) if v2 else footer(root)
+    words = ["Websites", "Onlineshops", "Web-Apps", "Festpreis vor Projektstart", "Ein Ansprechpartner", "Handgebaut in Leipzig", "Schnell geladen", "Alles gehört Ihnen"]
+    run = "".join(f'<span>{w}</span><svg class="st st--spark"><use href="#st-spark"/></svg>' for w in words)
+    marquee = f'<div class="marquee" data-c="{meta.get("c", "red")}" aria-hidden="true"><div class="marquee__in">{run}{run}</div></div>'
+    foot = (marquee + footer2(root) + tabbar(meta, root) + palette(root)) if v2 else footer(root)
     return f'''<!DOCTYPE html>
 <html lang="de">
 <head>
