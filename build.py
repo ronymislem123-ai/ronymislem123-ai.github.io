@@ -39,13 +39,18 @@ NAV = [("leistungen", "leistungen.html", "Leistungen"), ("projekte", "projekte.h
        ("ablauf", "ablauf.html", "Ablauf"), ("preise", "preise.html", "Preise"), ("ueber", "ueber.html", "Über")]
 
 JS_FLAG = "document.documentElement.classList.add('js')"
+ICONS = (Path(__file__).resolve().parent / "src" / "icons.svg").read_text(encoding="utf-8")
 
 
 def sha(s):
     return "sha256-" + base64.b64encode(hashlib.sha256(s.encode()).digest()).decode()
 
 
+ICON = '<svg class="i" aria-hidden="true" focusable="false"><use href="#i-{}"/></svg>'
+
+
 def fill(text, extra):
+    text = re.sub(r"\{\{i:([a-z0-9-]+)\}\}", lambda m: ICON.format(m.group(1)), text)
     vals = dict(SITE, **extra)
     def rep(m):
         key = m.group(1).strip()
@@ -109,6 +114,72 @@ def footer(root):
 </footer>'''
 
 
+NAV2 = [("leistungen", "leistungen.html", "Leistungen", "layers", "blue", "Websites, Shops, Web-Apps, Sichtbarkeit"),
+        ("projekte", "projekte.html", "Arbeiten", "browser", "ochre", "Konzeptprojekte und eigene Software"),
+        ("ablauf", "ablauf.html", "Ablauf", "calendar", "green", "Vom Erstgespräch bis zum Launch"),
+        ("preise", "preise.html", "Preise", "euro", "violet", "Pakete, Betreuung, Zusatzleistungen"),
+        ("ueber", "ueber.html", "Über", "user", "red", "Wer hinter LINUA steht")]
+
+
+def header2(meta, root):
+    items = "".join(
+        f'<li><a href="{root}{href}"{" aria-current=\"page\"" if meta.get("nav") == key else ""}>{label}</a></li>'
+        for key, href, label, *_ in NAV2)
+    tiles = "".join(
+        f'<li><a class="tile tile--{color}" href="{root}{href}"{" aria-current=\"page\"" if meta.get("nav") == key else ""}>'
+        f'{ICON.format(icon)}<span><b>{label}</b><small>{desc}</small></span></a></li>'
+        for key, href, label, icon, color, desc in NAV2)
+    return f'''<header class="hd" data-header>
+  <div class="hd__in">
+    {wordmark(root)}
+    <nav class="hd__nav" aria-label="Hauptnavigation"><ul>{items}</ul></nav>
+    <div class="hd__act">
+      <a class="hd__check" href="{root}check/index.html">{ICON.format("gauge")}<span>Website prüfen</span></a>
+      <a class="btn btn--red btn--sm" href="{root}kontakt.html"><span>Erstgespräch</span>{ICON.format("arrow")}</a>
+      <button class="hd__menu" type="button" aria-expanded="false" aria-controls="menue" data-menu-btn>{ICON.format("menu")}<span>Menü</span></button>
+    </div>
+  </div>
+  <div class="hd__progress" aria-hidden="true"><span data-progress></span></div>
+  <div class="drawer" id="menue" hidden data-menu>
+    <ul class="drawer__tiles">{tiles}</ul>
+    <div class="drawer__more">
+      <a href="{root}check/index.html">{ICON.format("gauge")}Website in 2 Minuten prüfen</a>
+      <a href="{root}faq.html">{ICON.format("chat")}Häufige Fragen</a>
+      <a href="mailto:{SITE["email"]}">{ICON.format("mail")}{SITE["email"]}</a>
+    </div>
+    <a class="btn btn--red" href="{root}kontakt.html"><span>Kostenloses Erstgespräch anfragen</span>{ICON.format("arrow")}</a>
+  </div>
+</header>'''
+
+
+def pagenav(meta):
+    chapters = meta.get("chapters", [])
+    if not chapters:
+        return ""
+    lis = "".join(f'<li><a href="#{c[0]}" data-c="{c[2] if len(c) > 2 else "ink"}">{html.escape(c[1])}</a></li>' for c in chapters)
+    return f'<nav class="pagenav" aria-label="Auf dieser Seite" data-pagenav><ul>{lis}</ul></nav>'
+
+
+def footer2(root):
+    cols = "".join(f'<li><a href="{root}{href}">{label}</a></li>' for _, href, label, *_ in NAV2)
+    return f'''<footer class="ft">
+  <div class="ft__in">
+    <div class="ft__brand">
+      {wordmark(root)}
+      <p class="ft__claim">{SITE["claim"]}</p>
+      <p>Webdesign und Entwicklung aus Leipzig – für Selbstständige, Mittelstand und Start-ups.</p>
+    </div>
+    <nav class="ft__col" aria-label="Seiten"><p class="ft__h">Seiten</p><ul>{cols}</ul></nav>
+    <nav class="ft__col" aria-label="Service"><p class="ft__h">Service</p><ul><li><a href="{root}check/index.html">Website prüfen</a></li><li><a href="{root}faq.html">Häufige Fragen</a></li><li><a href="{root}kontakt.html">Kontakt</a></li></ul></nav>
+    <div class="ft__col"><p class="ft__h">Kontakt</p><ul><li><a href="mailto:{SITE["email"]}">{SITE["email"]}</a></li><li>Antwort {SITE["response"]}</li><li>{SITE["street"]}, {SITE["zip"]} {SITE["city"]}</li></ul></div>
+  </div>
+  <div class="ft__legal">
+    <p>© {SITE["year"]} {SITE["name"]}, {SITE["owner"]} · Preise sind Endpreise gemäß § 19 UStG.</p>
+    <ul><li><a href="{root}impressum.html">Impressum</a></li><li><a href="{root}datenschutz.html">Datenschutz</a></li><li><a href="{root}zentrale/" rel="nofollow">Agentur-Zentrale</a></li></ul>
+  </div>
+</footer>'''
+
+
 def jsonld(meta, url):
     base = SITE["url"]
     if meta["out"] == "index.html":
@@ -135,7 +206,12 @@ def page(meta, body, root, prod):
     robots = "index,follow" if meta.get("index", True) else "noindex,follow"
     title = html.escape(meta["title"])
     desc = html.escape(meta["description"])
-    theme = "#5E302D" if meta.get("theme") == "dark" else "#F6F6F3"
+    v2 = meta.get("v") == 2
+    theme = "#FBF8F3" if v2 else ("#5E302D" if meta.get("theme") == "dark" else "#F6F6F3")
+    css = "v2.css" if v2 else "site.css"
+    js = "v2.js" if v2 else "site.js"
+    top = (ICONS + header2(meta, root) + pagenav(meta)) if v2 else (header(meta, root) + spur(meta))
+    foot = footer2(root) if v2 else footer(root)
     return f'''<!DOCTYPE html>
 <html lang="de">
 <head>
@@ -163,19 +239,18 @@ def page(meta, body, root, prod):
 <link rel="apple-touch-icon" href="{root}assets/img/apple-touch-icon.png">
 <link rel="manifest" href="{root}site.webmanifest">
 <link rel="preload" href="{root}assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="{root}assets/css/site.css">
+<link rel="stylesheet" href="{root}assets/css/{css}">
 <script>{JS_FLAG}</script>
 {jsonld(meta, url)}
 </head>
 <body class="page-{meta["slug"]}">
 <a class="skip" href="#inhalt">Zum Inhalt springen</a>
-{header(meta, root)}
-{spur(meta)}
+{top}
 <main id="inhalt">
 {body}
 </main>
-{footer(root)}
-<script src="{root}assets/js/site.js" defer></script>
+{foot}
+<script src="{root}assets/js/{js}" defer></script>
 </body>
 </html>
 '''

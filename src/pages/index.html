@@ -1,181 +1,488 @@
 <!--meta
-{"out": "index.html", "slug": "index", "nav": "start", "priority": "1.0",
- "title": "Webdesign Leipzig – Websites zum Festpreis | LINUA",
+{"out": "index.html", "slug": "index", "nav": "start", "priority": "1.0", "v": 2,
+ "title": "Webdesign Leipzig – Websites, Shops und Web-Apps zum Festpreis | LINUA",
  "description": "Websites, Onlineshops und Webanwendungen aus Leipzig für Selbstständige, Mittelstand und Start-ups. Festpreis vor Projektstart, ein fester Ansprechpartner.",
- "chapters": [["fragen", "Drei Fragen"], ["methode", "Die Methode"], ["umbau", "Der Umbau"], ["arbeiten", "Was wir bauen"], ["mensch", "Wer dahinter steht"], ["tuer", "Erstgespräch"]]}
+ "chapters": [["leistungen", "Leistungen", "blue"], ["methode", "Methode", "red"], ["arbeiten", "Arbeiten", "ochre"], ["preise", "Preise", "violet"], ["ablauf", "Ablauf", "green"], ["fragen", "Check & Fragen", "ink"], ["kontakt", "Kontakt", "red"]]}
 -->
-<section class="hero" id="start" aria-labelledby="start-h">
-  <p class="hero__here" aria-hidden="true">Sie sind hier.</p>
-  <h1 class="display" id="start-h">Ihre Website ist eine Schwelle. Wir senken sie.</h1>
-  <p class="lead">Websites, Shops und Webanwendungen aus Leipzig für Selbstständige, Mittelstand und Start-ups – zum Festpreis, mit einem festen Ansprechpartner.</p>
-  <div class="actions">
-    <a class="btn btn--dark" href="{{root}}kontakt.html"><span class="btn__dot" aria-hidden="true"></span><span>Erstgespräch anfragen</span></a>
-    <a class="link" href="{{root}}check/index.html">Website selbst prüfen</a>
+<section class="hero" aria-labelledby="start-h">
+  <div class="wrap hero__grid">
+    <div class="hero__text">
+      <p class="chip" data-c="red" data-enter style="--i: 0">{{i:pin}}Webdesign und Entwicklung aus Leipzig</p>
+      <h1 class="h1" id="start-h" data-enter style="--i: 1">Websites, Shops und Web-Apps, die aus Besuchern Kunden machen.</h1>
+      <p class="lead" data-enter style="--i: 2">Für Selbstständige, Mittelstand und Start-ups: individuell gestaltet, schnell geladen und so klar, dass Besucher sofort wissen, was sie tun sollen. Zum Festpreis, mit einem festen Ansprechpartner.</p>
+      <div class="actions" data-enter style="--i: 3">
+        <a class="btn btn--red" href="{{root}}kontakt.html"><span>Kostenloses Erstgespräch</span>{{i:arrow}}</a>
+        <a class="btn btn--ghost" href="{{root}}check/index.html">{{i:gauge}}<span>Website prüfen</span></a>
+      </div>
+      <ul class="trust" data-enter style="--i: 4">
+        <li>{{i:check}}Festpreis vor Projektstart</li>
+        <li>{{i:check}}Ein fester Ansprechpartner</li>
+        <li>{{i:check}}Leipzig persönlich, bundesweit per Video</li>
+      </ul>
+    </div>
+
+    <div class="stage" data-rotator aria-roledescription="Bildwechsel" aria-label="Konzeptprojekte von LINUA">
+      <div class="stage__bg" data-enter style="--i: 1" aria-hidden="true"></div>
+      <div class="stage__win" data-enter style="--i: 2">
+        <div class="win">
+          <div class="win__bar" aria-hidden="true"><i></i><i></i><i></i><span class="win__url">kornblau-kaffee.de</span></div>
+          <div class="win__body" data-slides>
+            <div class="slide is-active" data-slide data-url="kornblau-kaffee.de" aria-label="Konzept Kornblau, Kaffeerösterei">
+              <div class="ms ms--kornblau">
+                <div class="ms__nav"><b>KORNBLAU</b><span>Sorten</span><span>Café</span><span>Anfahrt</span><em>Bestellen</em></div>
+                <div class="ms__hero">
+                  <div><p class="ms__h">Kaffee, langsam geröstet.</p><p class="ms__p">Heute geöffnet bis 18 Uhr. Rösterei und Café, fünf Minuten vom Bahnhof.</p><div class="ms__btns"><span>Route planen</span><span>Sorten ansehen</span></div></div>
+                  <div class="ms__art" aria-hidden="true"><svg viewBox="0 0 200 160"><circle cx="100" cy="80" r="70" fill="#E7D7BF"/><ellipse cx="98" cy="130" rx="58" ry="9" fill="#CDB28D"/><path d="M58 70h76v24a38 38 0 0 1-76 0V70Z" fill="#3F5BA9"/><path d="M134 80h7a13 13 0 0 1 0 26h-11" fill="none" stroke="#3F5BA9" stroke-width="7"/><ellipse cx="96" cy="70" rx="38" ry="7" fill="#2B1D14"/><path d="M84 54c-6-8 6-12 0-20M100 56c-6-8 6-12 0-22M116 54c-6-8 6-12 0-20" fill="none" stroke="#2B1D14" stroke-width="3" stroke-linecap="round" opacity=".45"/><ellipse cx="40" cy="128" rx="7" ry="5" fill="#2B1D14" transform="rotate(-25 40 128)"/><ellipse cx="160" cy="124" rx="7" ry="5" fill="#2B1D14" transform="rotate(20 160 124)"/></svg></div>
+                </div>
+                <div class="ms__row"><span>Hausmischung<small>schokoladig, mild</small></span><span>Äthiopien<small>blumig, hell</small></span><span>Espresso<small>kräftig</small></span></div>
+              </div>
+            </div>
+            <div class="slide" data-slide data-url="fugenwerk-tischlerei.de" aria-label="Konzept Fugenwerk, Tischlerei">
+              <div class="ms ms--fugenwerk">
+                <div class="ms__nav"><b>Fugenwerk</b><span>Möbel</span><span>Innenausbau</span><span>Werkstatt</span><em>Anfragen</em></div>
+                <div class="ms__hero">
+                  <div><p class="ms__h">Möbel, die bleiben.</p><p class="ms__p">Maßanfertigung aus Massivholz. Schicken Sie uns Fotos und Maße – wir melden uns mit einem Vorschlag.</p><div class="ms__btns"><span>Projekt anfragen</span><span>Galerie</span></div></div>
+                  <div class="ms__art" aria-hidden="true"><svg viewBox="0 0 200 160"><rect x="14" y="14" width="172" height="132" rx="10" fill="#E5D4BA"/><rect x="34" y="74" width="132" height="12" rx="3" fill="#B88A5A"/><rect x="44" y="86" width="10" height="48" fill="#8C6239"/><rect x="146" y="86" width="10" height="48" fill="#8C6239"/><rect x="58" y="40" width="40" height="34" rx="3" fill="#1E1C19"/><path d="M66 52h24M66 61h15" stroke="#E5D4BA" stroke-width="3"/><path d="M122 74V52c0-6 4-10 10-10s10 4 10 10v22" fill="#B88A5A"/><circle cx="132" cy="36" r="5" fill="#6F8F5B"/></svg></div>
+                </div>
+                <div class="ms__row"><span>Küchen<small>nach Maß</small></span><span>Einbauschränke<small>jede Nische</small></span><span>Tische<small>Eiche, Nuss</small></span></div>
+              </div>
+            </div>
+            <div class="slide" data-slide data-url="achse-physio.de" aria-label="Konzept Achse, Physiotherapie">
+              <div class="ms ms--achse">
+                <div class="ms__nav"><b>achse</b><span>Leistungen</span><span>Team</span><span>Erster Termin</span><em>Termin anfragen</em></div>
+                <div class="ms__hero">
+                  <div><p class="ms__h">Physiotherapie in Lindenau.</p><p class="ms__p">Was beim ersten Termin passiert, was Sie mitbringen und wann wir Zeit haben – alles auf einen Blick.</p><div class="ms__btns"><span>Termin anfragen</span><span>Ablauf</span></div></div>
+                  <div class="ms__art" aria-hidden="true"><svg viewBox="0 0 200 160"><circle cx="100" cy="80" r="66" fill="#D6E8DE"/><path d="M100 20v120" stroke="#2F7D6D" stroke-width="5" stroke-linecap="round"/><circle cx="100" cy="42" r="12" fill="#2F7D6D"/><path d="M68 74c12-9 52-9 64 0M74 98c10-7 42-7 52 0M80 120c8-5 32-5 40 0" fill="none" stroke="#1F3B3A" stroke-width="5" stroke-linecap="round"/></svg></div>
+                </div>
+                <div class="ms__row"><span>Krankengymnastik<small>auf Rezept</small></span><span>Manuelle Therapie<small>auf Rezept</small></span><span>Erster Termin<small>so läuft er ab</small></span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="stage__phone" data-enter style="--i: 4" aria-hidden="true">
+        <div class="phone"><div class="phone__screen" data-slides>
+          <div class="slide is-active" data-slide><div class="ms ms--kornblau"><div class="ms__nav"><b>KORNBLAU</b><em>Bestellen</em></div><div class="ms__hero"><div class="ms__art"><svg viewBox="0 0 200 160"><circle cx="100" cy="80" r="70" fill="#E7D7BF"/><path d="M58 70h76v24a38 38 0 0 1-76 0V70Z" fill="#3F5BA9"/><ellipse cx="96" cy="70" rx="38" ry="7" fill="#2B1D14"/></svg></div><div><p class="ms__h">Kaffee, langsam geröstet.</p><div class="ms__btns"><span>Route planen</span></div></div></div><div class="ms__row"><span>Heute bis 18 Uhr</span><span>Anfahrt</span></div></div></div>
+          <div class="slide" data-slide><div class="ms ms--fugenwerk"><div class="ms__nav"><b>Fugenwerk</b><em>Anfragen</em></div><div class="ms__hero"><div class="ms__art"><svg viewBox="0 0 200 160"><rect x="14" y="14" width="172" height="132" rx="10" fill="#E5D4BA"/><rect x="34" y="74" width="132" height="12" rx="3" fill="#B88A5A"/><rect x="44" y="86" width="10" height="48" fill="#8C6239"/><rect x="146" y="86" width="10" height="48" fill="#8C6239"/></svg></div><div><p class="ms__h">Möbel, die bleiben.</p><div class="ms__btns"><span>Projekt anfragen</span></div></div></div><div class="ms__row"><span>Fotos und Maße senden</span><span>Galerie</span></div></div></div>
+          <div class="slide" data-slide><div class="ms ms--achse"><div class="ms__nav"><b>achse</b><em>Termin</em></div><div class="ms__hero"><div class="ms__art"><svg viewBox="0 0 200 160"><circle cx="100" cy="80" r="66" fill="#D6E8DE"/><path d="M100 20v120" stroke="#2F7D6D" stroke-width="5" stroke-linecap="round"/><circle cx="100" cy="42" r="12" fill="#2F7D6D"/></svg></div><div><p class="ms__h">Physiotherapie in Lindenau.</p><div class="ms__btns"><span>Termin anfragen</span></div></div></div><div class="ms__row"><span>Erster Termin</span><span>Team</span></div></div></div>
+        </div></div>
+      </div>
+      <div class="float float--checks" data-enter style="--i: 5" data-depth="18" aria-hidden="true">
+        <p class="float__h">{{i:gauge}}Schwellen-Check</p>
+        <ul class="checks">
+          <li style="--i: 0; --tc: var(--blue)"><span class="tick">{{i:check}}</span>Erkennen<small>was, wo</small></li>
+          <li style="--i: 1; --tc: var(--green)"><span class="tick">{{i:check}}</span>Vertrauen<small>Belege</small></li>
+          <li style="--i: 2; --tc: var(--red)"><span class="tick">{{i:check}}</span>Handeln<small>ein Tipp</small></li>
+        </ul>
+      </div>
+      <div class="float float--msg" data-depth="-14" aria-hidden="true">
+        <span class="avatar">{{i:mail}}</span><span><b>Neue Anfrage</b><small>über das Formular · gerade eben</small></span>
+      </div>
+      <p class="stage__note">Konzeptprojekte für ausgedachte Betriebe</p>
+      <div class="stage__ctrl">
+        <div class="dots"><button type="button" data-goto aria-label="Kornblau zeigen"></button><button type="button" data-goto aria-label="Fugenwerk zeigen"></button><button type="button" data-goto aria-label="Achse zeigen"></button></div>
+        <button class="iconbtn" type="button" data-pause aria-label="Wechsel anhalten"><svg class="i" aria-hidden="true"><use href="#i-pause"/></svg></button>
+      </div>
+    </div>
   </div>
 </section>
 
-<section class="sec" id="fragen" aria-labelledby="fragen-h">
-  <h2 class="lead" id="fragen-h">In den ersten Sekunden auf Ihrer Website fragt sich jeder Besucher dreierlei:</h2>
-  <ol class="questions" style="margin-top: 36px">
-    <li style="--i: 0">Bin ich hier richtig?<span>Erkennen</span></li>
-    <li style="--i: 1">Kann ich vertrauen?<span>Vertrauen</span></li>
-    <li style="--i: 2">Was tue ich jetzt?<span>Handeln</span></li>
-  </ol>
-  <div class="text after-questions">
-    <p class="lead">Er stellt diese Fragen selten bewusst – aber er beantwortet sie sofort. Bleibt eine offen, ist er weg. Meist zu einem Mitbewerber, der online klarer auftritt, auch wenn er schlechter arbeitet.</p>
+<section class="band" aria-label="LINUA in Zahlen">
+  <div class="wrap">
+    <ul class="stats" data-stagger>
+      <li class="stat" data-c="red" data-observe>{{i:euro}}<span class="stat__n"><small>ab</small> <span data-count="745">745</span><small>€</small></span><p>Festpreis für eine Landingpage – schriftlich, bevor es losgeht</p></li>
+      <li class="stat" data-c="blue" data-observe>{{i:user}}<span class="stat__n" data-count="1">1</span><p>fester Ansprechpartner vom Erstgespräch bis nach dem Launch</p></li>
+      <li class="stat" data-c="ochre" data-observe>{{i:clock}}<span class="stat__n"><span data-count="30">30</span><small>Min.</small></span><p>kostenloses Erstgespräch, per Video oder in Leipzig</p></li>
+      <li class="stat" data-c="green" data-observe>{{i:shield}}<span class="stat__n"><small>ab</small> <span data-count="25">25</span><small>€</small></span><p>Betreuung im Monat – Updates, Backups, Änderungen, monatlich kündbar</p></li>
+    </ul>
   </div>
 </section>
 
-<section class="sec sec--flush-top" id="methode" aria-labelledby="methode-h">
-  <div class="sec__head">
-    <h2 class="h2" id="methode-h">Jede Seite, die wir bauen, beantwortet diese drei Fragen – in dieser Reihenfolge.</h2>
+<section class="sec" id="leistungen" aria-labelledby="leistungen-h">
+  <span class="deco deco--dots" style="right: 4%; top: 64px; --dc: rgba(44,73,196,.25)" data-parallax=".06" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="sec__head" data-reveal="up">
+      <p class="chip" data-c="blue">{{i:layers}}Leistungen</p>
+      <h2 class="h2" id="leistungen-h">Was wir für Sie bauen</h2>
+      <p class="lead">Vier Bereiche, eine Methode, ein Ansprechpartner. Wählen Sie, was Sie interessiert.</p>
+    </div>
+    <div data-tabs>
+      <div class="tabs__list" role="tablist" aria-label="Leistungsbereiche" data-reveal="up">
+        <button class="tab" data-c="blue" type="button" role="tab" id="t-web" aria-controls="p-web" aria-selected="true">{{i:browser}}<span><b>Websites</b><small>und Landingpages</small></span></button>
+        <button class="tab" data-c="ochre" type="button" role="tab" id="t-shop" aria-controls="p-shop" aria-selected="false" tabindex="-1">{{i:cart}}<span><b>Onlineshops</b><small>verkaufen, liefern</small></span></button>
+        <button class="tab" data-c="green" type="button" role="tab" id="t-app" aria-controls="p-app" aria-selected="false" tabindex="-1">{{i:app}}<span><b>Web-Apps</b><small>und Schnittstellen</small></span></button>
+        <button class="tab" data-c="violet" type="button" role="tab" id="t-seo" aria-controls="p-seo" aria-selected="false" tabindex="-1">{{i:search}}<span><b>Sichtbarkeit</b><small>und Betreuung</small></span></button>
+      </div>
+
+      <div class="panel" data-c="blue" role="tabpanel" id="p-web" aria-labelledby="t-web" tabindex="0">
+        <div class="panel__text">
+          <h3 class="h3">Websites, die man sofort versteht</h3>
+          <p class="muted">Unternehmenswebsites und fokussierte Landingpages – individuell gestaltet, schnell geladen und zuerst für das Handy gedacht.</p>
+          <ul class="ticks">
+            <li>{{i:check}}Überschrift mit Ihrer Leistung statt „Willkommen“</li>
+            <li>{{i:check}}Kontaktweg, den man mit dem Daumen erreicht</li>
+            <li>{{i:check}}Handgebaut, ohne Baukasten und ohne Ballast</li>
+            <li>{{i:check}}Grundlagen für Google von Anfang an</li>
+          </ul>
+          <div class="panel__foot"><span class="price-pill num">ab {{price_fokus}} <small>Festpreis</small></span><a class="link" href="{{root}}leistungen.html#websites"><span>Mehr zu Websites</span>{{i:arrow}}</a></div>
+        </div>
+        <div class="ill" aria-hidden="true">
+          <svg viewBox="0 0 360 240"><rect x="6" y="14" width="256" height="182" rx="12" fill="#F4F6FD" stroke="#DCE2F6"/><path d="M6 26a12 12 0 0 1 12-12h232a12 12 0 0 1 12 12v10H6Z" fill="#E3E8FB"/><circle cx="20" cy="25" r="3.5" fill="#F08A6E"/><circle cx="31" cy="25" r="3.5" fill="#F2C25F"/><circle cx="42" cy="25" r="3.5" fill="#7FC79F"/>
+            <rect class="a-up" style="--d: 0" x="24" y="56" width="124" height="14" rx="4" fill="#131A2B"/><rect class="a-up" style="--d: 0" x="24" y="76" width="100" height="14" rx="4" fill="#131A2B"/><rect class="a-up" style="--d: 1" x="24" y="100" width="110" height="7" rx="3.5" fill="#AEB4C6"/><rect class="a-up" style="--d: 1" x="24" y="112" width="84" height="7" rx="3.5" fill="#AEB4C6"/><rect class="a-up" style="--d: 2" x="24" y="130" width="70" height="22" rx="11" fill="#C8361B"/>
+            <rect class="a-up" style="--d: 1" x="162" y="56" width="84" height="96" rx="10" fill="#2C49C4"/><circle class="a-up" style="--d: 2" cx="204" cy="96" r="22" fill="#8FA6FF"/><rect class="a-up" style="--d: 3" x="180" y="128" width="48" height="8" rx="4" fill="#fff" opacity=".7"/>
+            <rect class="a-up" style="--d: 3" x="24" y="166" width="70" height="18" rx="6" fill="#E7ECFC"/><rect class="a-up" style="--d: 3" x="100" y="166" width="70" height="18" rx="6" fill="#E7ECFC"/><rect class="a-up" style="--d: 3" x="176" y="166" width="70" height="18" rx="6" fill="#E7ECFC"/>
+            <g class="a-up" style="--d: 4"><rect x="270" y="58" width="82" height="166" rx="16" fill="#131A2B"/><rect x="276" y="66" width="70" height="150" rx="11" fill="#fff"/><rect x="284" y="80" width="46" height="8" rx="4" fill="#131A2B"/><rect x="284" y="93" width="38" height="8" rx="4" fill="#131A2B"/><rect x="284" y="110" width="54" height="50" rx="8" fill="#2C49C4"/><rect x="284" y="170" width="54" height="16" rx="8" fill="#C8361B"/><rect x="284" y="194" width="40" height="6" rx="3" fill="#AEB4C6"/></g></svg>
+        </div>
+      </div>
+
+      <div class="panel" data-c="ochre" role="tabpanel" id="p-shop" aria-labelledby="t-shop" tabindex="0" hidden>
+        <div class="panel__text">
+          <h3 class="h3">Onlineshops mit kurzem Bestellweg</h3>
+          <p class="muted">Klare Produktseiten, Zahlung und Versand sauber eingerichtet – auf einer etablierten Plattform wie Shopify oder WooCommerce oder individuell entwickelt.</p>
+          <ul class="ticks">
+            <li>{{i:check}}Produktseiten, die Fragen vor dem Kauf beantworten</li>
+            <li>{{i:check}}Checkout mit wenigen Schritten, auch auf dem Handy</li>
+            <li>{{i:check}}Zahlung, Versand und Rechtstexte sauber verbunden</li>
+            <li>{{i:check}}Anbindung an Warenwirtschaft und Buchhaltung</li>
+          </ul>
+          <div class="panel__foot"><span class="price-pill">Festpreis <small>nach Anforderungsanalyse</small></span><a class="link" href="{{root}}leistungen.html#shops"><span>Mehr zu Shops</span>{{i:arrow}}</a></div>
+        </div>
+        <div class="ill" aria-hidden="true">
+          <svg viewBox="0 0 360 240"><rect x="8" y="10" width="200" height="220" rx="14" fill="#FFF9EF" stroke="#F1E2C4"/><rect class="a-up" style="--d: 0" x="24" y="26" width="168" height="110" rx="10" fill="#FCEFD8"/><path class="a-up" style="--d: 1" d="M80 112c0-26 14-46 28-46s28 20 28 46Z" fill="#E5A33B"/><rect class="a-up" style="--d: 1" x="96" y="56" width="24" height="12" rx="4" fill="#131A2B"/><rect class="a-up" style="--d: 2" x="24" y="150" width="120" height="10" rx="5" fill="#131A2B"/><rect class="a-up" style="--d: 2" x="24" y="168" width="70" height="8" rx="4" fill="#AEB4C6"/><rect class="a-up" style="--d: 3" x="24" y="190" width="168" height="26" rx="13" fill="#131A2B"/><rect class="a-up" style="--d: 3" x="72" y="200" width="72" height="6" rx="3" fill="#fff"/>
+            <g class="a-up" style="--d: 2"><rect x="226" y="30" width="126" height="64" rx="12" fill="#fff" stroke="#F1E2C4"/><rect x="240" y="46" width="60" height="8" rx="4" fill="#131A2B"/><rect x="240" y="62" width="44" height="7" rx="3.5" fill="#AEB4C6"/><rect x="306" y="56" width="32" height="20" rx="10" fill="#1B7656"/></g>
+            <g class="a-up" style="--d: 3"><rect x="226" y="108" width="126" height="64" rx="12" fill="#fff" stroke="#F1E2C4"/><rect x="240" y="124" width="70" height="8" rx="4" fill="#131A2B"/><rect x="240" y="140" width="52" height="7" rx="3.5" fill="#AEB4C6"/></g>
+            <g class="a-bounce"><circle cx="300" cy="206" r="22" fill="#E5A33B"/><path d="M288 198h4l4 14h12l4-10h-18" fill="none" stroke="#131A2B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></g><g class="a-pop"><circle cx="318" cy="188" r="10" fill="#C8361B"/><path d="M315 188h6M318 185v6" stroke="#fff" stroke-width="2"/></g></svg>
+        </div>
+      </div>
+
+      <div class="panel" data-c="green" role="tabpanel" id="p-app" aria-labelledby="t-app" tabindex="0" hidden>
+        <div class="panel__text">
+          <h3 class="h3">Web-Apps, die Arbeit abnehmen</h3>
+          <p class="muted">Kundenportale, Buchungs- und Anfragesysteme, interne Werkzeuge – und Anbindungen an CRM, Kalender oder Buchhaltung, damit Daten nur einmal eingegeben werden.</p>
+          <ul class="ticks">
+            <li>{{i:check}}Anforderungsanalyse und klickbarer Prototyp zuerst</li>
+            <li>{{i:check}}Benutzerkonten mit Rollen und Rechten</li>
+            <li>{{i:check}}Schnittstellen und Automatisierungen</li>
+            <li>{{i:check}}Festpreis je Projektphase, Meilensteine statt Vorkasse</li>
+          </ul>
+          <div class="panel__foot"><span class="price-pill">Festpreis <small>je Projektphase</small></span><a class="link" href="{{root}}leistungen.html#anwendungen"><span>Mehr zu Web-Apps</span>{{i:arrow}}</a></div>
+        </div>
+        <div class="ill" aria-hidden="true">
+          <svg viewBox="0 0 360 240"><rect x="6" y="8" width="348" height="224" rx="14" fill="#F5F8F6" stroke="#D8E8DF"/><rect x="6" y="8" width="70" height="224" rx="14" fill="#131A2B"/><rect x="20" y="28" width="30" height="8" rx="4" fill="#C8361B"/><rect x="20" y="52" width="40" height="7" rx="3.5" fill="#3A4560"/><rect x="20" y="70" width="34" height="7" rx="3.5" fill="#3A4560"/><rect x="20" y="88" width="42" height="7" rx="3.5" fill="#5FD0A3"/><rect x="20" y="106" width="30" height="7" rx="3.5" fill="#3A4560"/>
+            <g class="a-up" style="--d: 0"><rect x="92" y="24" width="78" height="46" rx="10" fill="#fff"/><rect x="104" y="36" width="36" height="9" rx="4" fill="#1B7656"/><rect x="104" y="52" width="50" height="6" rx="3" fill="#D8E8DF"/></g>
+            <g class="a-up" style="--d: 1"><rect x="180" y="24" width="78" height="46" rx="10" fill="#fff"/><rect x="192" y="36" width="28" height="9" rx="4" fill="#2C49C4"/><rect x="192" y="52" width="50" height="6" rx="3" fill="#D8E8DF"/></g>
+            <g class="a-up" style="--d: 2"><rect x="268" y="24" width="74" height="46" rx="10" fill="#fff"/><rect x="280" y="36" width="40" height="9" rx="4" fill="#E5A33B"/><rect x="280" y="52" width="46" height="6" rx="3" fill="#D8E8DF"/></g>
+            <rect x="92" y="82" width="166" height="136" rx="10" fill="#fff"/><path class="a-draw" d="M104 190 132 164 156 172 182 138 206 148 232 110 248 118" fill="none" stroke="#1B7656" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M104 204h144" stroke="#E3ECE7" stroke-width="2"/>
+            <rect x="268" y="82" width="74" height="136" rx="10" fill="#fff"/><rect class="a-grow" style="--d: 0" x="280" y="160" width="12" height="44" rx="3" fill="#5FD0A3"/><rect class="a-grow" style="--d: 1" x="298" y="130" width="12" height="74" rx="3" fill="#1B7656"/><rect class="a-grow" style="--d: 2" x="316" y="146" width="12" height="58" rx="3" fill="#5FD0A3"/></svg>
+        </div>
+      </div>
+
+      <div class="panel" data-c="violet" role="tabpanel" id="p-seo" aria-labelledby="t-seo" tabindex="0" hidden>
+        <div class="panel__text">
+          <h3 class="h3">Gefunden werden – und gepflegt bleiben</h3>
+          <p class="muted">Lokale SEO, Google-Unternehmensprofil und Texte. Nach dem Launch: Updates, Backups, kleine Änderungen und ein kurzer Monatsbericht.</p>
+          <ul class="ticks">
+            <li>{{i:check}}Saubere technische und inhaltliche Grundlage</li>
+            <li>{{i:check}}Google-Unternehmensprofil eingerichtet und gepflegt</li>
+            <li>{{i:check}}Monitoring, Backups und Updates</li>
+            <li>{{i:check}}Ehrlich: Platzierungen kann niemand garantieren</li>
+          </ul>
+          <div class="panel__foot"><span class="price-pill num">ab {{care_basis}} <small>im Monat</small></span><a class="link" href="{{root}}leistungen.html#sichtbarkeit"><span>Mehr zu Sichtbarkeit</span>{{i:arrow}}</a></div>
+        </div>
+        <div class="ill" aria-hidden="true">
+          <svg viewBox="0 0 360 240"><rect x="8" y="10" width="220" height="34" rx="17" fill="#fff" stroke="#DCD2F6"/><circle cx="30" cy="27" r="7" fill="none" stroke="#6544C4" stroke-width="2.4"/><path d="m35 32 5 5" stroke="#6544C4" stroke-width="2.4" stroke-linecap="round"/><rect x="48" y="22" width="110" height="9" rx="4.5" fill="#D9D2EE"/>
+            <g class="a-up" style="--d: 0"><rect x="8" y="58" width="220" height="62" rx="12" fill="#fff" stroke="#6544C4" stroke-width="2"/><rect x="22" y="72" width="120" height="9" rx="4.5" fill="#6544C4"/><rect x="22" y="88" width="170" height="6" rx="3" fill="#C9CEDD"/><path d="M22 106l3 6 6 .6-4.6 4 1.4 6.4L22 119l-5.8 3 1.4-6.4-4.6-4 6-.6Z" fill="#E5A33B" transform="translate(4 -6) scale(.7)"/><rect x="40" y="101" width="60" height="6" rx="3" fill="#E5A33B" opacity=".5"/></g>
+            <g class="a-up" style="--d: 1"><rect x="8" y="132" width="220" height="44" rx="12" fill="#fff"/><rect x="22" y="146" width="100" height="8" rx="4" fill="#AEB4C6"/><rect x="22" y="160" width="150" height="5" rx="2.5" fill="#E2E5EE"/></g>
+            <g class="a-up" style="--d: 2"><rect x="8" y="188" width="220" height="44" rx="12" fill="#fff"/><rect x="22" y="202" width="90" height="8" rx="4" fill="#AEB4C6"/><rect x="22" y="216" width="140" height="5" rx="2.5" fill="#E2E5EE"/></g>
+            <g class="a-up" style="--d: 1"><rect x="240" y="10" width="112" height="222" rx="14" fill="#EDE7FB"/><path d="M240 80c30 10 60-20 112 0M240 150c40-16 70 14 112-4" stroke="#fff" stroke-width="8" fill="none"/><path d="M296 40v190" stroke="#fff" stroke-width="6"/></g>
+            <g class="a-bounce"><path d="M296 128s-20-17-20-33a20 20 0 0 1 40 0c0 16-20 33-20 33Z" fill="#C8361B"/><circle cx="296" cy="95" r="7" fill="#fff"/></g></svg>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="method">
-    <span class="method__dot" aria-hidden="true"></span>
-    <ol class="method__track">
-      <li class="method__step"><h3 class="h3">Erkennen</h3><p>In fünf Sekunden klar: was Sie anbieten, für wen und wo. Eine Überschrift mit Ihrer Leistung statt „Willkommen“.</p></li>
-      <li class="method__step"><h3 class="h3">Vertrauen</h3><p>Belege statt Behauptungen: Gesichter, Arbeiten, Preise, Ablauf und Bewertungen mit Quelle.</p></li>
-      <li class="method__step"><h3 class="h3">Handeln</h3><p>Ein nächster Schritt, den man auf dem Handy mit dem Daumen erreicht: anrufen, anfragen, Termin buchen.</p></li>
+</section>
+
+<section class="sec sec--white" id="methode" aria-labelledby="methode-h">
+  <div class="wrap">
+    <div class="sec__head" data-reveal="up">
+      <p class="chip" data-c="red">{{i:spark}}Die Methode</p>
+      <h2 class="h2" id="methode-h">Drei Fragen entscheiden, ob aus Besuchern Kunden werden.</h2>
+      <p class="lead">In den ersten Sekunden fragt sich jeder Besucher: Bin ich hier richtig? Kann ich vertrauen? Was tue ich jetzt? Bleibt eine Frage offen, ist er weg. Ziehen Sie den Regler und vergleichen Sie.</p>
+    </div>
+    <div class="method">
+      <div class="qcards" data-stagger>
+        <button class="qcard" type="button" data-c="blue" data-hl="1" data-hl-for="cmp" data-reveal="left">{{i:search}}<em>Erkennen</em><b>Bin ich hier richtig?</b><span>In fünf Sekunden klar: was Sie anbieten, für wen und wo.</span></button>
+        <button class="qcard" type="button" data-c="green" data-hl="2" data-hl-for="cmp" data-reveal="left">{{i:shield}}<em>Vertrauen</em><b>Kann ich vertrauen?</b><span>Belege statt Behauptungen: Gesicht, Festpreis, Bewertungen mit Quelle.</span></button>
+        <button class="qcard" type="button" data-c="red" data-hl="3" data-hl-for="cmp" data-reveal="left">{{i:rocket}}<em>Handeln</em><b>Was tue ich jetzt?</b><span>Ein nächster Schritt, den man auf dem Handy mit dem Daumen erreicht.</span></button>
+      </div>
+      <figure data-reveal="right">
+        <div class="cmp__legend" aria-hidden="true"><span>{{i:left}}Vorher</span><span>Nachher{{i:right}}</span></div>
+        <div class="cmp" id="cmp" data-compare>
+          <div class="cmp__layer">
+            <div class="mp mp--before" aria-hidden="true">
+              <div class="mp__nav"><b>Malerbetrieb</b><span>Startseite</span><span>Über uns</span><span>Galerie</span></div>
+              <div class="mp__hero"><div><p class="mp__h">Willkommen auf unserer Website!</p><p class="mp__p">Wir sind Ihr kompetenter Partner rund um Farbe. Qualität und Zuverlässigkeit seit vielen Jahren.</p></div><div class="mp__img">Stockfoto</div></div>
+              <div class="mp__trust"><span><b>Unsere Werte</b><small>Qualität, Service</small></span><span><b>Aktuelles</b><small>Stand 2019</small></span><span><b>Galerie</b><small>12 Bilder</small></span></div>
+              <div class="mp__act"><small>Kontakt: siehe Impressum</small></div>
+            </div>
+          </div>
+          <div class="cmp__after" aria-hidden="true">
+            <div class="mp mp--after">
+              <div class="mp__nav"><b>Malerbetrieb</b><span>Leistungen</span><span>Preise</span><em>Angebot anfragen</em></div>
+              <div class="mp__hero"><div data-hl="1"><p class="mp__h">Malerarbeiten in Leipzig – für Wohnungen und Büros</p><p class="mp__p">Innenanstrich, Tapeten und Fassaden. Meisterbetrieb im Leipziger Westen.</p></div><div class="mp__img"><svg viewBox="0 0 120 90" width="70%"><rect x="10" y="20" width="70" height="50" rx="6" fill="#2C49C4"/><rect x="58" y="12" width="14" height="40" rx="3" fill="#E5A33B" transform="rotate(20 65 32)"/><circle cx="96" cy="58" r="14" fill="#C8361B"/></svg></div></div>
+              <div class="mp__trust" data-hl="2"><span><b>Ihre Ansprechpartnerin</b><small>Malermeisterin, Inhaberin</small></span><span><b>Festpreis</b><small>schriftlich, vor Beginn</small></span><span><b>Bewertungen</b><small>mit Quelle</small></span></div>
+              <div class="mp__act" data-hl="3"><span>Angebot anfragen</span><span>Anrufen</span></div>
+            </div>
+          </div>
+          <input type="range" min="0" max="100" value="50" aria-label="Vorher-nachher-Vergleich: Regler nach links zeigt mehr Nachher">
+          <span class="cmp__handle" aria-hidden="true"><span>{{i:left}}{{i:right}}</span></span>
+        </div>
+        <figcaption class="method__note">Beispiel, fiktiv: ein ausgedachter Malerbetrieb ohne Bezug zu einem echten Unternehmen. Der Name LINUA kommt übrigens von <em>limen</em> (Schwelle) und <em>janua</em> (Tür).</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec--sand" id="arbeiten" aria-labelledby="arbeiten-h">
+  <div class="wrap">
+    <div class="sec__head sec__head--split" data-reveal="up">
+      <div style="display: grid; gap: 16px">
+        <p class="chip" data-c="ochre">{{i:browser}}Arbeiten</p>
+        <h2 class="h2" id="arbeiten-h">So sehen unsere Konzepte aus</h2>
+      </div>
+      <p class="lead">Konzeptprojekte für ausgedachte Betriebe – offen gekennzeichnet, denn erfundene Referenzen gibt es bei uns nicht. Dazu unsere eigene Software, die täglich läuft.</p>
+    </div>
+    <div class="car" data-carousel>
+      <ul class="car__track" tabindex="0" aria-label="Arbeiten, seitlich blätterbar" data-stagger>
+        <li class="card" data-reveal="up">
+          <div class="card__cover" style="--cover: #DCE3F6" aria-hidden="true"><span class="tag">Konzept · Gastronomie</span><div class="win"><div class="win__bar"><i></i><i></i><i></i></div><div class="ms ms--kornblau" style="height: auto"><div class="ms__nav"><b>KORNBLAU</b><span>Sorten</span><em>Bestellen</em></div><div class="ms__hero"><div><p class="ms__h">Kaffee, langsam geröstet.</p><div class="ms__btns"><span>Route planen</span></div></div><div class="ms__art"><svg viewBox="0 0 200 160"><circle cx="100" cy="80" r="70" fill="#E7D7BF"/><path d="M58 70h76v24a38 38 0 0 1-76 0V70Z" fill="#3F5BA9"/><ellipse cx="96" cy="70" rx="38" ry="7" fill="#2B1D14"/></svg></div></div></div></div></div>
+          <div class="card__body"><h3 class="h3">Kornblau – Kaffeerösterei und Café</h3><p>Öffnungszeiten und Anfahrt im ersten Bildschirm, darunter Stimmung und Sorten.</p><button class="link" type="button" data-modal="m-kornblau" style="border: 0; background: none; padding: 0"><span>Details ansehen</span>{{i:arrow}}</button></div>
+        </li>
+        <li class="card" data-reveal="up">
+          <div class="card__cover" style="--cover: #EAD9C0" aria-hidden="true"><span class="tag">Konzept · Handwerk</span><div class="win"><div class="win__bar"><i></i><i></i><i></i></div><div class="ms ms--fugenwerk" style="height: auto"><div class="ms__nav"><b>Fugenwerk</b><span>Möbel</span><em>Anfragen</em></div><div class="ms__hero"><div><p class="ms__h">Möbel, die bleiben.</p><div class="ms__btns"><span>Projekt anfragen</span></div></div><div class="ms__art"><svg viewBox="0 0 200 160"><rect x="14" y="14" width="172" height="132" rx="10" fill="#E5D4BA"/><rect x="34" y="74" width="132" height="12" rx="3" fill="#B88A5A"/><rect x="44" y="86" width="10" height="48" fill="#8C6239"/><rect x="146" y="86" width="10" height="48" fill="#8C6239"/><rect x="58" y="40" width="40" height="34" rx="3" fill="#1E1C19"/></svg></div></div></div></div></div>
+          <div class="card__body"><h3 class="h3">Fugenwerk – Tischlerei und Innenausbau</h3><p>Detailfotos statt Stockbilder und eine Anfrage, bei der Kunden Fotos und Maße mitschicken.</p><button class="link" type="button" data-modal="m-fugenwerk" style="border: 0; background: none; padding: 0"><span>Details ansehen</span>{{i:arrow}}</button></div>
+        </li>
+        <li class="card" data-reveal="up">
+          <div class="card__cover" style="--cover: #CFE6DA" aria-hidden="true"><span class="tag">Konzept · Gesundheit</span><div class="win"><div class="win__bar"><i></i><i></i><i></i></div><div class="ms ms--achse" style="height: auto"><div class="ms__nav"><b>achse</b><span>Team</span><em>Termin</em></div><div class="ms__hero"><div><p class="ms__h">Physiotherapie in Lindenau.</p><div class="ms__btns"><span>Termin anfragen</span></div></div><div class="ms__art"><svg viewBox="0 0 200 160"><circle cx="100" cy="80" r="66" fill="#D6E8DE"/><path d="M100 20v120" stroke="#2F7D6D" stroke-width="5" stroke-linecap="round"/><circle cx="100" cy="42" r="12" fill="#2F7D6D"/><path d="M68 74c12-9 52-9 64 0M74 98c10-7 42-7 52 0" fill="none" stroke="#1F3B3A" stroke-width="5" stroke-linecap="round"/></svg></div></div></div></div></div>
+          <div class="card__body"><h3 class="h3">Achse – Praxis für Physiotherapie</h3><p>Leistungen in Alltagssprache, das Team mit Gesicht und eine Terminanfrage mit Wunschzeiten.</p><button class="link" type="button" data-modal="m-achse" style="border: 0; background: none; padding: 0"><span>Details ansehen</span>{{i:arrow}}</button></div>
+        </li>
+        <li class="card" data-reveal="up">
+          <div class="card__cover" style="--cover: #2A3452" aria-hidden="true"><span class="tag">Eigene Software · im Einsatz</span><div class="win"><div class="win__bar"><i></i><i></i><i></i></div><div style="aspect-ratio: 16 / 10"><div class="dash"><div class="dash__side"><i></i><i></i><i></i><i></i><i></i></div><div class="dash__main"><div class="dash__kpis"><span style="--k: #2C49C4"><b></b><small></small></span><span style="--k: #1B7656"><b></b><small></small></span><span style="--k: #E5A33B"><b></b><small></small></span></div><div class="dash__chart"><svg viewBox="0 0 200 70"><path d="M4 60 34 44 60 50 92 26 120 34 150 14 196 20" fill="none" stroke="#C8361B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div></div></div></div></div>
+          <div class="card__body"><h3 class="h3">Agentur-Zentrale – selbst entwickelt</h3><p>Anfragen, Kunden, Projekte, Angebote und Rechnungen in einer eigenen Webanwendung.</p><button class="link" type="button" data-modal="m-software" style="border: 0; background: none; padding: 0"><span>Details ansehen</span>{{i:arrow}}</button></div>
+        </li>
+      </ul>
+      <div class="car__bar">
+        <button class="iconbtn iconbtn--lg" type="button" data-prev aria-label="Zurück blättern"><svg class="i" aria-hidden="true"><use href="#i-left"/></svg></button>
+        <div class="car__prog" aria-hidden="true"><span></span></div>
+        <button class="iconbtn iconbtn--lg" type="button" data-next aria-label="Weiter blättern"><svg class="i" aria-hidden="true"><use href="#i-right"/></svg></button>
+        <a class="link" href="{{root}}projekte.html"><span>Alle Arbeiten</span>{{i:arrow}}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="preise" aria-labelledby="preise-h">
+  <span class="deco deco--dots" style="left: 3%; bottom: 80px; --dc: rgba(101,68,196,.25)" data-parallax=".08" aria-hidden="true"></span>
+  <div class="wrap" data-tabs>
+    <div class="sec__head sec__head--split" data-reveal="up">
+      <div style="display: grid; gap: 16px">
+        <p class="chip" data-c="violet">{{i:euro}}Preise</p>
+        <h2 class="h2" id="preise-h">Festpreise, die vorher feststehen</h2>
+      </div>
+      <div style="display: grid; gap: 16px; justify-items: start">
+        <p class="lead">Sie wissen vor dem Start, was es kostet und wann es fertig ist. Bezahlt wird in Etappen, nie alles im Voraus.</p>
+        <div class="seg" role="tablist" aria-label="Preisübersicht">
+          <span class="seg__pill" aria-hidden="true"></span>
+          <button type="button" role="tab" id="t-pw" aria-controls="p-pw" aria-selected="true">Websites</button>
+          <button type="button" role="tab" id="t-pc" aria-controls="p-pc" aria-selected="false" tabindex="-1">Betreuung</button>
+        </div>
+      </div>
+    </div>
+    <ul class="plans" role="tabpanel" id="p-pw" aria-labelledby="t-pw" data-stagger>
+      <li class="plan" data-c="ochre"><div class="plan__top">{{i:file}}<div><p class="plan__name">Fokus</p><p class="plan__for">Landingpage für ein Angebot</p></div></div>
+        <p class="plan__price"><small>ab</small><span data-count="745">745</span> €</p>
+        <ul class="ticks"><li>{{i:check}}1 Seite, bis zu 7 Abschnitte</li><li>{{i:check}}Kontaktformular und SEO-Basis</li><li>{{i:check}}2 gesammelte Feedbackrunden</li><li>{{i:check}}Für das Handy zuerst gestaltet</li></ul>
+        <div><div class="plan__meta"><span>{{i:clock}}{{dur_fokus}}</span><span>{{i:euro}}50 / 50 %</span></div></div>
+      </li>
+      <li class="plan plan--feature" data-c="blue"><span class="plan__badge">Unsere Empfehlung für Betriebe</span><div class="plan__top">{{i:browser}}<div><p class="plan__name">Auftritt</p><p class="plan__for">Unternehmenswebsite</p></div></div>
+        <p class="plan__price"><small>ab</small><span data-count="1745">1.745</span> €</p>
+        <ul class="ticks"><li>{{i:check}}Bis zu 6 Seiten</li><li>{{i:check}}Workshop und Textüberarbeitung</li><li>{{i:check}}Lokale SEO und Google-Grundlagen</li><li>{{i:check}}Animationen und Feinschliff</li></ul>
+        <div><div class="plan__meta"><span>{{i:clock}}{{dur_auftritt}}</span><span>{{i:euro}}50 / 50 %</span></div></div>
+      </li>
+      <li class="plan plan--dark" data-c="ochre"><div class="plan__top">{{i:spark}}<div><p class="plan__name">Signatur</p><p class="plan__for">Premium-Auftritt mit Marke</p></div></div>
+        <p class="plan__price"><small>ab</small><span data-count="3450">3.450</span> €</p>
+        <ul class="ticks"><li>{{i:check}}Bis zu 12 Seiten</li><li>{{i:check}}Marken-Basis und alle Texte</li><li>{{i:check}}Ein eigener Signature-Moment</li><li>{{i:check}}30 Tage Care Plus inklusive</li></ul>
+        <div><div class="plan__meta"><span>{{i:clock}}{{dur_signatur}}</span><span>{{i:euro}}40 / 30 / 30 %</span></div></div>
+      </li>
+    </ul>
+    <ul class="plans" role="tabpanel" id="p-pc" aria-labelledby="t-pc" hidden data-stagger>
+      <li class="plan" data-c="green"><div class="plan__top">{{i:shield}}<div><p class="plan__name">Care Basis</p><p class="plan__for">Sicher und aktuell</p></div></div>
+        <p class="plan__price"><span data-count="25">25</span> € <small>im Monat</small></p>
+        <ul class="ticks"><li>{{i:check}}Monitoring, Backups, Updates</li><li>{{i:check}}30 Minuten Änderungen</li><li>{{i:check}}Kurzbericht jeden Monat</li></ul>
+        <div><div class="plan__meta"><span>{{i:calendar}}monatlich kündbar</span></div></div>
+      </li>
+      <li class="plan plan--feature" data-c="blue"><div class="plan__top">{{i:pen}}<div><p class="plan__name">Care Plus</p><p class="plan__for">Für regelmäßige Änderungen</p></div></div>
+        <p class="plan__price"><span data-count="59">59</span> € <small>im Monat</small></p>
+        <ul class="ticks"><li>{{i:check}}Alles aus Basis</li><li>{{i:check}}2 Stunden Änderungen</li><li>{{i:check}}Quartals-Check</li></ul>
+        <div><div class="plan__meta"><span>{{i:calendar}}monatlich kündbar</span></div></div>
+      </li>
+      <li class="plan plan--dark" data-c="ochre"><div class="plan__top">{{i:rocket}}<div><p class="plan__name">Care Wachstum</p><p class="plan__for">Weiterentwickeln statt nur pflegen</p></div></div>
+        <p class="plan__price"><span data-count="145">145</span> € <small>im Monat</small></p>
+        <ul class="ticks"><li>{{i:check}}Alles aus Plus</li><li>{{i:check}}5 Stunden Weiterentwicklung</li><li>{{i:check}}Google-Profil und Auswertung</li></ul>
+        <div><div class="plan__meta"><span>{{i:calendar}}monatlich kündbar</span></div></div>
+      </li>
+    </ul>
+    <div class="price-note"><p>Endpreise. Gemäß § 19 UStG wird keine Umsatzsteuer berechnet. Shops und Web-Apps: Festpreis nach Anforderungsanalyse.</p><a class="link" href="{{root}}preise.html"><span>Alle Preise und Zusatzleistungen</span>{{i:arrow}}</a></div>
+  </div>
+</section>
+
+<section class="sec sec--white" id="ablauf" aria-labelledby="ablauf-h">
+  <div class="wrap">
+    <div class="sec__head" data-reveal="up">
+      <p class="chip" data-c="green">{{i:calendar}}Ablauf</p>
+      <h2 class="h2" id="ablauf-h">In fünf Schritten zu Ihrer neuen Website</h2>
+      <p class="lead">Sie wissen jederzeit, was als Nächstes passiert und was wir von Ihnen brauchen.</p>
+    </div>
+    <ol class="flow" data-flow>
+      <li data-c="blue"><span class="flow__ic">{{i:chat}}</span><small>Schritt 1</small><b>Erstgespräch</b><p>30 Minuten, kostenlos – per Video oder in Leipzig.</p></li>
+      <li data-c="green"><span class="flow__ic">{{i:file}}</span><small>Schritt 2</small><b>Konzept und Festpreis</b><p>Seitenplan, Zeitplan und Preis schriftlich. Bis hier ohne Kosten.</p></li>
+      <li data-c="ochre"><span class="flow__ic">{{i:pen}}</span><small>Schritt 3</small><b>Inhalte und Design</b><p>Startseite zuerst. Erst wenn sie sitzt, folgen die weiteren Seiten.</p></li>
+      <li data-c="violet"><span class="flow__ic">{{i:code}}</span><small>Schritt 4</small><b>Entwicklung und Test</b><p>Handgebaut und auf gängigen Geräten geprüft.</p></li>
+      <li data-c="red"><span class="flow__ic">{{i:rocket}}</span><small>Schritt 5</small><b>Launch und Betreuung</b><p>Livegang, Übergabe aller Zugänge – Betreuung auf Wunsch.</p></li>
     </ol>
+    <p style="margin-top: 36px" data-reveal="up"><a class="link" href="{{root}}ablauf.html"><span>Der Ablauf im Detail</span>{{i:arrow}}</a></p>
   </div>
-  <p class="name-note">Daher der Name: <em>limen</em> heißt auf Latein Schwelle, <em>janua</em> Tür. Ihre Website ist beides – die Tür zu Ihrem Geschäft und die Schwelle, an der ein Fremder entscheidet, ob er eintritt. Der Punkt im Logo ist dieser Besucher.</p>
 </section>
 
-<section class="quiet" aria-labelledby="quiet-h">
-  <h2 class="h2" id="quiet-h">So sieht das an einer Website aus.</h2>
+<section class="sec" id="fragen" aria-label="Schwellen-Check und häufige Fragen">
+  <div class="wrap bento">
+    <div class="gcard" data-reveal="scale" data-observe>
+      <p class="chip" style="background: rgba(255,255,255,.14); color: #fff">{{i:gauge}}Schwellen-Check</p>
+      <h2 class="h2">Wie gut ist Ihre Website?</h2>
+      <p>Neun Fragen, Ergebnis sofort – ohne Anmeldung. Sie sehen, wo Besucher bei Ihnen hängen bleiben.</p>
+      <div class="gauge" aria-hidden="true">
+        <div class="gauge__ring" style="--v: 62"><svg viewBox="0 0 110 110"><circle class="bg" cx="55" cy="55" r="46"/><circle class="fg" cx="55" cy="55" r="46"/></svg><b><span data-count="62">62</span></b></div>
+        <ul class="bars">
+          <li style="--i: 0; --w: 80; --bc: var(--blue-l)"><span><b>Erkennen</b>stark</span><i></i></li>
+          <li style="--i: 1; --w: 45; --bc: var(--ochre-l)"><span><b>Vertrauen</b>ausbaufähig</span><i></i></li>
+          <li style="--i: 2; --w: 60; --bc: var(--green-l)"><span><b>Handeln</b>ausbaufähig</span><i></i></li>
+        </ul>
+      </div>
+      <p class="gcard__note">Beispielergebnis einer ausgedachten Website</p>
+      <a class="btn btn--light" href="{{root}}check/index.html"><span>Jetzt prüfen</span>{{i:arrow}}</a>
+    </div>
+    <div class="acc" data-reveal="up">
+      <div class="acc__head"><h2 class="h3">Häufige Fragen</h2><a class="link" href="{{root}}faq.html"><span>Alle 25 Fragen</span>{{i:arrow}}</a></div>
+      <details class="q" data-c="violet" name="faq"><summary>Was kostet eine Website?{{i:plus}}</summary><div class="q__a"><p>Landingpage ab {{price_fokus}}, Unternehmenswebsite ab {{price_auftritt}}, Premium-Auftritt ab {{price_signatur}}. Onlineshops und Webanwendungen kalkulieren wir nach einer Anforderungsanalyse – mit Festpreis je Projektphase.</p></div></details>
+      <details class="q" data-c="green" name="faq"><summary>Wie lange dauert ein Projekt?{{i:plus}}</summary><div class="q__a"><p>Ab Auftrag rechnen Sie mit {{dur_fokus}} für eine Landingpage, {{dur_auftritt}} für eine Unternehmenswebsite und {{dur_signatur}} für einen Premium-Auftritt. Den verbindlichen Termin schreiben wir ins Angebot.</p></div></details>
+      <details class="q" data-c="blue" name="faq"><summary>Wer ist mein Ansprechpartner?{{i:plus}}</summary><div class="q__a"><p>Rony Mislem, Gründer von LINUA – vom Erstgespräch bis nach dem Launch. Sie erklären Ihr Vorhaben nur einmal, und Entscheidungen gehen nicht zwischen Abteilungen verloren.</p></div></details>
+      <details class="q" data-c="ochre" name="faq"><summary>Werde ich bei Google gefunden?{{i:plus}}</summary><div class="q__a"><p>Jedes Projekt bekommt eine saubere technische und inhaltliche Grundlage für Suchmaschinen. Platzierungen kann allerdings niemand seriös garantieren – sie hängen auch von Wettbewerb, Inhalten und Zeit ab.</p></div></details>
+      <details class="q" data-c="red" name="faq"><summary>Wem gehört die Website?{{i:plus}}</summary><div class="q__a"><p>Ihnen. Domain und Hosting laufen auf Ihren Namen, und nach vollständiger Bezahlung bekommen Sie alle Dateien und Zugänge.</p></div></details>
+    </div>
+  </div>
 </section>
 
-<section class="umbau" id="umbau" aria-labelledby="umbau-h">
-  <div class="umbau__pin">
-    <div class="umbau__text">
-      <h2 class="h3" id="umbau-h">Der Umbau</h2>
-      <p class="muted" style="margin-top: 8px">Dieselbe Seite, derselbe Betrieb – drei Eingriffe.</p>
-      <ol class="umbau__steps">
-        <li><strong>Erkennen</strong>Die Überschrift sagt, was, für wen und wo – statt „Willkommen“.</li>
-        <li><strong>Vertrauen</strong>Ein Gesicht, ein Festpreis, Bewertungen mit Quelle – statt Stockfoto.</li>
-        <li><strong>Handeln</strong>Ein Knopf in Daumenreichweite und eine Nummer zum Antippen – statt „siehe Impressum“.</li>
+<section class="sec contact" id="kontakt" aria-labelledby="kontakt-h">
+  <div class="wrap contact__grid">
+    <div class="contact__text" data-reveal="left">
+      <p class="chip" data-c="red" style="background: #fff">{{i:chat}}Kontakt</p>
+      <h2 class="h2" id="kontakt-h">Erzählen Sie uns von Ihrem Vorhaben.</h2>
+      <p class="lead">Drei Angaben genügen. Unverbindlich und kostenlos.</p>
+      <ol class="next">
+        <li>{{i:mail}}<b>Antwort {{response}}</b><span>persönlich, mit einer ersten Einschätzung</span></li>
+        <li>{{i:calendar}}<b>Kostenloses Erstgespräch</b><span>30 Minuten, per Video oder in Leipzig</span></li>
+        <li>{{i:file}}<b>Festpreis-Angebot</b><span>schriftlich, bevor etwas kostet</span></li>
       </ol>
-      <div class="umbau__tabs" role="tablist" aria-label="Zustand der Beispielseite">
-        <button type="button" role="tab" aria-controls="mock" aria-selected="true">Vorher</button>
-        <button type="button" role="tab" aria-controls="mock" aria-selected="false" tabindex="-1">Erkennen</button>
-        <button type="button" role="tab" aria-controls="mock" aria-selected="false" tabindex="-1">Vertrauen</button>
-        <button type="button" role="tab" aria-controls="mock" aria-selected="false" tabindex="-1">Handeln</button>
-      </div>
+      <div class="person"><span class="person__av" aria-hidden="true">RM</span><div><b>Rony Mislem</b><span>Gründer und Ihr Ansprechpartner</span><br><a href="mailto:{{email}}">{{email}}</a></div></div>
     </div>
-    <figure class="stage" aria-labelledby="mock-cap">
-      <div class="mock" id="mock" data-state="3" aria-live="polite">
-        <div class="mock__layer mock__bar"><b>Malerbetrieb</b><span><span>Leistungen</span><span>Über uns</span><span>Kontakt</span></span></div>
-        <div class="mock__layer mock__head">
-          <span class="mock__mark" aria-hidden="true"></span>
-          <div data-v="0"><p class="mock__h">Willkommen auf unserer Website</p><p>Wir sind Ihr kompetenter Partner rund um Farbe.</p></div>
-          <div data-v="1 2 3"><p class="mock__h">Malerarbeiten in Leipzig – für Wohnungen und Büros</p><p>Innenanstrich, Tapeten und Fassaden. Meisterbetrieb im Leipziger Westen.</p></div>
+    <div class="formcard" data-reveal="right">
+      <form class="form" action="mailto:{{email}}?subject=Projektanfrage" method="post" enctype="text/plain" novalidate data-inbox="{{inbox}}" data-key="{{inbox_key}}" data-mail="{{email}}" data-response="{{response}}">
+        <input type="hidden" name="projekt" value="Kurzanfrage (Startseite)">
+        <div class="field" data-f="k-name"><label for="k-name">Ihr Name</label><input id="k-name" name="name" autocomplete="name" required data-msg="Bitte nennen Sie Ihren Namen."></div>
+        <div class="field" data-f="k-email"><label for="k-email">E-Mail</label><input id="k-email" name="email" type="email" autocomplete="email" inputmode="email" required data-msg="Bitte geben Sie Ihre E-Mail-Adresse an."></div>
+        <div class="field" data-f="k-msg"><label for="k-msg">Ihr Vorhaben</label><textarea id="k-msg" name="nachricht" rows="4" required data-msg="Ein, zwei Sätze genügen." aria-describedby="k-msg-hint"></textarea><p class="hint" id="k-msg-hint">Was bieten Sie an, und was soll die Website leisten? Stichpunkte reichen.</p></div>
+        <div class="hp" aria-hidden="true"><label for="k-hp">Bitte leer lassen</label><input id="k-hp" name="firma_bestaetigung" tabindex="-1" autocomplete="off"></div>
+        <div class="form__foot">
+          <button class="btn btn--red" type="submit"><span class="btn__label">Anfrage senden</span>{{i:arrow}}</button>
+          <p>Mehr Angaben möglich im <a href="{{root}}kontakt.html">ausführlichen Formular</a>. Es gilt die <a href="{{root}}datenschutz.html">Datenschutzerklärung</a>.</p>
         </div>
-        <div class="mock__layer mock__trust">
-          <span class="mock__mark" aria-hidden="true"></span>
-          <div data-v="0 1" style="--show: contents"><div class="mock__stock">Stockfoto</div><p class="mock__tiny">Qualität und Zuverlässigkeit seit vielen Jahren.</p></div>
-          <div data-v="2 3" style="--show: contents"><div class="mock__face"><i aria-hidden="true"></i><div><b>Ihre Ansprechpartnerin</b><small>Malermeisterin, Inhaberin</small></div></div><div class="mock__facts"><span>Festpreis nach Besichtigung<small>schriftlich, vor Beginn</small></span><span>Bewertungen ansehen<small>mit Quelle</small></span></div></div>
-        </div>
-        <div class="mock__layer mock__act">
-          <span class="mock__mark" aria-hidden="true"></span>
-          <div data-v="0 1 2" style="--show: contents"><span class="mock__tiny">Kontakt: siehe Impressum</span></div>
-          <div data-v="3" style="--show: contents"><span class="mock__btn">Angebot anfragen</span><span class="mock__btn mock__btn--ghost">Anrufen</span></div>
-        </div>
-      </div>
-      <figcaption class="umbau__caption" id="mock-cap">Beispiel, fiktiv: ein ausgedachter Malerbetrieb ohne Bezug zu einem echten Unternehmen.</figcaption>
-    </figure>
-  </div>
-</section>
-
-<section class="sec" id="arbeiten" aria-labelledby="arbeiten-h">
-  <div class="sec__head">
-    <h2 class="h2" id="arbeiten-h">Was wir bauen</h2>
-    <p class="lead">Von der Landingpage bis zur Webanwendung – mit derselben Methode und einem festen Ansprechpartner.</p>
-  </div>
-  <ul class="fields">
-    <li class="field"><a class="field__title h3" href="{{root}}leistungen.html#websites">Websites und Landingpages</a><p>Unternehmenswebsites und fokussierte Landingpages – individuell gestaltet, schnell geladen und zuerst für das Handy gedacht.</p><p class="field__price num">ab {{price_fokus}}</p></li>
-    <li class="field"><a class="field__title h3" href="{{root}}leistungen.html#shops">Onlineshops</a><p>Klare Produktseiten, ein kurzer Bestellweg, Zahlung und Versand sauber eingerichtet – auf einer etablierten Plattform oder individuell.</p><p class="field__price">Festpreis nach Anforderungsanalyse</p></li>
-    <li class="field"><a class="field__title h3" href="{{root}}leistungen.html#anwendungen">Webanwendungen und Schnittstellen</a><p>Kundenportale, Buchungs- und Anfragesysteme, interne Werkzeuge und Anbindungen an CRM, Kalender oder Buchhaltung.</p><p class="field__price">Festpreis je Projektphase</p></li>
-    <li class="field"><a class="field__title h3" href="{{root}}leistungen.html#sichtbarkeit">Sichtbarkeit und Betreuung</a><p>Lokale SEO, Google-Unternehmensprofil und Texte – und nach dem Launch Pflege, Backups und ein kurzer Monatsbericht.</p><p class="field__price num">Betreuung ab {{care_basis}} im Monat</p></li>
-  </ul>
-
-  <div class="works">
-    <article class="work">
-      <div class="work__cover" style="--c-bg: #F4EFE7; --c-ink: #1E1C19; --c-accent: #B88A5A" aria-hidden="true">
-        <span class="work__brand">FUGENWERK</span><span class="work__claim">Möbel, die bleiben.</span><span class="work__accent"></span><span class="work__tag">Konzept</span>
-      </div>
-      <h3 class="h3">Fugenwerk – Tischlerei und Innenausbau</h3>
-      <p>Mehr passende Anfragen für Maßanfertigungen: Detailfotos statt Stockbilder, eine Galerie nach Räumen und eine Anfrage, bei der Kunden Fotos und Maße gleich mitschicken.</p>
-    </article>
-    <article class="work">
-      <div class="work__cover" style="--c-bg: #F6EFE4; --c-ink: #2B1D14; --c-accent: #3F5BA9" aria-hidden="true">
-        <span class="work__brand">KORNBLAU</span><span class="work__claim">Kaffee, langsam geröstet.</span><span class="work__accent work__accent--round"></span><span class="work__tag">Konzept</span>
-      </div>
-      <h3 class="h3">Kornblau – Kaffeerösterei und Café</h3>
-      <p>Öffnungszeiten und Anfahrt im ersten Bildschirm, darunter Stimmung und Sorten. Die Karte lädt erst nach Klick.</p>
-    </article>
-    <article class="work">
-      <div class="work__cover" style="--c-bg: #FAFAF7; --c-ink: #1F3B3A; --c-accent: #8FA89A" aria-hidden="true">
-        <span class="work__brand">achse</span><span class="work__claim">Physiotherapie in Lindenau.</span><span class="work__accent work__accent--bar"></span><span class="work__tag">Konzept</span>
-      </div>
-      <h3 class="h3">Achse – Praxis für Physiotherapie</h3>
-      <p>Weniger Anrufe mit immer gleichen Fragen: Leistungen in Alltagssprache, das Team mit Gesicht und eine Terminanfrage mit Wunschzeiten – ohne Heilversprechen.</p>
-    </article>
-  </div>
-  <p class="small muted" style="margin-top: 24px; max-width: 44rem">Konzeptprojekte für ausgedachte Betriebe – offen gekennzeichnet, denn erfundene Referenzen gibt es bei uns nicht.</p>
-  <div class="own-app">
-    <h3 class="h3">Unsere Agentur-Software haben wir selbst gebaut.</h3>
-    <p>Anfragen, Kunden, Projekte, Angebote und Rechnungen laufen bei LINUA in einer eigenen Webanwendung – mit Dubletten-Prüfung, Freigaben und automatischer Übernahme der Anfragen von dieser Website. Aus Datenschutzgründen ohne öffentliche Vorschau.</p>
-    <p><a class="link" href="{{root}}projekte.html">Alle Arbeiten ansehen</a></p>
-  </div>
-</section>
-
-<section class="sec" id="mensch" aria-labelledby="mensch-h">
-  <div class="sec__head">
-    <h2 class="h2" id="mensch-h">Ein Ansprechpartner. Vom ersten Gespräch bis nach dem Launch.</h2>
-  </div>
-  <div class="person">
-    <div>
-      <blockquote class="person__quote"><p>„Gute Websites beantworten Fragen, bevor jemand sie stellen muss.“</p></blockquote>
-      <p class="person__sig">Rony Mislem, Gründer von LINUA</p>
-      <div class="text" style="margin-top: 28px">
-        <p>Rony Mislem hat LINUA in Leipzig gegründet und begleitet jedes Projekt persönlich. Sein Hintergrund liegt in der Finanz- und Versicherungswirtschaft – einer Branche, in der Menschen nicht nach Hochglanz entscheiden, sondern danach, ob sie verstehen und vertrauen.</p>
-        <p><a class="link" href="{{root}}ueber.html">Mehr über LINUA</a></p>
-      </div>
+      </form>
+      <div class="form-status" data-form-status hidden tabindex="-1" role="status" aria-live="polite"></div>
     </div>
-    <dl class="facts">
-      <div><dt>Preis</dt><dd class="num">ab {{price_fokus}}, schriftlich vor Projektstart</dd></div>
-      <div><dt>Ansprechpartner</dt><dd>Rony Mislem, persönlich</dd></div>
-      <div><dt>Region</dt><dd>Leipzig persönlich, deutschlandweit per Video</dd></div>
-      <div><dt>Antwort</dt><dd>{{response}}</dd></div>
-      <div><dt>Betreuung</dt><dd class="num">ab {{care_basis}} im Monat, monatlich kündbar</dd></div>
-    </dl>
   </div>
-  <ol class="steps" aria-label="So läuft ein Projekt">
-    <li><p><strong>Erstgespräch</strong><span>30 Minuten, kostenlos</span></p></li>
-    <li><p><strong>Konzept und Festpreis</strong><span>schriftlich, ohne Kosten bis hierhin</span></p></li>
-    <li><p><strong>Inhalte und Design</strong><span>Startseite zuerst, dann der Rest</span></p></li>
-    <li><p><strong>Entwicklung und Test</strong><span>auf gängigen Geräten geprüft</span></p></li>
-    <li><p><strong>Launch und Betreuung</strong><span>auf Wunsch, monatlich kündbar</span></p></li>
-  </ol>
-  <p style="margin-top: 28px"><a class="link" href="{{root}}ablauf.html">Der Ablauf im Detail</a></p>
 </section>
 
-<section class="door" id="tuer" aria-labelledby="tuer-h">
-  <span class="door__line" aria-hidden="true"></span><span class="door__dot" aria-hidden="true"></span>
-  <h2 class="h2" id="tuer-h">Erzählen Sie uns von Ihrem Vorhaben.</h2>
-  <p class="lead" style="margin-top: 22px">Drei Angaben genügen. Sie bekommen {{response}} eine persönliche Antwort mit einer ersten Einschätzung – unverbindlich und kostenlos.</p>
-  <div class="door__form">
-    <form class="form" action="mailto:{{email}}?subject=Projektanfrage" method="post" enctype="text/plain" novalidate data-inbox="{{inbox}}" data-key="{{inbox_key}}" data-mail="{{email}}" data-response="{{response}}">
-      <input type="hidden" name="projekt" value="Kurzanfrage (Startseite)">
-      <div class="fieldline" data-f="k-name"><label for="k-name">Ihr Name</label><input id="k-name" name="name" autocomplete="name" required data-msg="Bitte nennen Sie Ihren Namen."></div>
-      <div class="fieldline" data-f="k-email"><label for="k-email">E-Mail</label><input id="k-email" name="email" type="email" autocomplete="email" inputmode="email" required data-msg="Bitte geben Sie Ihre E-Mail-Adresse an."></div>
-      <div class="fieldline" data-f="k-msg"><label for="k-msg">Ihr Vorhaben</label><textarea id="k-msg" name="nachricht" rows="3" required data-msg="Ein, zwei Sätze genügen." aria-describedby="k-msg-hint"></textarea><p class="hint" id="k-msg-hint">Was bieten Sie an, und was soll die Website leisten? Stichpunkte reichen.</p></div>
-      <div class="hp" aria-hidden="true"><label for="k-hp">Bitte leer lassen</label><input id="k-hp" name="firma_bestaetigung" tabindex="-1" autocomplete="off"></div>
-      <div class="form__foot">
-        <button class="btn btn--light" type="submit"><span class="btn__dot" aria-hidden="true"></span><span class="btn__label">Anfrage senden</span></button>
-        <p class="small">Mehr Angaben möglich im <a href="{{root}}kontakt.html">ausführlichen Formular</a>. Es gilt die <a href="{{root}}datenschutz.html">Datenschutzerklärung</a>.</p>
+<dialog class="modal" id="m-kornblau" aria-labelledby="m-kornblau-h">
+  <div class="modal__in">
+    <button class="iconbtn modal__close" type="button" data-close aria-label="Schließen"><svg class="i" aria-hidden="true"><use href="#i-close"/></svg></button>
+    <div class="modal__cover" style="--cover: #DCE3F6" aria-hidden="true"><div class="win"><div class="win__bar"><i></i><i></i><i></i></div><div class="ms ms--kornblau" style="height: auto"><div class="ms__nav"><b>KORNBLAU</b><span>Sorten</span><span>Café</span><span>Anfahrt</span><em>Bestellen</em></div><div class="ms__hero"><div><p class="ms__h">Kaffee, langsam geröstet.</p><p class="ms__p">Heute geöffnet bis 18 Uhr.</p></div><div class="ms__art"><svg viewBox="0 0 200 160"><circle cx="100" cy="80" r="70" fill="#E7D7BF"/><path d="M58 70h76v24a38 38 0 0 1-76 0V70Z" fill="#3F5BA9"/><ellipse cx="96" cy="70" rx="38" ry="7" fill="#2B1D14"/></svg></div></div></div></div></div>
+    <div class="modal__body">
+      <p class="tag">Konzept · Gastronomie</p>
+      <h2 class="h2" id="m-kornblau-h">Kornblau – Kaffeerösterei und Café</h2>
+      <p class="lead">Ziel: mehr Gäste im Café und ein zweites Standbein mit Bohnen zum Mitnehmen und Bestellen.</p>
+      <div class="facts3">
+        <div data-c="ochre"><b>{{i:info}}Ausgangslage</b><p>Besucher suchen unterwegs drei Dinge: Ist offen? Wie komme ich hin? Gibt es etwas Besonderes? Die alte Seite versteckt genau das.</p></div>
+        <div data-c="blue"><b>{{i:spark}}Ansatz</b><p>Öffnungszeiten und Anfahrt im ersten Bildschirm, darunter Stimmung und Sorten. Die Karte lädt erst nach Klick – datenschutzfreundlich und schneller.</p></div>
+        <div data-c="green"><b>{{i:pen}}Gestaltung</b><p>Ein ungewöhnliches Kornblumenblau als Wiedererkennung, eine warme Schrift, runde Formen wie Tassen und Bohnen.</p></div>
       </div>
-    </form>
-    <div class="form-status" data-form-status hidden tabindex="-1" role="status" aria-live="polite"></div>
+      <p class="swatches"><i style="background: #3F5BA9"></i><i style="background: #F6EFE4"></i><i style="background: #2B1D14"></i>Farben des Konzepts</p>
+      <p class="small muted">Namen, Inhalte und Marke sind ausgedacht. Ähnlichkeiten mit echten Unternehmen sind nicht beabsichtigt.</p>
+    </div>
   </div>
-</section>
+</dialog>
+
+<dialog class="modal" id="m-fugenwerk" aria-labelledby="m-fugenwerk-h">
+  <div class="modal__in">
+    <button class="iconbtn modal__close" type="button" data-close aria-label="Schließen"><svg class="i" aria-hidden="true"><use href="#i-close"/></svg></button>
+    <div class="modal__cover" style="--cover: #EAD9C0" aria-hidden="true"><div class="win"><div class="win__bar"><i></i><i></i><i></i></div><div class="ms ms--fugenwerk" style="height: auto"><div class="ms__nav"><b>Fugenwerk</b><span>Möbel</span><span>Innenausbau</span><em>Anfragen</em></div><div class="ms__hero"><div><p class="ms__h">Möbel, die bleiben.</p><p class="ms__p">Maßanfertigung aus Massivholz.</p></div><div class="ms__art"><svg viewBox="0 0 200 160"><rect x="14" y="14" width="172" height="132" rx="10" fill="#E5D4BA"/><rect x="34" y="74" width="132" height="12" rx="3" fill="#B88A5A"/><rect x="44" y="86" width="10" height="48" fill="#8C6239"/><rect x="146" y="86" width="10" height="48" fill="#8C6239"/><rect x="58" y="40" width="40" height="34" rx="3" fill="#1E1C19"/></svg></div></div></div></div></div>
+    <div class="modal__body">
+      <p class="tag">Konzept · Handwerk</p>
+      <h2 class="h2" id="m-fugenwerk-h">Fugenwerk – Tischlerei und Innenausbau</h2>
+      <p class="lead">Ziel: mehr passende Anfragen für Maßanfertigungen – und weniger Anrufe, die nur nach dem Preis fragen.</p>
+      <div class="facts3">
+        <div data-c="ochre"><b>{{i:info}}Ausgangslage</b><p>Hervorragende Arbeit, aber eine Website, die nach Baukasten aussieht. Interessenten erkennen die Qualität nicht und fragen nur nach Preisen.</p></div>
+        <div data-c="blue"><b>{{i:spark}}Ansatz</b><p>Große Detailfotos statt Stockbilder, eine Galerie nach Räumen und eine Anfrage, bei der Kunden Fotos und Maße direkt mitschicken.</p></div>
+        <div data-c="green"><b>{{i:pen}}Gestaltung</b><p>Kräftige Versalien wie eingebrannte Werkstattstempel, warme Holztöne, viel Ruhe – so solide wie die Möbel.</p></div>
+      </div>
+      <p class="swatches"><i style="background: #B88A5A"></i><i style="background: #F4EFE7"></i><i style="background: #1E1C19"></i>Farben des Konzepts</p>
+      <p class="small muted">Namen, Inhalte und Marke sind ausgedacht. Ähnlichkeiten mit echten Unternehmen sind nicht beabsichtigt.</p>
+    </div>
+  </div>
+</dialog>
+
+<dialog class="modal" id="m-achse" aria-labelledby="m-achse-h">
+  <div class="modal__in">
+    <button class="iconbtn modal__close" type="button" data-close aria-label="Schließen"><svg class="i" aria-hidden="true"><use href="#i-close"/></svg></button>
+    <div class="modal__cover" style="--cover: #CFE6DA" aria-hidden="true"><div class="win"><div class="win__bar"><i></i><i></i><i></i></div><div class="ms ms--achse" style="height: auto"><div class="ms__nav"><b>achse</b><span>Leistungen</span><span>Team</span><em>Termin anfragen</em></div><div class="ms__hero"><div><p class="ms__h">Physiotherapie in Lindenau.</p><p class="ms__p">Was beim ersten Termin passiert – auf einen Blick.</p></div><div class="ms__art"><svg viewBox="0 0 200 160"><circle cx="100" cy="80" r="66" fill="#D6E8DE"/><path d="M100 20v120" stroke="#2F7D6D" stroke-width="5" stroke-linecap="round"/><circle cx="100" cy="42" r="12" fill="#2F7D6D"/><path d="M68 74c12-9 52-9 64 0M74 98c10-7 42-7 52 0" fill="none" stroke="#1F3B3A" stroke-width="5" stroke-linecap="round"/></svg></div></div></div></div></div>
+    <div class="modal__body">
+      <p class="tag">Konzept · Gesundheit</p>
+      <h2 class="h2" id="m-achse-h">Achse – Praxis für Physiotherapie</h2>
+      <p class="lead">Ziel: das Telefon entlasten und neue Patientinnen und Patienten gut informiert in den ersten Termin bringen.</p>
+      <div class="facts3">
+        <div data-c="ochre"><b>{{i:info}}Ausgangslage</b><p>Das Team verbringt viel Zeit am Telefon mit immer gleichen Fragen. Online gibt es weder Terminanfrage noch Infos zum ersten Termin.</p></div>
+        <div data-c="blue"><b>{{i:spark}}Ansatz</b><p>Leistungen in Alltagssprache, das Team mit Gesicht und eine Terminanfrage mit Wunschzeiten – sachlich und ohne Heilversprechen.</p></div>
+        <div data-c="green"><b>{{i:pen}}Gestaltung</b><p>Ruhiges Salbeigrün, viel Weißraum, eine Achse als Leitmotiv für Haltung und Orientierung. Freundlich, ohne Klinik-Kälte.</p></div>
+      </div>
+      <p class="swatches"><i style="background: #2F7D6D"></i><i style="background: #F4F8F5"></i><i style="background: #1F3B3A"></i>Farben des Konzepts</p>
+      <p class="small muted">Namen, Inhalte und Marke sind ausgedacht. Ähnlichkeiten mit echten Unternehmen sind nicht beabsichtigt.</p>
+    </div>
+  </div>
+</dialog>
+
+<dialog class="modal" id="m-software" aria-labelledby="m-software-h">
+  <div class="modal__in">
+    <button class="iconbtn modal__close" type="button" data-close aria-label="Schließen"><svg class="i" aria-hidden="true"><use href="#i-close"/></svg></button>
+    <div class="modal__cover" style="--cover: #2A3452" aria-hidden="true"><div class="win"><div class="win__bar"><i></i><i></i><i></i></div><div style="aspect-ratio: 16 / 7.6"><div class="dash"><div class="dash__side"><i></i><i></i><i></i><i></i><i></i></div><div class="dash__main"><div class="dash__kpis"><span style="--k: #2C49C4"><b></b><small></small></span><span style="--k: #1B7656"><b></b><small></small></span><span style="--k: #E5A33B"><b></b><small></small></span></div><div class="dash__chart"><svg viewBox="0 0 200 50"><path d="M4 44 34 30 60 34 92 16 120 22 150 8 196 12" fill="none" stroke="#C8361B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div></div></div></div></div>
+    <div class="modal__body">
+      <p class="tag" data-c="green">Eigene Software · im Einsatz</p>
+      <h2 class="h2" id="m-software-h">Agentur-Zentrale – selbst entwickelt</h2>
+      <p class="lead">Anfragen, Kunden, Projekte, Angebote und Rechnungen laufen bei LINUA in einer eigenen, intern genutzten Webanwendung.</p>
+      <div class="facts3">
+        <div data-c="blue"><b>{{i:mail}}Anfragen</b><p>Was über das Formular dieser Website kommt, landet automatisch im Eingang – ohne Abtippen.</p></div>
+        <div data-c="green"><b>{{i:shield}}Sicher</b><p>Anmeldung nur für LINUA, Daten mit Zugriffsregeln geschützt, Dubletten-Prüfung und Freigaben.</p></div>
+        <div data-c="ochre"><b>{{i:file}}Ein Büro</b><p>Angebote und Rechnungen mit lückenlosem Nummernkreis an einem Ort.</p></div>
+      </div>
+      <p class="small muted">Die Grafik zeigt den Aufbau, keine echten Daten. Aus Datenschutzgründen gibt es keine öffentliche Vorschau.</p>
+    </div>
+  </div>
+</dialog>
