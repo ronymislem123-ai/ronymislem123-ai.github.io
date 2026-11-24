@@ -39,13 +39,21 @@
   const navSecs = navLinks.map((a) => document.getElementById(a.hash.slice(1))).filter(Boolean);
   const heroEl = $(".hero");
   let activeId = "";
+  const pnUl = pagenav ? $("ul", pagenav) : null;
+  const pnInd = pnUl ? Object.assign(document.createElement("span"), { className: "pagenav__ind" }) : null;
+  if (pnInd) { pnInd.setAttribute("aria-hidden", "true"); pnUl.prepend(pnInd); }
   const setActive = (id) => {
     if (id === activeId) return;
     activeId = id;
     navLinks.forEach((a) => {
       const on = a.hash === `#${id}`;
       a.classList.toggle("is-active", on);
-      if (on) { a.setAttribute("aria-current", "true"); a.scrollIntoView({ block: "nearest", inline: "center", behavior: mqReduce.matches ? "auto" : "smooth" }); }
+      if (on) {
+        a.setAttribute("aria-current", "true");
+        const li = a.parentElement;
+        if (pnUl.scrollWidth > pnUl.clientWidth) pnUl.scrollTo({ left: li.offsetLeft - pnUl.clientWidth / 2 + li.offsetWidth / 2, behavior: mqReduce.matches ? "auto" : "smooth" });
+        if (pnInd) { pnInd.style.width = `${li.offsetWidth}px`; pnInd.style.transform = `translateX(${li.offsetLeft}px)`; pnInd.style.setProperty("--dc", getComputedStyle(a).getPropertyValue("--dot")); pnInd.classList.add("is-on"); }
+      }
       else a.removeAttribute("aria-current");
     });
   };
@@ -69,6 +77,7 @@
         let cur = "";
         navSecs.forEach((s) => { if (s.getBoundingClientRect().top < vh * 0.4) cur = s.id; });
         setActive(past ? cur : "");
+        if (pnInd && !activeId) pnInd.classList.remove("is-on");
       }
       if (!mqReduce.matches) {
         para.forEach((el) => {
@@ -137,6 +146,14 @@
       });
     });
     const cur = tabs.find((t) => t.getAttribute("aria-selected") === "true") || tabs[0];
+    tabs.forEach((t) => { const p = document.getElementById(t.getAttribute("aria-controls")); if (p && t !== cur) p.hidden = true; });
+    const fromHash = () => {
+      const target = location.hash && document.getElementById(location.hash.slice(1));
+      if (!target) return;
+      const t = tabs.find((x) => { const p = document.getElementById(x.getAttribute("aria-controls")); return p && (p === target || p.contains(target)); });
+      if (t && t.getAttribute("aria-selected") !== "true") { select(t); requestAnimationFrame(() => target.scrollIntoView()); }
+    };
+    fromHash(); addEventListener("hashchange", fromHash);
     if (cur) { movePill(cur); addEventListener("resize", () => movePill(tabs.find((t) => t.getAttribute("aria-selected") === "true"))); if (document.fonts) document.fonts.ready.then(() => movePill(tabs.find((t) => t.getAttribute("aria-selected") === "true"))); }
     const first = document.getElementById(cur.getAttribute("aria-controls"));
     if (first && "IntersectionObserver" in window) {
@@ -282,7 +299,8 @@
       required.forEach((el) => {
         const wrap = el.closest("[data-f]");
         let msg = "";
-        if (!el.value.trim()) msg = el.dataset.msg || "Bitte ausfüllen.";
+        if (el.type === "radio") { if (form.querySelector(`input[name="${el.name}"]:checked`)) { setErr(wrap, ""); return; } msg = "Bitte wählen Sie eine Option."; }
+        else if (!el.value.trim()) msg = el.dataset.msg || "Bitte ausfüllen.";
         else if (el.type === "email" && !emailOk(el.value.trim())) msg = "Bitte prüfen Sie die E-Mail-Adresse.";
         setErr(wrap, msg);
         if (msg) bad.push(el);
@@ -291,7 +309,7 @@
     };
     form.addEventListener("input", (e) => { const w = e.target.closest(".is-invalid"); if (w) setErr(w, ""); });
     const summary = (d) => [
-      `Projekt: ${d.get("projekt") || "–"}`, `Name: ${d.get("name")}`, `Unternehmen: ${d.get("firma") || "–"}`,
+      `Projekt: ${d.get("projekt") || "–"}`, `Budgetrahmen: ${d.get("budget") || "–"}`, `Zeitrahmen: ${d.get("zeitrahmen") || "–"}`, `Name: ${d.get("name")}`, `Unternehmen: ${d.get("firma") || "–"}`,
       `E-Mail: ${d.get("email")}`, `Telefon: ${d.get("telefon") || "–"}`, `Website: ${d.get("website") || "–"}`, "",
       `Nachricht: ${String(d.get("nachricht") || "")}`,
     ].join("\n");
@@ -329,6 +347,230 @@
       show(`<p class="form-status__title">Die Verbindung hat gerade nicht geklappt.</p><p>Ihre Angaben sind nicht verloren: <a href="${href}">E-Mail mit Ihrer Anfrage öffnen</a> oder direkt an <a href="mailto:${mail}">${mail}</a> schreiben.</p>`);
     });
   });
+
+
+  /* ---------- Toast ---------- */
+  let toastEl = null, toastT = 0;
+  const toast = (msg) => {
+    if (!toastEl) { toastEl = document.createElement("div"); toastEl.className = "toast"; toastEl.setAttribute("role", "status"); document.body.append(toastEl); }
+    toastEl.innerHTML = `<svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span></span>`;
+    $("span", toastEl).textContent = msg;
+    requestAnimationFrame(() => toastEl.classList.add("is-on"));
+    clearTimeout(toastT); toastT = setTimeout(() => toastEl.classList.remove("is-on"), 3200);
+  };
+
+  /* ---------- Hauptnavigation: Hover-Pille und Mega-Menü ---------- */
+  const hnav = $("[data-hnav]");
+  if (hnav && fine.matches) {
+    const pill = $(".hd__hover", hnav);
+    $$("a", hnav).forEach((a) => a.addEventListener("pointerenter", () => {
+      if (a.closest(".mega")) return;
+      const r = a.getBoundingClientRect(), n = hnav.getBoundingClientRect();
+      pill.style.width = `${r.width}px`; pill.style.height = `${r.height}px`; pill.style.top = `${r.top - n.top}px`; pill.style.transform = `translateX(${r.left - n.left}px)`;
+      hnav.classList.add("is-hovering");
+    }));
+    hnav.addEventListener("pointerleave", () => hnav.classList.remove("is-hovering"));
+  }
+  const megaWrap = $("[data-mega-wrap]"), mega = $("[data-mega]"), megaBtn = $("[data-mega-btn]");
+  if (megaWrap && mega && megaBtn) {
+    let t = 0;
+    const open = (v) => { mega.hidden = !v; megaBtn.setAttribute("aria-expanded", v); };
+    megaBtn.addEventListener("click", () => { open(mega.hidden); if (!mega.hidden) $("a", mega).focus(); });
+    if (fine.matches) {
+      megaWrap.addEventListener("pointerenter", () => { clearTimeout(t); t = setTimeout(() => open(true), 120); });
+      megaWrap.addEventListener("pointerleave", () => { clearTimeout(t); t = setTimeout(() => open(false), 220); });
+    }
+    megaWrap.addEventListener("focusout", (e) => { if (!megaWrap.contains(e.relatedTarget)) open(false); });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !mega.hidden) { open(false); megaBtn.focus(); } });
+  }
+
+  /* ---------- Suche (Strg + K) ---------- */
+  const pal = $("[data-palette]");
+  if (pal && typeof pal.showModal === "function") {
+    const input = $("[data-palette-input]", pal), list = $("[data-palette-list]", pal);
+    const icons = { Seite: "layers", Abschnitt: "right", Frage: "chat" };
+    let data = null, hits = [], sel = 0;
+    const norm = (x) => x.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+    const hl = (txt, q) => { const e = esc(txt); if (!q) return e; const i = norm(txt).indexOf(q); return i < 0 ? e : `${esc(txt.slice(0, i))}<mark>${esc(txt.slice(i, i + q.length))}</mark>${esc(txt.slice(i + q.length))}`; };
+    const render = () => {
+      const q = norm(input.value.trim());
+      const words = q.split(/\s+/).filter(Boolean);
+      hits = (data || []).map((d) => {
+        const h = norm(`${d.t} ${d.d}`);
+        if (!words.every((w) => h.includes(w))) return null;
+        let s = 0; words.forEach((w) => { if (norm(d.t).includes(w)) s += 3; if (norm(d.t).startsWith(w)) s += 2; });
+        s += d.g === "Seite" ? 2 : d.g === "Abschnitt" ? 1 : 0;
+        return { d, s };
+      }).filter(Boolean).sort((a, b) => b.s - a.s).slice(0, q ? 12 : 9).map((x) => x.d);
+      sel = 0;
+      list.innerHTML = hits.length ? hits.map((d, i) => `<li role="option" id="po-${i}" data-c="${esc(d.c)}" aria-selected="${i === 0}"><span class="pdot"><svg class="i" aria-hidden="true"><use href="#i-${icons[d.g] || "right"}"/></svg></span><b>${hl(d.t, words[0])}</b><small>${esc(d.d)}</small><span class="pg">${esc(d.g)}</span></li>`).join("")
+        : `<li class="palette__empty" role="option" aria-disabled="true">Nichts gefunden. Versuchen Sie „Preis“, „Shop“ oder „Dauer“ – oder schreiben Sie uns direkt.</li>`;
+      input.setAttribute("aria-activedescendant", hits.length ? "po-0" : "");
+    };
+    const move = (k) => { if (!hits.length) return; const items = $$("li[id]", list); items[sel].setAttribute("aria-selected", "false"); sel = (sel + k + hits.length) % hits.length; items[sel].setAttribute("aria-selected", "true"); items[sel].scrollIntoView({ block: "nearest" }); input.setAttribute("aria-activedescendant", items[sel].id); };
+    const go = (i) => { const d = hits[i]; if (!d) return; pal.close(); location.href = pal.dataset.root + d.u; };
+    const openPal = async () => {
+      if (!pal.open) pal.showModal();
+      input.value = ""; input.focus();
+      if (!data) { try { data = await (await fetch(pal.dataset.index)).json(); } catch (_) { data = []; } }
+      render();
+    };
+    $$("[data-palette-open]").forEach((b) => b.addEventListener("click", () => { closeMenu(false); openPal(); }));
+    document.addEventListener("keydown", (e) => { if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") { e.preventDefault(); openPal(); } });
+    input.addEventListener("input", render);
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowDown") { e.preventDefault(); move(1); }
+      if (e.key === "ArrowUp") { e.preventDefault(); move(-1); }
+      if (e.key === "Enter") { e.preventDefault(); go(sel); }
+      if (e.key === "Escape") { e.preventDefault(); pal.close(); }
+    });
+    list.addEventListener("click", (e) => { const li = e.target.closest("li[id]"); if (li) go(Number(li.id.slice(3))); });
+    pal.addEventListener("click", (e) => { if (e.target === pal) pal.close(); });
+  }
+
+  /* ---------- Mobile Schnellleiste ---------- */
+  const tabbar = $("[data-tabbar]");
+  let lastY = scrollY;
+  if (tabbar) addEventListener("scroll", () => { const y = scrollY; tabbar.classList.toggle("is-hidden", y > lastY + 4 && y > 200); if (y < lastY - 4) tabbar.classList.remove("is-hidden"); lastY = y; }, { passive: true });
+
+  /* ---------- Neigung und Magnet ---------- */
+  if (fine.matches && !mqReduce.matches) {
+    $$("[data-tilt]").forEach((el) => {
+      el.addEventListener("pointermove", (e) => { const r = el.getBoundingClientRect(); const x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5; el.style.transform = `perspective(900px) rotateX(${(-y * 6).toFixed(2)}deg) rotateY(${(x * 8).toFixed(2)}deg) translateY(-4px)`; });
+      el.addEventListener("pointerleave", () => { el.style.transform = ""; });
+    });
+    $$("[data-magnetic]").forEach((el) => {
+      el.addEventListener("pointermove", (e) => { const r = el.getBoundingClientRect(); el.style.translate = `${((e.clientX - r.left - r.width / 2) * 0.18).toFixed(1)}px ${((e.clientY - r.top - r.height / 2) * 0.25).toFixed(1)}px`; });
+      el.addEventListener("pointerleave", () => { el.style.translate = ""; });
+    });
+  }
+
+  /* ---------- Filter (Arbeiten) ---------- */
+  $$("[data-filter]").forEach((bar) => {
+    const items = $$(`#${bar.dataset.filter} [data-cat]`);
+    const btns = $$("button", bar);
+    btns.forEach((b) => {
+      const n = b.dataset.f === "alle" ? items.length : items.filter((it) => it.dataset.cat.split(" ").includes(b.dataset.f)).length;
+      const c = $("small", b); if (c) c.textContent = n;
+      b.addEventListener("click", () => {
+        btns.forEach((x) => x.setAttribute("aria-pressed", x === b));
+        items.forEach((it) => {
+          const on = b.dataset.f === "alle" || it.dataset.cat.split(" ").includes(b.dataset.f);
+          it.classList.toggle("is-filtered-out", !on);
+          if (on) { it.classList.remove("is-in-filter"); void it.offsetWidth; it.classList.add("is-in-filter"); }
+        });
+      });
+    });
+  });
+
+  /* ---------- Fragen durchsuchen ---------- */
+  const qs = $("[data-qsearch]");
+  if (qs) {
+    const groups = $$(".qgroup"), empty = $("[data-qempty]");
+    const norm = (x) => x.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+    qs.addEventListener("input", () => {
+      const q = norm(qs.value.trim()); let total = 0;
+      groups.forEach((g) => {
+        let n = 0;
+        $$("details", g).forEach((d) => { const on = !q || norm(d.textContent).includes(q); d.classList.toggle("is-filtered-out", !on); if (on) n++; });
+        g.classList.toggle("is-filtered-out", !n); total += n;
+      });
+      if (empty) empty.hidden = total > 0;
+    });
+    const hashQ = location.hash && document.getElementById(location.hash.slice(1));
+    if (hashQ && hashQ.tagName === "DETAILS") hashQ.open = true;
+  }
+
+  /* ---------- Preisrechner ---------- */
+  const calc = $("[data-calc]");
+  if (calc) {
+    const out = $("[data-calc-total]", calc), mo = $("[data-calc-month]", calc), lines = $("[data-calc-lines]", calc), big = $(".big", calc);
+    const upd = () => {
+      let once = 0, month = 0; const rows = [];
+      $$("input:checked", calc).forEach((i) => { const v = Number(i.dataset.price || 0); if (i.dataset.monthly) month += v; else once += v; if (v) rows.push(`<li><span>${esc(i.dataset.label)}</span><span>${fmt.format(v)} €${i.dataset.monthly ? " / Monat" : ""}</span></li>`); });
+      out.textContent = fmt.format(once); mo.textContent = month ? `+ ${fmt.format(month)} € im Monat, monatlich kündbar` : "Ohne laufende Betreuung";
+      lines.innerHTML = rows.join("");
+      big.classList.remove("bump"); void big.offsetWidth; big.classList.add("bump");
+    };
+    calc.addEventListener("change", upd); upd();
+    calc.addEventListener("submit", (e) => e.preventDefault());
+    const go = $("[data-calc-go]", calc);
+    if (go) go.addEventListener("click", () => {
+      const sel = $$("input:checked", calc).filter((i) => Number(i.dataset.price)).map((i) => `- ${i.dataset.label}`);
+      store.set("linua-calc", `Meine Auswahl aus dem Preisrechner (Richtwert ab ${out.textContent} €):\n${sel.join("\n")}\n\nMein Vorhaben: `);
+    });
+  }
+
+  /* ---------- Kontakt: Überblick und Übernahme aus dem Check ---------- */
+  const offers = { "Neue Website": "Paket „Auftritt“ ab 1.745 € – oder „Signatur“ ab 3.450 €", "Relaunch": "Kurz-Audit, danach „Auftritt“ oder „Signatur“", "Landingpage": "Paket „Fokus“ ab 745 €", "Onlineshop": "Festpreis nach Anforderungsanalyse", "Webanwendung / Schnittstelle": "Festpreis je Projektphase", "Betreuung": "Care ab 25 € im Monat", "Etwas anderes": "Klären wir im Erstgespräch" };
+  const ov = $("[data-overview]");
+  const big = $("form[data-big]");
+  if (ov && big) {
+    const set = (k, v, fallback) => { const el = $(`[data-ov=${k}]`, ov); el.textContent = v || fallback; el.classList.toggle("is-set", !!v); };
+    const upd = () => { const d = new FormData(big); const p = d.get("projekt"); set("projekt", p, "noch nicht gewählt"); set("budget", d.get("budget"), "noch nicht gewählt"); set("zeit", d.get("zeitrahmen"), "noch nicht gewählt"); set("angebot", offers[p], "Wählen Sie Ihr Vorhaben"); };
+    big.addEventListener("change", upd);
+    const fromCheck = store.get("linua-check");
+    const fromCalc = store.get("linua-calc");
+    if (fromCalc && /rechner/.test(location.search)) {
+      const t = big.elements.nachricht; if (t && !t.value) t.value = fromCalc;
+      toast("Ihre Auswahl aus dem Preisrechner ist eingetragen");
+    }
+    if (fromCheck && /check/.test(location.search)) {
+      const t = big.elements.nachricht; if (t && !t.value) t.value = fromCheck;
+      const r = big.querySelector('input[name="projekt"][value="Relaunch"]'); if (r) r.checked = true;
+      toast("Ihr Check-Ergebnis ist eingetragen");
+    }
+    upd();
+  }
+
+  /* ---------- Schwellen-Check als Assistent ---------- */
+  const wiz = $("[data-check]");
+  if (wiz) {
+    const cards = $$(".qcard2", wiz), bar = $$(".wiz__bar i", wiz);
+    const prev = $(".wiz__prev", wiz), next = $(".wiz__next", wiz), count = $("[data-wiz-n]", wiz), grpName = $("[data-wiz-g]", wiz);
+    let i = 0;
+    wiz.classList.add("is-wizard");
+    const show = (k, dir) => {
+      i = clamp(k, 0, cards.length - 1);
+      cards.forEach((c, j) => { c.classList.toggle("is-cur", j === i); c.classList.toggle("from-left", dir < 0); });
+      bar.forEach((b, j) => { b.classList.toggle("is-done", !!$("input:checked", cards[j])); b.classList.toggle("is-cur", j === i && !$("input:checked", cards[j])); });
+      count.textContent = i + 1; grpName.textContent = cards[i].dataset.gname;
+      prev.disabled = i === 0;
+      wiz.classList.toggle("is-last", i === cards.length - 1);
+      wiz.style.setProperty("--qc", getComputedStyle(cards[i]).getPropertyValue("--qc"));
+    };
+    prev.addEventListener("click", () => show(i - 1, -1));
+    next.addEventListener("click", () => { if (!$("input:checked", cards[i])) { $("input", cards[i]).focus(); toast("Bitte wählen Sie eine Antwort"); return; } show(i + 1, 1); $("input", cards[i]).focus({ preventScroll: true }); });
+    wiz.addEventListener("change", (e) => {
+      const c = e.target.closest(".qcard2"); bar[cards.indexOf(c)].classList.add("is-done");
+      if (wiz.classList.contains("is-wizard") && i < cards.length - 1) setTimeout(() => { show(i + 1, 1); $("input", cards[i]).focus({ preventScroll: true }); }, mqReduce.matches ? 0 : 380);
+    });
+    show(0, 1);
+    const out = $("[data-check-result]");
+    const groups = [["erkennen", "Erkennen", "var(--blue)"], ["vertrauen", "Vertrauen", "var(--green)"], ["handeln", "Handeln", "var(--red)"]];
+    wiz.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const missing = cards.findIndex((q) => !$("input:checked", q));
+      if (missing > -1) { show(missing, -1); toast(`Frage ${missing + 1} ist noch offen`); $("input", cards[missing]).focus(); return; }
+      let total = 0; const rows = [], lines = ["Ergebnis meines Schwellen-Checks:"];
+      groups.forEach(([key, name, col], gi) => {
+        const qs2 = cards.filter((q) => q.dataset.group === key);
+        let score = 0; const tips = [];
+        qs2.forEach((q) => { const v = Number($("input:checked", q).value); score += v; if (v < 2) tips.push(q.dataset.tip); });
+        total += score;
+        const level = score >= 5 ? "stark" : score >= 3 ? "ausbaufähig" : "kritisch";
+        lines.push(`${name}: ${level} (${score} von 6)`);
+        rows.push(`<div class="rrow" style="--qc: ${col}; --i: ${gi}"><h3 class="h3">${name}<span class="badge" data-level="${level}">${level} · ${score}/6</span></h3>${tips.length ? `<ul>${tips.map((t) => `<li><svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg>${esc(t)}</li>`).join("")}</ul>` : "<p class=\"muted\" style=\"margin-top:8px\">Hier ist Ihre Website schon gut aufgestellt.</p>"}</div>`);
+      });
+      const pct = Math.round(total / 18 * 100);
+      store.set("linua-check", lines.join("\n") + "\n\nMeine Website: ");
+      out.innerHTML = `<div class="gcard" data-observe><h2 class="h2" tabindex="-1">Ihr Ergebnis</h2><div class="gauge"><div class="gauge__ring" style="--v: ${pct}"><svg viewBox="0 0 110 110"><circle class="bg" cx="55" cy="55" r="46"/><circle class="fg" cx="55" cy="55" r="46"/></svg><b>${pct}</b></div><p>von 100 Punkten. ${pct >= 75 ? "Eine starke Basis – mit Feinschliff holen Sie mehr heraus." : pct >= 45 ? "Solide, aber Besucher springen an einzelnen Schwellen ab." : "Hier verlieren Sie wahrscheinlich viele Besucher."}</p></div><div class="actions"><a class="btn btn--light" href="../kontakt.html?von=check"><span>Ergebnis besprechen</span><svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a></div><p class="gcard__note">Bleibt nur in Ihrem Browser. Gesendet wird nichts.</p></div><div class="result__rows">${rows.join("")}<p><button class="link" type="button" data-restart style="border:0;background:none;padding:0"><span>Check neu starten</span><svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></button></p></div>`;
+      out.hidden = false; wiz.hidden = true;
+      requestAnimationFrame(() => { $(".gcard", out).classList.add("is-in"); $("h2", out).focus(); });
+      toast("Auswertung fertig");
+      $("[data-restart]", out).addEventListener("click", () => { wiz.reset(); out.hidden = true; wiz.hidden = false; bar.forEach((b) => b.classList.remove("is-done")); show(0, -1); $("input", cards[0]).focus(); });
+    });
+  }
 
   /* ---------- Start ---------- */
   addEventListener("scroll", onScroll, { passive: true });

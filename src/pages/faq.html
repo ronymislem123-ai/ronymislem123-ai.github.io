@@ -1,75 +1,79 @@
 <!--meta
-{"out": "faq.html", "nav": "faq", "crumb": "Fragen", "priority": "0.6",
- "title": "Häufige Fragen zu Website, Kosten und Ablauf | LINUA",
- "description": "Antworten auf häufige Fragen zu Websites, Onlineshops, Webanwendungen, Kosten, Dauer, Technik, Datenschutz und Barrierefreiheit – ehrlich und konkret.",
- "chapters": [["allgemein", "Allgemein"], ["leistungen-projekte", "Leistungen"], ["ablauf-fragen", "Ablauf"], ["kosten", "Kosten"], ["technik", "Technik"], ["recht", "Datenschutz und Recht"]]}
+{"out": "faq.html", "nav": "faq", "crumb": "Fragen", "priority": "0.6", "title": "Häufige Fragen zu Website, Kosten und Ablauf | LINUA", "description": "Antworten auf häufige Fragen zu Websites, Onlineshops, Webanwendungen, Kosten, Dauer, Technik, Datenschutz und Barrierefreiheit – ehrlich und konkret.", "chapters": [["allgemein", "Allgemein", "red"], ["leistungen-projekte", "Leistungen", "blue"], ["ablauf-fragen", "Ablauf", "green"], ["kosten", "Kosten", "violet"], ["technik", "Technik", "ochre"], ["recht", "Datenschutz und Recht", "green"]], "v": 2, "c": "blue"}
 -->
-<div class="page-head">
-  <h1 class="h1">Antworten, bevor Sie fragen.</h1>
-  <p class="lead">Ihre Frage ist nicht dabei? Schreiben Sie uns – Sie bekommen {{response}} eine persönliche Antwort.</p>
-  <nav class="topics" aria-label="Themen"><a href="#allgemein">Allgemein</a><a href="#leistungen-projekte">Leistungen und Projekte</a><a href="#ablauf-fragen">Ablauf</a><a href="#kosten">Kosten</a><a href="#technik">Technik und Sicherheit</a><a href="#recht">Datenschutz und Recht</a></nav>
-</div>
-
-<section class="chapter faq-group" id="allgemein" aria-labelledby="allgemein-h">
-  <h2 class="h2" id="allgemein-h">Allgemein</h2>
-  <div class="faq">
-    <details><summary>Für wen arbeitet LINUA?</summary><div><p>Für Selbstständige, lokale Unternehmen, Start-ups und den Mittelstand – von der Landingpage über die Unternehmenswebsite bis zum Onlineshop oder zur eigenen Webanwendung. Entscheidend ist nicht die Größe Ihres Unternehmens, sondern ein klares Ziel: mehr Anfragen, mehr Verkäufe oder Abläufe, die Zeit sparen.</p></div></details>
-    <details><summary>Arbeiten Sie nur in Leipzig?</summary><div><p>Nein. Wir arbeiten deutschlandweit – Gespräche per Video, in Leipzig, im Landkreis Leipzig und in Nordsachsen gern auch persönlich.</p></div></details>
-    <details><summary>Wer ist mein Ansprechpartner?</summary><div><p>Rony Mislem, Gründer von LINUA – vom Erstgespräch bis nach dem Launch. Sie erklären Ihr Vorhaben nur einmal, und Entscheidungen gehen nicht zwischen Abteilungen verloren. Für Spezialgebiete wie professionelle Fotografie binden wir nach Absprache Partner ein.</p></div></details>
-    <details><summary>Können Sie Beispiele Ihrer Arbeit zeigen?</summary><div><p>Ja. Unter <a href="{{root}}projekte.html">Arbeiten</a> finden Sie Konzeptprojekte für Handwerk, Gastronomie und Gesundheit mit Ausgangslage, Ansatz und Gestaltung – offen als Konzepte gekennzeichnet. Im Erstgespräch zeigen wir außerdem, wie wir Ihr Vorhaben angehen würden. Erfundene Referenzen oder Bewertungen gibt es bei uns grundsätzlich nicht.</p></div></details>
+<section class="phero" data-c="blue" aria-labelledby="f-h">
+  <div class="wrap">
+    <div class="phero__text" style="max-width: 46rem">
+      <nav class="crumbs" aria-label="Brotkrumen"><ol><li><a href="{{root}}index.html">Start</a></li><li><span aria-current="page">Fragen</span></li></ol></nav>
+      <h1 class="h1" id="f-h">Antworten, bevor Sie fragen.</h1>
+      <p class="lead">25 Antworten in sechs Themen. Ihre Frage ist nicht dabei? Schreiben Sie uns – Sie bekommen {{response}} eine persönliche Antwort.</p>
+      <div class="qsearch" role="search">{{i:search}}<input type="search" placeholder="Frage suchen, zum Beispiel Kosten oder Google" aria-label="Fragen durchsuchen" data-qsearch></div>
+    </div>
+    <ul class="subtiles" data-stagger><li><a class="subtile" data-c="red" href="#allgemein">{{i:user}}<b>Allgemein</b><small>4 Fragen</small>{{i:right}}</a></li><li><a class="subtile" data-c="blue" href="#leistungen-projekte">{{i:layers}}<b>Leistungen und Projekte</b><small>4 Fragen</small>{{i:right}}</a></li><li><a class="subtile" data-c="green" href="#ablauf-fragen">{{i:calendar}}<b>Ablauf</b><small>5 Fragen</small>{{i:right}}</a></li><li><a class="subtile" data-c="violet" href="#kosten">{{i:euro}}<b>Kosten</b><small>4 Fragen</small>{{i:right}}</a></li><li><a class="subtile" data-c="ochre" href="#technik">{{i:code}}<b>Technik und Sicherheit</b><small>5 Fragen</small>{{i:right}}</a></li><li><a class="subtile" data-c="green" href="#recht">{{i:shield}}<b>Datenschutz und Recht</b><small>3 Fragen</small>{{i:right}}</a></li></ul>
   </div>
 </section>
 
-<section class="chapter faq-group" id="leistungen-projekte" aria-labelledby="leistungen-projekte-h">
-  <h2 class="h2" id="leistungen-projekte-h">Leistungen und Projekte</h2>
-  <div class="faq">
-    <details><summary>Entwickeln Sie auch Onlineshops?</summary><div><p>Ja. Wir beraten Sie zur passenden Lösung – eine etablierte Shop-Plattform wie Shopify oder WooCommerce oder eine eigene Entwicklung – und setzen Produktseiten, Bestellweg, Zahlung, Versand und Anbindungen um. Bei Shops für Endkunden berücksichtigen wir die Anforderungen des Barrierefreiheitsstärkungsgesetzes.</p></div></details>
-    <details><summary>Setzen Sie auch komplexe Webanwendungen um?</summary><div><p>Ja – zum Beispiel Kundenportale, Buchungs- und Anfragesysteme oder interne Werkzeuge mit Benutzerkonten und Rechten. Unsere eigene Agentur-Software haben wir selbst entwickelt. Größere Vorhaben beginnen mit einer Anforderungsanalyse und einem klickbaren Prototyp; danach entwickeln wir in Etappen mit festen Meilensteinen.</p></div></details>
-    <details><summary>Können Sie bestehende Systeme anbinden?</summary><div><p>In den meisten Fällen ja. Wir verbinden Website, CRM, Kalender, Buchhaltung, Warenwirtschaft oder E-Mail über Schnittstellen und Webhooks, sodass Daten nur einmal eingegeben werden. Ob und wie eine Anbindung möglich ist, prüfen wir vorab anhand der Dokumentation des jeweiligen Systems – bevor Sie einen Festpreis bekommen.</p></div></details>
-    <details><summary>Übernehmen Sie auch Design und Markenauftritt?</summary><div><p>Ja. Von der Wortmarke über Farben und Typografie bis zum Designsystem, das Website und Anwendung zusammenhält. Im Paket „Signatur“ ist die Marken-Basis enthalten, sonst buchen Sie sie als Zusatzleistung.</p></div></details>
-  </div>
-</section>
-
-<section class="chapter faq-group" id="ablauf-fragen" aria-labelledby="ablauf-fragen-h">
-  <h2 class="h2" id="ablauf-fragen-h">Ablauf</h2>
-  <div class="faq">
-    <details><summary>Wie läuft ein Projekt ab?</summary><div><p>In klaren Schritten: Erstgespräch, Konzept mit Festpreis, Inhalte, Design, Entwicklung und Test, Launch. Sie wissen jederzeit, was als Nächstes passiert und was wir von Ihnen brauchen. Alle Schritte im Detail finden Sie unter <a href="{{root}}ablauf.html">Ablauf</a>.</p></div></details>
-    <details><summary>Wie lange dauert ein Projekt?</summary><div><p>Ab Auftrag rechnen Sie mit {{dur_fokus}} für eine Landingpage, {{dur_auftritt}} für eine Unternehmenswebsite und {{dur_signatur}} für einen Premium-Auftritt. Den verbindlichen Termin schreiben wir ins Angebot – nach einem ehrlichen Blick in unseren Kalender. Onlineshops und Webanwendungen planen wir nach der Anforderungsanalyse mit festen Meilensteinen.</p></div></details>
-    <details><summary>Was muss ich vorbereiten?</summary><div><p>Für das Erstgespräch nichts außer Ihrem Vorhaben. Nach dem Auftrag bekommen Sie eine kurze Checkliste: Logo, Fotos, Fakten zu Ihren Leistungen und – bei Anbindungen – die Zugänge zu den beteiligten Systemen über einen sicheren Weg. Texte schreiben wir je nach Paket mit Ihnen gemeinsam oder komplett.</p></div></details>
-    <details><summary>Wie viele Korrekturen sind enthalten?</summary><div><p>Zwei gesammelte Feedbackrunden bei „Fokus“ und „Auftritt“, drei bei „Signatur“. Kleine Tippfehler-Korrekturen zählen nicht dazu.</p></div></details>
-    <details><summary>Was, wenn mir der Entwurf nicht gefällt?</summary><div><p>Deshalb beginnen wir mit der Startseite. Erst wenn die Richtung sitzt, entstehen alle weiteren Seiten im selben System. So fließt keine Zeit in einen Entwurf, der Sie nicht überzeugt.</p></div></details>
-  </div>
-</section>
-
-<section class="chapter faq-group" id="kosten" aria-labelledby="kosten-h">
-  <h2 class="h2" id="kosten-h">Kosten</h2>
-  <div class="faq">
-    <details><summary>Was kostet eine Website?</summary><div><p>Landingpage ab {{price_fokus}}, Unternehmenswebsite ab {{price_auftritt}}, Premium-Auftritt ab {{price_signatur}}. Onlineshops, Webanwendungen und Schnittstellen kalkulieren wir nach einer Anforderungsanalyse – mit Festpreis je Projektphase. Ihren Festpreis bekommen Sie schriftlich nach dem Erstgespräch. Alle Details stehen auf der <a href="{{root}}preise.html">Preisseite</a>.</p></div></details>
-    <details><summary>Welche laufenden Kosten kommen auf mich zu?</summary><div><p>Domain und Hosting, die Sie direkt bei einem Anbieter Ihrer Wahl bezahlen – bei Websites meist wenige Euro im Monat. Bei Shops und Anwendungen kommen je nach Lösung Plattform- oder Servergebühren hinzu; die nennen wir Ihnen vorab. Eine Betreuung durch uns ist freiwillig und beginnt bei {{care_basis}} im Monat.</p></div></details>
-    <details><summary>Muss ich einen Wartungsvertrag abschließen?</summary><div><p>Nein. Die Betreuung ist ein Angebot, keine Pflicht – und monatlich kündbar.</p></div></details>
-    <details><summary>Wie wird bezahlt?</summary><div><p>In Etappen: bei „Fokus“ und „Auftritt“ 50 % bei Auftrag und 50 % beim Launch, bei „Signatur“ 40 / 30 / 30 %. Größere Projekte rechnen wir nach Meilensteinen ab. Sie bezahlen nie alles im Voraus.</p></div></details>
-  </div>
-</section>
-
-<section class="chapter faq-group" id="technik" aria-labelledby="technik-h">
-  <h2 class="h2" id="technik-h">Technik und Sicherheit</h2>
-  <div class="faq">
-    <details><summary>Kann ich Inhalte später selbst ändern?</summary><div><p>Ja, wenn Sie das möchten. Wir klären im Erstgespräch, was Sie selbst pflegen wollen – zum Beispiel Produkte, Termine oder Blogbeiträge – und binden dafür ein passendes Redaktionssystem an. Alternativ übernehmen wir Änderungen im Rahmen der Betreuung.</p></div></details>
-    <details><summary>Mit welcher Technik arbeiten Sie?</summary><div><p>Passend zur Aufgabe: Für Websites meist schlanker, handgeschriebener Code – schnell, sicher und günstig zu hosten. Für Shops etablierte Plattformen oder eigene Lösungen, für Webanwendungen moderne Frameworks mit Datenbank und Benutzerverwaltung. Bestehende Technik übernehmen wir, wenn sie Ihre Anforderungen erfüllt.</p></div></details>
-    <details><summary>Wie sicher sind Website und Daten?</summary><div><p>Sicherheit planen wir von Anfang an: verschlüsselte Verbindungen, aktuelle Software, sichere Passwortspeicherung bei Benutzerkonten, Rechte nach dem Minimalprinzip und regelmäßige Backups. Zugänge zu Ihren Systemen erhalten wir nur über sichere Wege – nie per Passwort in einer E-Mail.</p></div></details>
-    <details><summary>Wem gehört die Website?</summary><div><p>Ihnen. Domain und Hosting laufen auf Ihren Namen, und nach vollständiger Bezahlung bekommen Sie alle Dateien und Zugänge.</p></div></details>
-    <details><summary>Werde ich bei Google gefunden?</summary><div><p>Jedes Projekt bekommt eine saubere technische und inhaltliche Grundlage für Suchmaschinen. Platzierungen kann allerdings niemand seriös garantieren – sie hängen auch von Wettbewerb, Inhalten und Zeit ab. Für mehr Sichtbarkeit gibt es gezielte Leistungen von lokaler SEO bis zu Landingpages für Google-Anzeigen.</p></div></details>
-  </div>
-</section>
-
-<section class="chapter faq-group" id="recht" aria-labelledby="recht-h">
-  <h2 class="h2" id="recht-h">Datenschutz und Recht</h2>
-  <div class="faq">
-    <details><summary>Ist die Website datenschutzkonform?</summary><div><p>Wir setzen sie technisch datenschutzfreundlich um: Schriften liegen auf Ihrem Server, Tracking und Inhalte von Drittanbietern laden erst nach Einwilligung, Formulare erheben nur nötige Daten. Die Rechtstexte selbst – Impressum und Datenschutzerklärung – stellen Sie über einen seriösen Generator oder Ihre Rechtsberatung bereit; wir binden sie ein. Eine Rechtsberatung dürfen wir nicht leisten.</p></div></details>
-    <details><summary>Ist die Website barrierefrei?</summary><div><p>Wir orientieren uns an den Kriterien der WCAG 2.2 auf Stufe AA: ausreichende Kontraste, Tastaturbedienung, klare Struktur und beschriftete Formulare. Fällt Ihr Angebot unter das Barrierefreiheitsstärkungsgesetz – etwa ein Onlineshop oder eine Online-Buchung mit Vertragsschluss –, setzen wir die Anforderungen gezielt mit Ihnen um.</p></div></details>
-    <details><summary>Behandeln Sie unsere Daten vertraulich?</summary><div><p>Ja. Informationen aus Ihrem Projekt nutzen wir ausschließlich für Ihr Projekt. Auf Wunsch schließen wir eine Vertraulichkeitsvereinbarung und – wenn wir personenbezogene Daten in Ihrem Auftrag verarbeiten – einen Vertrag zur Auftragsverarbeitung.</p></div></details>
-  </div>
-  <div class="actions" style="margin-top: 56px">
-    <a class="btn btn--dark" href="{{root}}kontakt.html"><span class="btn__dot" aria-hidden="true"></span><span>Erstgespräch anfragen</span></a>
+<section class="sec" aria-label="Fragen und Antworten">
+  <div class="wrap" style="max-width: 900px">
+    <div class="qgroup" id="allgemein" data-c="red" data-reveal="up">
+      <h2 class="h3">{{i:user}}Allgemein</h2>
+      <div class="qlist">
+      <details class="q" data-c="red" id="fuer-wen-arbeitet-linua"><summary>Für wen arbeitet LINUA?{{i:plus}}</summary><div class="q__a"><div><p>Für Selbstständige, lokale Unternehmen, Start-ups und den Mittelstand – von der Landingpage über die Unternehmenswebsite bis zum Onlineshop oder zur eigenen Webanwendung. Entscheidend ist nicht die Größe Ihres Unternehmens, sondern ein klares Ziel: mehr Anfragen, mehr Verkäufe oder Abläufe, die Zeit sparen.</p></div></div></details>
+      <details class="q" data-c="red" id="arbeiten-sie-nur-in-leipzig"><summary>Arbeiten Sie nur in Leipzig?{{i:plus}}</summary><div class="q__a"><div><p>Nein. Wir arbeiten deutschlandweit – Gespräche per Video, in Leipzig, im Landkreis Leipzig und in Nordsachsen gern auch persönlich.</p></div></div></details>
+      <details class="q" data-c="red" id="wer-ist-mein-ansprechpartner"><summary>Wer ist mein Ansprechpartner?{{i:plus}}</summary><div class="q__a"><div><p>Rony Mislem, Gründer von LINUA – vom Erstgespräch bis nach dem Launch. Sie erklären Ihr Vorhaben nur einmal, und Entscheidungen gehen nicht zwischen Abteilungen verloren. Für Spezialgebiete wie professionelle Fotografie binden wir nach Absprache Partner ein.</p></div></div></details>
+      <details class="q" data-c="red" id="koennen-sie-beispiele-ihrer-arbeit-zeige"><summary>Können Sie Beispiele Ihrer Arbeit zeigen?{{i:plus}}</summary><div class="q__a"><div><p>Ja. Unter <a href="{{root}}projekte.html">Arbeiten</a> finden Sie Konzeptprojekte für Handwerk, Gastronomie und Gesundheit mit Ausgangslage, Ansatz und Gestaltung – offen als Konzepte gekennzeichnet. Im Erstgespräch zeigen wir außerdem, wie wir Ihr Vorhaben angehen würden. Erfundene Referenzen oder Bewertungen gibt es bei uns grundsätzlich nicht.</p></div></div></details>
+      </div>
+    </div>
+    <div class="qgroup" id="leistungen-projekte" data-c="blue" data-reveal="up">
+      <h2 class="h3">{{i:layers}}Leistungen und Projekte</h2>
+      <div class="qlist">
+      <details class="q" data-c="blue" id="entwickeln-sie-auch-onlineshops"><summary>Entwickeln Sie auch Onlineshops?{{i:plus}}</summary><div class="q__a"><div><p>Ja. Wir beraten Sie zur passenden Lösung – eine etablierte Shop-Plattform wie Shopify oder WooCommerce oder eine eigene Entwicklung – und setzen Produktseiten, Bestellweg, Zahlung, Versand und Anbindungen um. Bei Shops für Endkunden berücksichtigen wir die Anforderungen des Barrierefreiheitsstärkungsgesetzes.</p></div></div></details>
+      <details class="q" data-c="blue" id="setzen-sie-auch-komplexe-webanwendungen-"><summary>Setzen Sie auch komplexe Webanwendungen um?{{i:plus}}</summary><div class="q__a"><div><p>Ja – zum Beispiel Kundenportale, Buchungs- und Anfragesysteme oder interne Werkzeuge mit Benutzerkonten und Rechten. Unsere eigene Agentur-Software haben wir selbst entwickelt. Größere Vorhaben beginnen mit einer Anforderungsanalyse und einem klickbaren Prototyp; danach entwickeln wir in Etappen mit festen Meilensteinen.</p></div></div></details>
+      <details class="q" data-c="blue" id="koennen-sie-bestehende-systeme-anbinden"><summary>Können Sie bestehende Systeme anbinden?{{i:plus}}</summary><div class="q__a"><div><p>In den meisten Fällen ja. Wir verbinden Website, CRM, Kalender, Buchhaltung, Warenwirtschaft oder E-Mail über Schnittstellen und Webhooks, sodass Daten nur einmal eingegeben werden. Ob und wie eine Anbindung möglich ist, prüfen wir vorab anhand der Dokumentation des jeweiligen Systems – bevor Sie einen Festpreis bekommen.</p></div></div></details>
+      <details class="q" data-c="blue" id="uebernehmen-sie-auch-design-und-markenau"><summary>Übernehmen Sie auch Design und Markenauftritt?{{i:plus}}</summary><div class="q__a"><div><p>Ja. Von der Wortmarke über Farben und Typografie bis zum Designsystem, das Website und Anwendung zusammenhält. Im Paket „Signatur“ ist die Marken-Basis enthalten, sonst buchen Sie sie als Zusatzleistung.</p></div></div></details>
+      </div>
+    </div>
+    <div class="qgroup" id="ablauf-fragen" data-c="green" data-reveal="up">
+      <h2 class="h3">{{i:calendar}}Ablauf</h2>
+      <div class="qlist">
+      <details class="q" data-c="green" id="wie-laeuft-ein-projekt-ab"><summary>Wie läuft ein Projekt ab?{{i:plus}}</summary><div class="q__a"><div><p>In klaren Schritten: Erstgespräch, Konzept mit Festpreis, Inhalte, Design, Entwicklung und Test, Launch. Sie wissen jederzeit, was als Nächstes passiert und was wir von Ihnen brauchen. Alle Schritte im Detail finden Sie unter <a href="{{root}}ablauf.html">Ablauf</a>.</p></div></div></details>
+      <details class="q" data-c="green" id="wie-lange-dauert-ein-projekt"><summary>Wie lange dauert ein Projekt?{{i:plus}}</summary><div class="q__a"><div><p>Ab Auftrag rechnen Sie mit {{dur_fokus}} für eine Landingpage, {{dur_auftritt}} für eine Unternehmenswebsite und {{dur_signatur}} für einen Premium-Auftritt. Den verbindlichen Termin schreiben wir ins Angebot – nach einem ehrlichen Blick in unseren Kalender. Onlineshops und Webanwendungen planen wir nach der Anforderungsanalyse mit festen Meilensteinen.</p></div></div></details>
+      <details class="q" data-c="green" id="was-muss-ich-vorbereiten"><summary>Was muss ich vorbereiten?{{i:plus}}</summary><div class="q__a"><div><p>Für das Erstgespräch nichts außer Ihrem Vorhaben. Nach dem Auftrag bekommen Sie eine kurze Checkliste: Logo, Fotos, Fakten zu Ihren Leistungen und – bei Anbindungen – die Zugänge zu den beteiligten Systemen über einen sicheren Weg. Texte schreiben wir je nach Paket mit Ihnen gemeinsam oder komplett.</p></div></div></details>
+      <details class="q" data-c="green" id="wie-viele-korrekturen-sind-enthalten"><summary>Wie viele Korrekturen sind enthalten?{{i:plus}}</summary><div class="q__a"><div><p>Zwei gesammelte Feedbackrunden bei „Fokus“ und „Auftritt“, drei bei „Signatur“. Kleine Tippfehler-Korrekturen zählen nicht dazu.</p></div></div></details>
+      <details class="q" data-c="green" id="was-wenn-mir-der-entwurf-nicht-gefaellt"><summary>Was, wenn mir der Entwurf nicht gefällt?{{i:plus}}</summary><div class="q__a"><div><p>Deshalb beginnen wir mit der Startseite. Erst wenn die Richtung sitzt, entstehen alle weiteren Seiten im selben System. So fließt keine Zeit in einen Entwurf, der Sie nicht überzeugt.</p></div></div></details>
+      </div>
+    </div>
+    <div class="qgroup" id="kosten" data-c="violet" data-reveal="up">
+      <h2 class="h3">{{i:euro}}Kosten</h2>
+      <div class="qlist">
+      <details class="q" data-c="violet" id="was-kostet-eine-website"><summary>Was kostet eine Website?{{i:plus}}</summary><div class="q__a"><div><p>Landingpage ab {{price_fokus}}, Unternehmenswebsite ab {{price_auftritt}}, Premium-Auftritt ab {{price_signatur}}. Onlineshops, Webanwendungen und Schnittstellen kalkulieren wir nach einer Anforderungsanalyse – mit Festpreis je Projektphase. Ihren Festpreis bekommen Sie schriftlich nach dem Erstgespräch. Alle Details stehen auf der <a href="{{root}}preise.html">Preisseite</a>.</p></div></div></details>
+      <details class="q" data-c="violet" id="welche-laufenden-kosten-kommen-auf-mich-"><summary>Welche laufenden Kosten kommen auf mich zu?{{i:plus}}</summary><div class="q__a"><div><p>Domain und Hosting, die Sie direkt bei einem Anbieter Ihrer Wahl bezahlen – bei Websites meist wenige Euro im Monat. Bei Shops und Anwendungen kommen je nach Lösung Plattform- oder Servergebühren hinzu; die nennen wir Ihnen vorab. Eine Betreuung durch uns ist freiwillig und beginnt bei {{care_basis}} im Monat.</p></div></div></details>
+      <details class="q" data-c="violet" id="muss-ich-einen-wartungsvertrag-abschlies"><summary>Muss ich einen Wartungsvertrag abschließen?{{i:plus}}</summary><div class="q__a"><div><p>Nein. Die Betreuung ist ein Angebot, keine Pflicht – und monatlich kündbar.</p></div></div></details>
+      <details class="q" data-c="violet" id="wie-wird-bezahlt"><summary>Wie wird bezahlt?{{i:plus}}</summary><div class="q__a"><div><p>In Etappen: bei „Fokus“ und „Auftritt“ 50 % bei Auftrag und 50 % beim Launch, bei „Signatur“ 40 / 30 / 30 %. Größere Projekte rechnen wir nach Meilensteinen ab. Sie bezahlen nie alles im Voraus.</p></div></div></details>
+      </div>
+    </div>
+    <div class="qgroup" id="technik" data-c="ochre" data-reveal="up">
+      <h2 class="h3">{{i:code}}Technik und Sicherheit</h2>
+      <div class="qlist">
+      <details class="q" data-c="ochre" id="kann-ich-inhalte-spaeter-selbst-aendern"><summary>Kann ich Inhalte später selbst ändern?{{i:plus}}</summary><div class="q__a"><div><p>Ja, wenn Sie das möchten. Wir klären im Erstgespräch, was Sie selbst pflegen wollen – zum Beispiel Produkte, Termine oder Blogbeiträge – und binden dafür ein passendes Redaktionssystem an. Alternativ übernehmen wir Änderungen im Rahmen der Betreuung.</p></div></div></details>
+      <details class="q" data-c="ochre" id="mit-welcher-technik-arbeiten-sie"><summary>Mit welcher Technik arbeiten Sie?{{i:plus}}</summary><div class="q__a"><div><p>Passend zur Aufgabe: Für Websites meist schlanker, handgeschriebener Code – schnell, sicher und günstig zu hosten. Für Shops etablierte Plattformen oder eigene Lösungen, für Webanwendungen moderne Frameworks mit Datenbank und Benutzerverwaltung. Bestehende Technik übernehmen wir, wenn sie Ihre Anforderungen erfüllt.</p></div></div></details>
+      <details class="q" data-c="ochre" id="wie-sicher-sind-website-und-daten"><summary>Wie sicher sind Website und Daten?{{i:plus}}</summary><div class="q__a"><div><p>Sicherheit planen wir von Anfang an: verschlüsselte Verbindungen, aktuelle Software, sichere Passwortspeicherung bei Benutzerkonten, Rechte nach dem Minimalprinzip und regelmäßige Backups. Zugänge zu Ihren Systemen erhalten wir nur über sichere Wege – nie per Passwort in einer E-Mail.</p></div></div></details>
+      <details class="q" data-c="ochre" id="wem-gehoert-die-website"><summary>Wem gehört die Website?{{i:plus}}</summary><div class="q__a"><div><p>Ihnen. Domain und Hosting laufen auf Ihren Namen, und nach vollständiger Bezahlung bekommen Sie alle Dateien und Zugänge.</p></div></div></details>
+      <details class="q" data-c="ochre" id="werde-ich-bei-google-gefunden"><summary>Werde ich bei Google gefunden?{{i:plus}}</summary><div class="q__a"><div><p>Jedes Projekt bekommt eine saubere technische und inhaltliche Grundlage für Suchmaschinen. Platzierungen kann allerdings niemand seriös garantieren – sie hängen auch von Wettbewerb, Inhalten und Zeit ab. Für mehr Sichtbarkeit gibt es gezielte Leistungen von lokaler SEO bis zu Landingpages für Google-Anzeigen.</p></div></div></details>
+      </div>
+    </div>
+    <div class="qgroup" id="recht" data-c="green" data-reveal="up">
+      <h2 class="h3">{{i:shield}}Datenschutz und Recht</h2>
+      <div class="qlist">
+      <details class="q" data-c="green" id="ist-die-website-datenschutzkonform"><summary>Ist die Website datenschutzkonform?{{i:plus}}</summary><div class="q__a"><div><p>Wir setzen sie technisch datenschutzfreundlich um: Schriften liegen auf Ihrem Server, Tracking und Inhalte von Drittanbietern laden erst nach Einwilligung, Formulare erheben nur nötige Daten. Die Rechtstexte selbst – Impressum und Datenschutzerklärung – stellen Sie über einen seriösen Generator oder Ihre Rechtsberatung bereit; wir binden sie ein. Eine Rechtsberatung dürfen wir nicht leisten.</p></div></div></details>
+      <details class="q" data-c="green" id="ist-die-website-barrierefrei"><summary>Ist die Website barrierefrei?{{i:plus}}</summary><div class="q__a"><div><p>Wir orientieren uns an den Kriterien der WCAG 2.2 auf Stufe AA: ausreichende Kontraste, Tastaturbedienung, klare Struktur und beschriftete Formulare. Fällt Ihr Angebot unter das Barrierefreiheitsstärkungsgesetz – etwa ein Onlineshop oder eine Online-Buchung mit Vertragsschluss –, setzen wir die Anforderungen gezielt mit Ihnen um.</p></div></div></details>
+      <details class="q" data-c="green" id="behandeln-sie-unsere-daten-vertraulich"><summary>Behandeln Sie unsere Daten vertraulich?{{i:plus}}</summary><div class="q__a"><div><p>Ja. Informationen aus Ihrem Projekt nutzen wir ausschließlich für Ihr Projekt. Auf Wunsch schließen wir eine Vertraulichkeitsvereinbarung und – wenn wir personenbezogene Daten in Ihrem Auftrag verarbeiten – einen Vertrag zur Auftragsverarbeitung.</p></div></div></details>
+      </div>
+    </div>
+    <p class="qempty" data-qempty hidden>Dazu haben wir keine Antwort gefunden. Fragen Sie uns direkt – wir antworten persönlich.</p>
+    <div class="ctaband" style="margin-top: clamp(40px, 6vw, 72px)" data-reveal="up">
+      <div><h2 class="h2">Ihre Frage ist nicht dabei?</h2><p>Schreiben Sie uns – Sie bekommen {{response}} eine persönliche Antwort.</p></div>
+      <div class="actions"><a class="btn btn--red" href="{{root}}kontakt.html" data-magnetic><span>Frage stellen</span>{{i:arrow}}</a></div>
+    </div>
   </div>
 </section>

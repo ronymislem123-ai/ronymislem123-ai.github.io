@@ -122,20 +122,39 @@ NAV2 = [("leistungen", "leistungen.html", "Leistungen", "layers", "blue", "Websi
 
 
 def header2(meta, root):
-    items = "".join(
-        f'<li><a href="{root}{href}"{" aria-current=\"page\"" if meta.get("nav") == key else ""}>{label}</a></li>'
-        for key, href, label, *_ in NAV2)
+    cur = meta.get("nav")
+    def item(key, href, label, icon, color, desc):
+        on = cur == key
+        ind = '<span class="hd__ind" aria-hidden="true"></span>' if on else ""
+        a = f'<a href="{root}{href}" data-c="{color}"{" aria-current=\"page\"" if on else ""}>{ind}<span>{label}</span></a>'
+        if key != "leistungen":
+            return f"<li>{a}</li>"
+        cards = "".join(
+            f'<li><a class="mega__card" data-c="{c}" href="{root}leistungen.html#{anchor}">{ICON.format(ic)}<span><b>{t}</b><small>{d}</small><em>{pr}</em></span></a></li>'
+            for anchor, t, d, pr, ic, c in [
+                ("websites", "Websites und Landingpages", "Unternehmenswebsites, Landingpages, Relaunch, Texte", f"ab {SITE['price_fokus']}", "browser", "blue"),
+                ("shops", "Onlineshops", "Produktseiten, Checkout, Zahlung und Versand", "Festpreis nach Analyse", "cart", "ochre"),
+                ("anwendungen", "Web-Apps und Schnittstellen", "Portale, Buchungssysteme, Automatisierung", "Festpreis je Phase", "app", "green"),
+                ("sichtbarkeit", "Sichtbarkeit und Betreuung", "Lokale SEO, Google-Profil, Pflege", f"ab {SITE['care_basis']} im Monat", "search", "violet")])
+        mega = (f'<div class="mega" id="mega" hidden data-mega><ul class="mega__grid">{cards}</ul>'
+                f'<div class="mega__side"><p class="mega__h">Nicht sicher, was Sie brauchen?</p><p>Neun Fragen zeigen, wo Ihre Website Besucher verliert.</p>'
+                f'<a class="link" href="{root}check/index.html"><span>Website prüfen</span>{ICON.format("arrow")}</a>'
+                f'<a class="link" href="{root}preise.html"><span>Preise ansehen</span>{ICON.format("arrow")}</a></div></div>')
+        btn = f'<button class="hd__more" type="button" aria-expanded="false" aria-controls="mega" aria-label="Leistungen im Überblick" data-mega-btn>{ICON.format("right")}</button>'
+        return f'<li class="has-mega" data-mega-wrap>{a}{btn}{mega}</li>'
+    items = "".join(item(*n) for n in NAV2)
     tiles = "".join(
-        f'<li><a class="tile tile--{color}" href="{root}{href}"{" aria-current=\"page\"" if meta.get("nav") == key else ""}>'
+        f'<li><a class="tile tile--{color}" href="{root}{href}"{" aria-current=\"page\"" if cur == key else ""}>'
         f'{ICON.format(icon)}<span><b>{label}</b><small>{desc}</small></span></a></li>'
         for key, href, label, icon, color, desc in NAV2)
     return f'''<header class="hd" data-header>
   <div class="hd__in">
     {wordmark(root)}
-    <nav class="hd__nav" aria-label="Hauptnavigation"><ul>{items}</ul></nav>
+    <nav class="hd__nav" aria-label="Hauptnavigation" data-hnav><span class="hd__hover" aria-hidden="true"></span><ul>{items}</ul></nav>
     <div class="hd__act">
-      <a class="hd__check" href="{root}check/index.html">{ICON.format("gauge")}<span>Website prüfen</span></a>
-      <a class="btn btn--red btn--sm" href="{root}kontakt.html"><span>Erstgespräch</span>{ICON.format("arrow")}</a>
+      <button class="hd__search" type="button" data-palette-open aria-label="Seite durchsuchen">{ICON.format("search")}<span>Suchen</span><kbd>Strg K</kbd></button>
+      <a class="hd__check{" is-current" if cur == "check" else ""}" href="{root}check/index.html">{ICON.format("gauge")}<span>Website prüfen</span></a>
+      <a class="btn btn--red btn--sm" href="{root}kontakt.html" data-magnetic><span>Erstgespräch</span>{ICON.format("arrow")}</a>
       <button class="hd__menu" type="button" aria-expanded="false" aria-controls="menue" data-menu-btn>{ICON.format("menu")}<span>Menü</span></button>
     </div>
   </div>
@@ -143,13 +162,31 @@ def header2(meta, root):
   <div class="drawer" id="menue" hidden data-menu>
     <ul class="drawer__tiles">{tiles}</ul>
     <div class="drawer__more">
-      <a href="{root}check/index.html">{ICON.format("gauge")}Website in 2 Minuten prüfen</a>
+      <a href="{root}check/index.html">{ICON.format("gauge")}Website selbst prüfen</a>
       <a href="{root}faq.html">{ICON.format("chat")}Häufige Fragen</a>
+      <button type="button" data-palette-open>{ICON.format("search")}Seite durchsuchen</button>
       <a href="mailto:{SITE["email"]}">{ICON.format("mail")}{SITE["email"]}</a>
     </div>
     <a class="btn btn--red" href="{root}kontakt.html"><span>Kostenloses Erstgespräch anfragen</span>{ICON.format("arrow")}</a>
   </div>
 </header>'''
+
+
+def tabbar(meta, root):
+    cur = meta.get("nav")
+    items = [("start", "index.html", "Start", "spark"), ("leistungen", "leistungen.html", "Leistungen", "layers"),
+             ("preise", "preise.html", "Preise", "euro"), ("check", "check/index.html", "Prüfen", "gauge"), ("kontakt", "kontakt.html", "Kontakt", "chat")]
+    lis = "".join(f'<li><a href="{root}{h}"{" aria-current=\"page\"" if cur == k else ""}>{ICON.format(i)}<span>{l}</span></a></li>' for k, h, l, i in items)
+    return f'<nav class="tabbar" aria-label="Schnellzugriff" data-tabbar><ul>{lis}</ul></nav>'
+
+
+def palette(root):
+    return (f'<dialog class="palette" id="palette" aria-label="Seite durchsuchen" data-palette data-index="{root}assets/search.json" data-root="{root}">'
+            f'<div class="palette__in"><div class="palette__field">{ICON.format("search")}'
+            '<input type="search" placeholder="Wonach suchen Sie? Zum Beispiel Preise, Shop, Dauer" aria-label="Suchbegriff" autocomplete="off" '
+            'role="combobox" aria-expanded="true" aria-controls="palette-list" aria-autocomplete="list" data-palette-input>'
+            '<kbd>Esc</kbd></div><ul class="palette__list" id="palette-list" role="listbox" aria-label="Ergebnisse" data-palette-list></ul>'
+            '<p class="palette__foot"><span><kbd>↑</kbd><kbd>↓</kbd> wählen</span><span><kbd>Enter</kbd> öffnen</span></p></div></dialog>')
 
 
 def pagenav(meta):
@@ -211,7 +248,7 @@ def page(meta, body, root, prod):
     css = "v2.css" if v2 else "site.css"
     js = "v2.js" if v2 else "site.js"
     top = (ICONS + header2(meta, root) + pagenav(meta)) if v2 else (header(meta, root) + spur(meta))
-    foot = footer2(root) if v2 else footer(root)
+    foot = (footer2(root) + tabbar(meta, root) + palette(root)) if v2 else footer(root)
     return f'''<!DOCTYPE html>
 <html lang="de">
 <head>
@@ -243,7 +280,7 @@ def page(meta, body, root, prod):
 <script>{JS_FLAG}</script>
 {jsonld(meta, url)}
 </head>
-<body class="page-{meta["slug"]}">
+<body class="page-{meta["slug"]}" data-page-c="{meta.get("c", "red")}">
 <a class="skip" href="#inhalt">Zum Inhalt springen</a>
 {top}
 <main id="inhalt">
@@ -297,7 +334,7 @@ def main():
     shutil.copytree(SRC / "static", DIST)
     if (ROOT / "zentrale").exists():
         shutil.copytree(ROOT / "zentrale", DIST / "zentrale")
-    built, sitemap = [], []
+    built, sitemap, search = [], [], []
     for src in sorted((SRC / "pages").glob("*.html")):
         raw = src.read_text(encoding="utf-8")
         m = re.match(r"\s*<!--meta\s*(\{.*?\})\s*-->\s*", raw, re.S)
@@ -312,12 +349,20 @@ def main():
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_text(page(meta, body, root, args.production), encoding="utf-8")
         built.append(out)
+        if meta.get("v") == 2 and meta.get("index", True):
+            name = meta.get("crumb") or "Start"
+            search.append({"t": name, "d": meta["description"], "u": out, "g": "Seite", "c": meta.get("c", "red")})
+            for ch in meta.get("chapters", []):
+                search.append({"t": ch[1], "d": name, "u": f"{out}#{ch[0]}", "g": "Abschnitt", "c": ch[2] if len(ch) > 2 else meta.get("c", "red")})
+            for fid, q in re.findall(r'<details[^>]*\bid="([^"]+)"[^>]*>\s*<summary[^>]*>(.*?)</summary>', body, re.S):
+                search.append({"t": re.sub(r"<[^>]+>", "", q).strip(), "d": name, "u": f"{out}#{fid}", "g": "Frage", "c": meta.get("c", "red")})
         if meta.get("index", True):
             sitemap.append((SITE["url"] + "/" + out.replace("index.html", ""), meta.get("priority", "0.7")))
     (DIST / "sitemap.xml").write_text(
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
         + "".join(f"  <url><loc>{u}</loc><lastmod>{date.today().isoformat()}</lastmod><priority>{p}</priority></url>\n" for u, p in sitemap)
         + "</urlset>\n", encoding="utf-8")
+    (DIST / "assets" / "search.json").write_text(json.dumps(search, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     (DIST / "robots.txt").write_text(f"User-agent: *\nDisallow: /zentrale/\n\nSitemap: {SITE['url']}/sitemap.xml\n", encoding="utf-8")
     problems = check(DIST, built)
     print(f"{len(built)} Seiten gebaut → {DIST}")

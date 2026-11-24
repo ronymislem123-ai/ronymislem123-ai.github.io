@@ -1,73 +1,92 @@
 <!--meta
-{"out": "ablauf.html", "nav": "ablauf", "crumb": "Ablauf", "priority": "0.7",
+{"out": "ablauf.html", "nav": "ablauf", "crumb": "Ablauf", "priority": "0.7", "v": 2, "c": "green",
  "title": "Ablauf – Schritt für Schritt zur fertigen Website | LINUA",
  "description": "Vom kostenlosen Erstgespräch über Festpreis, Inhalte, Design und Test bis zum Launch: So läuft ein Website-Projekt mit LINUA ab – mit realistischen Zeiten und Zahlung in Etappen.",
- "chapters": [["dauer", "Dauer"], ["schritte", "Sechs Schritte"], ["zahlung", "Bezahlung"]]}
+ "chapters": [["dauer", "Dauer", "green"], ["schritte", "Sechs Schritte", "blue"], ["zahlung", "Zahlung", "violet"]]}
 -->
-<div class="page-head">
-  <h1 class="h1">Schritt für Schritt zur fertigen Website.</h1>
-  <p class="lead">Kein Rätselraten, keine Überraschungen. Sie wissen zu jedem Zeitpunkt, was passiert, was wir von Ihnen brauchen und wann es weitergeht.</p>
-</div>
-
-<section class="chapter" id="dauer" aria-labelledby="dauer-h">
-  <h2 class="h2" id="dauer-h">Wie lange es dauert</h2>
-  <p class="lead">Ehrliche Zeiten statt Werbeversprechen. Den verbindlichen Termin schreiben wir ins Angebot – nach einem Blick in unseren Kalender, nicht ins Blaue.</p>
-  <dl class="facts" style="margin-top: 40px; max-width: 980px">
-    <div><dt>Fokus, Landingpage</dt><dd>{{dur_fokus}} ab Auftrag</dd></div>
-    <div><dt>Auftritt, Website</dt><dd>{{dur_auftritt}} ab Auftrag</dd></div>
-    <div><dt>Signatur, Premium</dt><dd>{{dur_signatur}} ab Auftrag</dd></div>
-  </dl>
-  <p class="note">Damit der Zeitplan hält, bekommen Sie direkt nach dem Auftrag eine Checkliste und feste Termine für Inhalte und Feedback. Onlineshops, Webanwendungen und Schnittstellen planen wir nach einer Anforderungsanalyse mit klickbarem Prototyp in Etappen – jede mit Festpreis und festem Meilenstein.</p>
+<section class="phero" data-c="green" aria-labelledby="ab-h">
+  <div class="wrap phero__grid">
+    <div class="phero__text">
+      <nav class="crumbs" aria-label="Brotkrumen"><ol><li><a href="{{root}}index.html">Start</a></li><li><span aria-current="page">Ablauf</span></li></ol></nav>
+      <h1 class="h1" id="ab-h">Schritt für Schritt zur fertigen Website.</h1>
+      <p class="lead">Kein Rätselraten, keine Überraschungen. Sie wissen zu jedem Zeitpunkt, was passiert, was wir von Ihnen brauchen und wann es weitergeht.</p>
+      <div class="actions"><a class="btn btn--red" href="#schritte"><span>Zu den sechs Schritten</span>{{i:arrow}}</a><a class="btn btn--ghost" href="{{root}}kontakt.html"><span>Erstgespräch anfragen</span></a></div>
+    </div>
+    <div class="phero__art">
+      <ul class="subtiles" style="margin: 0; grid-template-columns: 1fr 1fr" data-stagger>
+        <li data-reveal="scale"><a class="subtile" data-c="blue" href="#schritte">{{i:chat}}<b>Erstgespräch</b><small>30 Minuten, kostenlos</small>{{i:right}}</a></li>
+        <li data-reveal="scale"><a class="subtile" data-c="green" href="#schritte">{{i:file}}<b>Festpreis</b><small>schriftlich vor dem Start</small>{{i:right}}</a></li>
+        <li data-reveal="scale"><a class="subtile" data-c="ochre" href="#dauer">{{i:clock}}<b>Ehrliche Dauer</b><small>{{dur_auftritt}} für eine Website</small>{{i:right}}</a></li>
+        <li data-reveal="scale"><a class="subtile" data-c="violet" href="#zahlung">{{i:euro}}<b>Zahlung in Etappen</b><small>nie alles im Voraus</small>{{i:right}}</a></li>
+      </ul>
+    </div>
+  </div>
 </section>
 
-<section class="chapter" id="schritte" aria-labelledby="schritte-h">
-  <h2 class="h2" id="schritte-h">Sechs Schritte</h2>
-  <ol class="timeline" style="margin-top: 40px; max-width: 980px">
-    <li><span class="timeline__n">1</span><div>
-      <h3 class="h3">Erstgespräch</h3>
-      <p class="muted small">30 Minuten, kostenlos – per Video oder in Leipzig persönlich</p>
-      <div class="text" style="margin-top: 12px"><p>Wir sprechen über Ihr Unternehmen, Ihre Kunden und das, was die Website leisten soll. Sie bekommen eine ehrliche Einschätzung – auch wenn die lautet, dass Sie gerade keine neue Website brauchen.</p></div>
-      <div class="split"><div><p class="split-h">Sie bringen mit</p><p>Ihr Vorhaben, gern Beispiele, die Ihnen gefallen, und einen groben Budgetrahmen.</p></div><div><p class="split-h">Ergebnis</p><p>Klarheit, ob und wie wir zusammenarbeiten.</p></div></div>
-    </div></li>
-    <li><span class="timeline__n">2</span><div>
-      <h3 class="h3">Konzept und Festpreis</h3>
-      <div class="text" style="margin-top: 12px"><p>Wir schlagen Seitenstruktur, Inhalte und Funktionen vor und legen einen Zeitplan fest. Dazu bekommen Sie ein schriftliches Angebot mit Festpreis.</p></div>
-      <div class="split"><div><p class="split-h">Sie entscheiden</p><p>Ob Sie das Angebot annehmen – ohne Druck und ohne Kosten bis hierhin.</p></div><div><p class="split-h">Ergebnis</p><p>Seitenplan, Zeitplan, Festpreis. Nach dem Auftrag ein kurzer Fragebogen zum Start.</p></div></div>
-    </div></li>
-    <li><span class="timeline__n">3</span><div>
-      <h3 class="h3">Inhalte und Botschaft</h3>
-      <div class="text" style="margin-top: 12px"><p>In einem kurzen Interview arbeiten wir heraus, warum Kunden zu Ihnen kommen. Daraus entstehen Kernbotschaft, Überschriften und – je nach Paket – die Texte.</p></div>
-      <div class="split"><div><p class="split-h">Sie liefern</p><p>Fotos, Logo (falls vorhanden), Fakten zu Leistungen und Preisen. Eine Checkliste bekommen Sie von uns.</p></div><div><p class="split-h">Ergebnis</p><p>Freigegebene Botschaft und Seitentexte als Grundlage für das Design.</p></div></div>
-    </div></li>
-    <li><span class="timeline__n">4</span><div>
-      <h3 class="h3">Design</h3>
-      <div class="text" style="margin-top: 12px"><p>Zuerst gestalten wir die Startseite für Handy und Desktop. Erst wenn sie sitzt, folgen alle weiteren Seiten im selben System. So fließt keine Zeit in eine Richtung, die Ihnen nicht gefällt.</p></div>
-      <div class="split"><div><p class="split-h">Sie geben Feedback</p><p>In festen Feedbackrunden – zwei bei „Fokus“ und „Auftritt“, drei bei „Signatur“. Gesammelt, übersichtlich, ohne endlose Schleifen.</p></div><div><p class="split-h">Ergebnis</p><p>Freigegebenes Design aller Seiten.</p></div></div>
-    </div></li>
-    <li><span class="timeline__n">5</span><div>
-      <h3 class="h3">Entwicklung und Test</h3>
-      <div class="text" style="margin-top: 12px"><p>Wir setzen die Website technisch um: schnell, für das Handy gebaut, suchmaschinenfreundlich und barrierearm. Danach testen wir auf gängigen Geräten und Browsern – mit allen Formularen und Funktionen.</p></div>
-      <div class="split"><div><p class="split-h">Sie prüfen</p><p>Eine Vorschau vor dem Launch und geben final frei.</p></div><div><p class="split-h">Ergebnis</p><p>Fertige, getestete Website mit Abnahmeprotokoll.</p></div></div>
-    </div></li>
-    <li><span class="timeline__n">6</span><div>
-      <h3 class="h3">Launch und Betreuung</h3>
-      <div class="text" style="margin-top: 12px"><p>Ihre Website geht live. Bei einem Relaunch leiten wir alte Adressen sauber weiter. Sie bekommen eine kurze Einweisung und alle Zugänge. Auf Wunsch kümmern wir uns danach um Technik, Sicherheit und Änderungen.</p></div>
-      <div class="split"><div><p class="split-h">Sie entscheiden</p><p>Ob Sie selbst pflegen oder einen Betreuungsplan nutzen – monatlich kündbar.</p></div><div><p class="split-h">Ergebnis</p><p>Eine Website, die arbeitet – und aktuell bleibt.</p></div></div>
-    </div></li>
-  </ol>
+<section class="sec sec--white" id="dauer" data-c="green" aria-labelledby="dauer-h">
+  <div class="wrap split">
+    <div class="stack" data-reveal="left">
+      <p class="chip">{{i:clock}}Dauer</p>
+      <h2 class="h2" id="dauer-h">Ehrliche Zeiten statt Werbeversprechen</h2>
+      <p class="lead">Den verbindlichen Termin schreiben wir ins Angebot – nach einem Blick in unseren Kalender, nicht ins Blaue.</p>
+      <p class="muted">Damit der Zeitplan hält, bekommen Sie direkt nach dem Auftrag eine Checkliste und feste Termine für Inhalte und Feedback. Onlineshops, Webanwendungen und Schnittstellen planen wir nach einer Anforderungsanalyse mit klickbarem Prototyp in Etappen – jede mit Festpreis und festem Meilenstein.</p>
+    </div>
+    <div class="box" data-reveal="right" data-observe>
+      <p class="h3" style="margin-bottom: 18px">Dauer ab Auftrag</p>
+      <ul class="dur">
+        <li data-c="ochre" style="--i: 0"><b>Fokus<small>Landingpage</small></b><div class="dur__bar"><span style="--w: 24">{{dur_fokus}}</span></div></li>
+        <li data-c="blue" style="--i: 1"><b>Auftritt<small>Website</small></b><div class="dur__bar"><span style="--w: 55">{{dur_auftritt}}</span></div></li>
+        <li data-c="violet" style="--i: 2"><b>Signatur<small>Premium</small></b><div class="dur__bar"><span style="--w: 100">{{dur_signatur}}</span></div></li>
+      </ul>
+      <p class="dur__scale" aria-hidden="true"><span>Start</span><span>1 Monat</span><span>2 Monate</span><span>3 Monate</span></p>
+    </div>
+  </div>
 </section>
 
-<section class="chapter" id="zahlung" aria-labelledby="zahlung-h">
-  <h2 class="h2" id="zahlung-h">Bezahlung in Etappen</h2>
-  <dl class="facts" style="margin-top: 40px; max-width: 980px">
-    <div><dt>Fokus und Auftritt</dt><dd>50 % bei Auftrag, 50 % beim Launch</dd></div>
-    <div><dt>Signatur</dt><dd>40 % bei Auftrag, 30 % nach Designfreigabe, 30 % beim Launch</dd></div>
-    <div><dt>Shops und Anwendungen</dt><dd>nach Meilensteinen</dd></div>
-    <div><dt>Betreuung</dt><dd class="num">monatlich im Voraus, monatlich kündbar, ab {{care_basis}}</dd></div>
-  </dl>
-  <p class="small muted" style="margin-top: 20px">Alle Preise sind Endpreise. Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.</p>
-  <div class="actions" style="margin-top: 56px">
-    <a class="btn btn--dark" href="{{root}}kontakt.html"><span class="btn__dot" aria-hidden="true"></span><span>Erstgespräch anfragen</span></a>
-    <a class="link" href="{{root}}preise.html">Preise ansehen</a>
+<section class="sec" id="schritte" data-c="blue" aria-labelledby="schritte-h">
+  <div class="wrap">
+    <div class="sec__head" data-reveal="up"><p class="chip">{{i:calendar}}Sechs Schritte</p><h2 class="h2" id="schritte-h">Was wann passiert – und was Sie beitragen</h2><p class="lead">Wählen Sie einen Schritt, um die Details zu sehen.</p></div>
+    <div class="vtabs" data-tabs>
+      <div class="vtabs__list" role="tablist" aria-label="Projektschritte" aria-orientation="vertical">
+        <button class="vtab" type="button" role="tab" id="t-s1" aria-controls="s1" aria-selected="true" data-c="blue"><span class="n">1</span><span><b>Erstgespräch</b><small>kostenlos</small></span>{{i:right}}</button>
+        <button class="vtab" type="button" role="tab" id="t-s2" aria-controls="s2" aria-selected="false" tabindex="-1" data-c="green"><span class="n">2</span><span><b>Konzept und Festpreis</b><small>schriftlich</small></span>{{i:right}}</button>
+        <button class="vtab" type="button" role="tab" id="t-s3" aria-controls="s3" aria-selected="false" tabindex="-1" data-c="ochre"><span class="n">3</span><span><b>Inhalte und Botschaft</b><small>Interview</small></span>{{i:right}}</button>
+        <button class="vtab" type="button" role="tab" id="t-s4" aria-controls="s4" aria-selected="false" tabindex="-1" data-c="violet"><span class="n">4</span><span><b>Design</b><small>Startseite zuerst</small></span>{{i:right}}</button>
+        <button class="vtab" type="button" role="tab" id="t-s5" aria-controls="s5" aria-selected="false" tabindex="-1" data-c="green"><span class="n">5</span><span><b>Entwicklung und Test</b><small>mit Protokoll</small></span>{{i:right}}</button>
+        <button class="vtab" type="button" role="tab" id="t-s6" aria-controls="s6" aria-selected="false" tabindex="-1" data-c="red"><span class="n">6</span><span><b>Launch und Betreuung</b><small>auf Wunsch</small></span>{{i:right}}</button>
+      </div>
+      <div>
+        <div class="vpanel" role="tabpanel" id="s1" aria-labelledby="t-s1" tabindex="0" data-c="blue"><div class="vpanel__top">{{i:chat}}<div><small>Schritt 1 · 30 Minuten, kostenlos – per Video oder in Leipzig</small><h3 class="h3">Erstgespräch</h3></div></div><p>Wir sprechen über Ihr Unternehmen, Ihre Kunden und das, was die Website leisten soll. Sie bekommen eine ehrliche Einschätzung – auch wenn die lautet, dass Sie gerade keine neue Website brauchen.</p><div class="minis"><div class="mini"><b>{{i:user}}Sie bringen mit</b><p>Ihr Vorhaben, gern Beispiele, die Ihnen gefallen, und einen groben Budgetrahmen.</p></div><div class="mini"><b>{{i:check}}Ergebnis</b><p>Klarheit, ob und wie wir zusammenarbeiten.</p></div></div></div>
+        <div class="vpanel" role="tabpanel" id="s2" aria-labelledby="t-s2" tabindex="0" data-c="green"><div class="vpanel__top">{{i:file}}<div><small>Schritt 2</small><h3 class="h3">Konzept und Festpreis</h3></div></div><p>Wir schlagen Seitenstruktur, Inhalte und Funktionen vor und legen einen Zeitplan fest. Dazu bekommen Sie ein schriftliches Angebot mit Festpreis.</p><div class="minis"><div class="mini"><b>{{i:user}}Sie entscheiden</b><p>Ob Sie das Angebot annehmen – ohne Druck und ohne Kosten bis hierhin.</p></div><div class="mini"><b>{{i:check}}Ergebnis</b><p>Seitenplan, Zeitplan, Festpreis. Nach dem Auftrag ein kurzer Fragebogen zum Start.</p></div></div></div>
+        <div class="vpanel" role="tabpanel" id="s3" aria-labelledby="t-s3" tabindex="0" data-c="ochre"><div class="vpanel__top">{{i:pen}}<div><small>Schritt 3</small><h3 class="h3">Inhalte und Botschaft</h3></div></div><p>In einem kurzen Interview arbeiten wir heraus, warum Kunden zu Ihnen kommen. Daraus entstehen Kernbotschaft, Überschriften und – je nach Paket – die Texte.</p><div class="minis"><div class="mini"><b>{{i:user}}Sie liefern</b><p>Fotos, Logo (falls vorhanden), Fakten zu Leistungen und Preisen. Eine Checkliste bekommen Sie von uns.</p></div><div class="mini"><b>{{i:check}}Ergebnis</b><p>Freigegebene Botschaft und Seitentexte als Grundlage für das Design.</p></div></div></div>
+        <div class="vpanel" role="tabpanel" id="s4" aria-labelledby="t-s4" tabindex="0" data-c="violet"><div class="vpanel__top">{{i:layers}}<div><small>Schritt 4</small><h3 class="h3">Design</h3></div></div><p>Zuerst gestalten wir die Startseite für Handy und Desktop. Erst wenn sie sitzt, folgen alle weiteren Seiten im selben System. So fließt keine Zeit in eine Richtung, die Ihnen nicht gefällt.</p><div class="minis"><div class="mini"><b>{{i:user}}Sie geben Feedback</b><p>In festen Feedbackrunden – zwei bei „Fokus“ und „Auftritt“, drei bei „Signatur“. Gesammelt, ohne endlose Schleifen.</p></div><div class="mini"><b>{{i:check}}Ergebnis</b><p>Freigegebenes Design aller Seiten.</p></div></div></div>
+        <div class="vpanel" role="tabpanel" id="s5" aria-labelledby="t-s5" tabindex="0" data-c="green"><div class="vpanel__top">{{i:code}}<div><small>Schritt 5</small><h3 class="h3">Entwicklung und Test</h3></div></div><p>Wir setzen die Website technisch um: schnell, für das Handy gebaut, suchmaschinenfreundlich und barrierearm. Danach testen wir auf gängigen Geräten und Browsern – mit allen Formularen und Funktionen.</p><div class="minis"><div class="mini"><b>{{i:user}}Sie prüfen</b><p>Eine Vorschau vor dem Launch und geben final frei.</p></div><div class="mini"><b>{{i:check}}Ergebnis</b><p>Fertige, getestete Website mit Abnahmeprotokoll.</p></div></div></div>
+        <div class="vpanel" role="tabpanel" id="s6" aria-labelledby="t-s6" tabindex="0" data-c="red"><div class="vpanel__top">{{i:rocket}}<div><small>Schritt 6</small><h3 class="h3">Launch und Betreuung</h3></div></div><p>Ihre Website geht live. Bei einem Relaunch leiten wir alte Adressen sauber weiter. Sie bekommen eine kurze Einweisung und alle Zugänge. Auf Wunsch kümmern wir uns danach um Technik, Sicherheit und Änderungen.</p><div class="minis"><div class="mini"><b>{{i:user}}Sie entscheiden</b><p>Ob Sie selbst pflegen oder einen Betreuungsplan nutzen – monatlich kündbar.</p></div><div class="mini"><b>{{i:check}}Ergebnis</b><p>Eine Website, die arbeitet – und aktuell bleibt.</p></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec--tint" id="zahlung" data-c="violet" aria-labelledby="zahlung-h">
+  <div class="wrap split split--top">
+    <div class="stack" data-reveal="left">
+      <p class="chip" style="background: #fff">{{i:euro}}Zahlung</p>
+      <h2 class="h2" id="zahlung-h">Bezahlung in Etappen</h2>
+      <p class="lead">Sie bezahlen nie alles im Voraus. Alle Preise sind Endpreise – gemäß § 19 UStG wird keine Umsatzsteuer berechnet.</p>
+      <div class="minis"><div class="mini" style="background: #fff"><b>{{i:app}}Shops und Anwendungen</b><p>nach Meilensteinen</p></div><div class="mini" style="background: #fff"><b>{{i:shield}}Betreuung</b><p>monatlich im Voraus, monatlich kündbar, ab {{care_basis}}</p></div></div>
+    </div>
+    <div class="box" data-reveal="right" data-observe>
+      <ul class="paybars">
+        <li><p class="row"><b>Fokus und Auftritt</b><span>50 % bei Auftrag, 50 % beim Launch</span></p><div class="paybar" aria-hidden="true"><i style="--f: 50; --pc: var(--blue); --i: 0">50 %</i><i style="--f: 50; --pc: var(--red); --i: 1">50 %</i></div></li>
+        <li><p class="row"><b>Signatur</b><span>40 % bei Auftrag, 30 % nach Designfreigabe, 30 % beim Launch</span></p><div class="paybar" aria-hidden="true"><i style="--f: 40; --pc: var(--blue); --i: 0">40 %</i><i style="--f: 30; --pc: var(--violet); --i: 1">30 %</i><i style="--f: 30; --pc: var(--red); --i: 2">30 %</i></div></li>
+      </ul>
+      <p class="small muted" style="margin-top: 16px; display: flex; gap: 14px; flex-wrap: wrap"><span><i style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--blue)"></i> Auftrag</span><span><i style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--violet)"></i> Designfreigabe</span><span><i style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--red)"></i> Launch</span></p>
+    </div>
+  </div>
+  <div class="wrap" style="margin-top: clamp(40px, 6vw, 72px)">
+    <div class="ctaband" data-reveal="up">
+      <div><h2 class="h2">Bereit für Schritt 1?</h2><p>30 Minuten, kostenlos, per Video oder in Leipzig.</p></div>
+      <div class="actions"><a class="btn btn--red" href="{{root}}kontakt.html" data-magnetic><span>Erstgespräch anfragen</span>{{i:arrow}}</a><a class="btn btn--light" href="{{root}}preise.html"><span>Preise ansehen</span></a></div>
+    </div>
   </div>
 </section>
