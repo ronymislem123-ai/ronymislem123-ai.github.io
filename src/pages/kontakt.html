@@ -1,0 +1,74 @@
+<!--meta
+{"out": "kontakt.html", "nav": "kontakt", "crumb": "Kontakt", "priority": "0.8",
+ "title": "Kontakt – Projekt anfragen | LINUA Webdesign Leipzig",
+ "description": "Erzählen Sie uns von Ihrem Vorhaben: Website, Relaunch, Landingpage, Onlineshop oder Webanwendung. Persönliche Antwort mit erster Einschätzung und Terminvorschlag – kostenlos."}
+-->
+<div class="page-head">
+  <h1 class="h1">Erzählen Sie uns von Ihrem Projekt.</h1>
+  <p class="lead">Ein paar Angaben genügen. Sie bekommen {{response}} eine persönliche Antwort – mit einer ersten Einschätzung und einem Terminvorschlag für ein kostenloses Erstgespräch.</p>
+</div>
+
+<section class="sec sec--flush-top" aria-label="Anfrageformular">
+  <div class="contact">
+    <div>
+      <form class="form" id="anfrage-form" action="mailto:{{email}}?subject=Projektanfrage" method="post" enctype="text/plain" novalidate data-inbox="{{inbox}}" data-key="{{inbox_key}}" data-mail="{{email}}" data-response="{{response}}">
+        <fieldset class="choice" data-f="projekt">
+          <legend>Worum geht es? <span class="opt">Pflichtfeld</span></legend>
+          <div class="choice__opts">
+            <label><input type="radio" name="projekt" value="Neue Website" required><span>Neue Website</span></label>
+            <label><input type="radio" name="projekt" value="Relaunch"><span>Relaunch</span></label>
+            <label><input type="radio" name="projekt" value="Landingpage"><span>Landingpage</span></label>
+            <label><input type="radio" name="projekt" value="Onlineshop"><span>Onlineshop</span></label>
+            <label><input type="radio" name="projekt" value="Webanwendung / Schnittstelle"><span>Webanwendung / Schnittstelle</span></label>
+            <label><input type="radio" name="projekt" value="Betreuung"><span>Betreuung</span></label>
+            <label><input type="radio" name="projekt" value="Etwas anderes"><span>Etwas anderes</span></label>
+          </div>
+        </fieldset>
+        <fieldset class="choice">
+          <legend>Budgetrahmen <span class="opt">optional – hilft uns, passend zu planen</span></legend>
+          <div class="choice__opts">
+            <label><input type="radio" name="budget" value="bis 1.000 €"><span>bis 1.000 €</span></label>
+            <label><input type="radio" name="budget" value="1.000–2.500 €"><span>1.000–2.500 €</span></label>
+            <label><input type="radio" name="budget" value="2.500–5.000 €"><span>2.500–5.000 €</span></label>
+            <label><input type="radio" name="budget" value="über 5.000 €"><span>über 5.000 €</span></label>
+            <label><input type="radio" name="budget" value="noch offen"><span>noch offen</span></label>
+          </div>
+        </fieldset>
+        <div class="fieldline" data-f="zeit"><label for="f-zeit">Wann soll es losgehen? <span class="opt">optional</span></label>
+          <select id="f-zeit" name="zeitrahmen"><option value="">Bitte wählen</option><option>So bald wie möglich</option><option>In 1–3 Monaten</option><option>Später</option><option>Noch offen</option></select></div>
+        <div class="fieldline" data-f="name"><label for="f-name">Ihr Name</label><input id="f-name" name="name" autocomplete="name" required data-msg="Bitte nennen Sie Ihren Namen."></div>
+        <div class="fieldline" data-f="firma"><label for="f-firma">Unternehmen <span class="opt">optional</span></label><input id="f-firma" name="firma" autocomplete="organization"></div>
+        <div class="fieldline" data-f="email"><label for="f-email">E-Mail</label><input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required data-msg="Bitte geben Sie Ihre E-Mail-Adresse an."></div>
+        <div class="fieldline" data-f="tel"><label for="f-tel">Telefon <span class="opt">optional, für einen Rückruf</span></label><input id="f-tel" name="telefon" type="tel" autocomplete="tel" inputmode="tel"></div>
+        <div class="fieldline" data-f="web"><label for="f-web">Aktuelle Website <span class="opt">optional</span></label><input id="f-web" name="website" inputmode="url" placeholder="www.beispiel.de"></div>
+        <div class="fieldline" data-f="msg"><label for="f-msg">Ihr Vorhaben</label><textarea id="f-msg" name="nachricht" rows="5" required data-msg="Ein paar Stichpunkte genügen." aria-describedby="f-msg-hint"></textarea><p class="hint" id="f-msg-hint">Was bieten Sie an, wen möchten Sie erreichen und was soll die Website leisten? Stichpunkte reichen.</p></div>
+        <div class="hp" aria-hidden="true"><label for="f-hp">Bitte leer lassen</label><input id="f-hp" name="firma_bestaetigung" tabindex="-1" autocomplete="off"></div>
+        <div class="form__foot">
+          <button class="btn btn--dark" type="submit"><span class="btn__dot" aria-hidden="true"></span><span class="btn__label">Anfrage senden</span></button>
+          <p class="small muted">Unverbindlich und kostenlos. Mehr in der <a href="{{root}}datenschutz.html">Datenschutzerklärung</a>.</p>
+        </div>
+      </form>
+      <div class="form-status" data-form-status hidden tabindex="-1" role="status" aria-live="polite"></div>
+    </div>
+    <aside aria-label="Ihre Anfrage im Überblick">
+      <div class="overview" data-overview>
+        <h2 class="h3">Ihre Anfrage im Überblick</h2>
+        <dl>
+          <div><dt>Vorhaben</dt><dd data-ov="projekt">noch nicht gewählt</dd></div>
+          <div><dt>Budgetrahmen</dt><dd data-ov="budget">noch nicht gewählt</dd></div>
+          <div><dt>Zeitrahmen</dt><dd data-ov="zeit">noch nicht gewählt</dd></div>
+          <div><dt>Passendes Angebot</dt><dd data-ov="angebot">Wählen Sie oben Ihr Vorhaben.</dd></div>
+        </dl>
+      </div>
+      <div class="overview" style="margin-top: 32px">
+        <h2 class="h3">So geht es weiter</h2>
+        <ol class="aside-list">
+          <li>Rony Mislem liest Ihre Anfrage persönlich und meldet sich {{response}}.</li>
+          <li>Sie sprechen 30 Minuten – per Video oder in Leipzig vor Ort.</li>
+          <li>Sie erhalten Konzept, Festpreis und Termin schriftlich. Erst dann entscheiden Sie.</li>
+        </ol>
+      </div>
+      <p style="margin-top: 32px">Lieber direkt? <a href="mailto:{{email}}">{{email}}</a></p>
+    </aside>
+  </div>
+</section>

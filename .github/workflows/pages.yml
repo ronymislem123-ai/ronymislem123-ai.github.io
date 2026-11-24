@@ -1,6 +1,7 @@
-# Veröffentlicht die Website auf GitHub Pages.
+# Baut und veröffentlicht die Website auf GitHub Pages.
 # Läuft bei jedem Push auf main und lässt sich unter Actions → "Website veröffentlichen" → "Run workflow" von Hand starten.
 # Voraussetzung: Settings → Pages → Source = "GitHub Actions".
+# Der Build (build.py) braucht nur Python 3 und bricht ab, wenn Links fehlen oder [OFFEN] im Text steht.
 name: Website veröffentlichen
 
 on:
@@ -26,12 +27,18 @@ jobs:
     steps:
       - name: Code holen
         uses: actions/checkout@v4
+      - name: Python einrichten
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Website bauen
+        run: python3 build.py --production
       - name: Pages einrichten
         uses: actions/configure-pages@v5
       - name: Website hochladen
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: dist
       - name: Veröffentlichen
         id: deployment
         uses: actions/deploy-pages@v4
