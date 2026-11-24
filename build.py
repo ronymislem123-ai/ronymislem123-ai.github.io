@@ -18,10 +18,10 @@ SRC, DIST = ROOT / "src", ROOT / "dist"
 SITE = {
     "name": "LINUA",
     "claim": "Wo aus Besuchern Kunden werden.",
-    "owner": "Rony Mislem",
+    "owner": "Rony",
     "email": "hallo@linua.de",
-    "street": "Zur Schule 7",
-    "zip": "04158",
+    "street": "",
+    "zip": "",
     "city": "Leipzig",
     "url": "https://www.linua.de",
     "region": "Leipzig, Landkreis Leipzig und Nordsachsen persönlich – deutschlandweit per Video",
@@ -120,7 +120,7 @@ def footer(root):
     </div>
   </div>
   <div class="site-footer__legal">
-    <p>© {SITE["year"]} {SITE["name"]}, {SITE["owner"]}</p>
+    <p>© {SITE["year"]} {SITE["name"]}</p>
     <ul><li><a href="{root}impressum.html">Impressum</a></li><li><a href="{root}datenschutz.html">Datenschutz</a></li><li><a href="{root}zentrale/" rel="nofollow">Agentur-Zentrale</a></li></ul>
   </div>
 </footer>'''
@@ -220,10 +220,10 @@ def footer2(root):
     </div>
     <nav class="ft__col" aria-label="Seiten"><p class="ft__h">Seiten</p><ul>{cols}</ul></nav>
     <nav class="ft__col" aria-label="Service"><p class="ft__h">Service</p><ul><li><a href="{root}check/index.html">Website prüfen</a></li><li><a href="{root}faq.html">Häufige Fragen</a></li><li><a href="{root}kontakt.html">Kontakt</a></li></ul></nav>
-    <div class="ft__col"><p class="ft__h">Kontakt</p><ul><li><a href="mailto:{SITE["email"]}">{SITE["email"]}</a></li><li>Antwort {SITE["response"]}</li><li>{SITE["street"]}, {SITE["zip"]} {SITE["city"]}</li></ul></div>
+    <div class="ft__col"><p class="ft__h">Kontakt</p><ul><li><a href="mailto:{SITE["email"]}">{SITE["email"]}</a></li><li>Antwort {SITE["response"]}</li><li>{(SITE["street"] + ", " + SITE["zip"] + " ") if SITE["street"] else ""}{SITE["city"]}</li></ul></div>
   </div>
   <div class="ft__legal">
-    <p>© {SITE["year"]} {SITE["name"]}, {SITE["owner"]} · Preise sind Endpreise gemäß § 19 UStG.</p>
+    <p>© {SITE["year"]} {SITE["name"]} · Preise sind Endpreise gemäß § 19 UStG.</p>
     <ul><li><button class="ft__motion" type="button" data-motion-toggle aria-pressed="false">Animationen pausieren</button></li><li><a href="{root}impressum.html">Impressum</a></li><li><a href="{root}datenschutz.html">Datenschutz</a></li><li><a href="{root}zentrale/" rel="nofollow">Agentur-Zentrale</a></li></ul>
   </div>
 </footer>'''
@@ -236,8 +236,8 @@ def jsonld(meta, url):
             {"@type": "WebSite", "@id": base + "/#website", "url": base + "/", "name": "LINUA", "inLanguage": "de-DE"},
             {"@type": "ProfessionalService", "@id": base + "/#studio", "name": "LINUA – Webdesign", "url": base + "/",
              "email": SITE["email"], "founder": {"@type": "Person", "name": SITE["owner"]},
-             "address": {"@type": "PostalAddress", "streetAddress": SITE["street"], "postalCode": SITE["zip"],
-                         "addressLocality": SITE["city"], "addressCountry": "DE"},
+             "address": {k: v for k, v in {"@type": "PostalAddress", "streetAddress": SITE["street"], "postalCode": SITE["zip"],
+                         "addressLocality": SITE["city"], "addressCountry": "DE"}.items() if v},
              "areaServed": ["Leipzig", "Landkreis Leipzig", "Nordsachsen", "Deutschland"],
              "description": meta["description"], "slogan": SITE["claim"]}]}
     else:
