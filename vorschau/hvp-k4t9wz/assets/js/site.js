@@ -45,7 +45,16 @@
   var io = "IntersectionObserver" in window ? new IntersectionObserver(function (es) {
     es.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("in-view"); io.unobserve(en.target); } });
   }, { rootMargin: "0px 0px -8% 0px", threshold: 0.12 }) : null;
-  d.querySelectorAll(".rise,.cut,.burn").forEach(function (el) { if (io) io.observe(el); else el.classList.add("in-view"); });
+  /* .cut ist per clip-path unsichtbar – Chrome zählt es dann nicht als sichtbar. Darum den Eltern-Container beobachten. */
+  var proxies = new Map();
+  var io2 = "IntersectionObserver" in window ? new IntersectionObserver(function (es) {
+    es.forEach(function (en) { if (en.isIntersecting) { (proxies.get(en.target) || []).forEach(function (c) { c.classList.add("in-view"); }); io2.unobserve(en.target); } });
+  }, { rootMargin: "0px 0px -8% 0px", threshold: 0.05 }) : null;
+  d.querySelectorAll(".rise,.burn").forEach(function (el) { if (io) io.observe(el); else el.classList.add("in-view"); });
+  d.querySelectorAll(".cut").forEach(function (el) {
+    if (!io2) { el.classList.add("in-view"); return; }
+    var p = el.parentElement; if (!proxies.has(p)) { proxies.set(p, []); io2.observe(p); } proxies.get(p).push(el);
+  });
 
   /* Galerie Produktseite */
   d.querySelectorAll(".gallery").forEach(function (g) {
