@@ -202,7 +202,7 @@ section{position:relative}
 @keyframes ember{0%{transform:translate(0,0) scale(1);opacity:.85}100%{transform:translate(-6vmax,4vmax) scale(1.08);opacity:1}}
 .hero-grid{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);gap:clamp(28px,5vw,80px);align-items:center}
 .hero-grid>*{min-width:0}
-.hero h1{color:#fff;font-size:clamp(2.45rem,4.4vw + .5rem,5rem);text-shadow:0 2px 30px rgba(10,20,46,.5)}
+.hero h1{color:#fff;font-size:clamp(2.4rem,3.7vw + .5rem,4rem);text-shadow:0 2px 30px rgba(10,20,46,.5)}
 .hero .lead{color:#DCE3F3;margin-top:var(--s5);max-width:40ch}
 .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:var(--s6)}
 .hero-proof{display:flex;flex-wrap:wrap;gap:10px;margin:var(--s6) 0 0;padding:0;list-style:none}
