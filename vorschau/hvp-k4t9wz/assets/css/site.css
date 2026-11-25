@@ -617,3 +617,27 @@ aside .card+.card{margin-top:14px}
 .tel span{display:block}
 .quote p{text-wrap:pretty}
 .tile .ibadge.inv{background:rgba(10,20,46,.58);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 0 0 1px rgba(255,255,255,.14)}
+
+/* Illustrationen und Stimmungsbilder */
+.branch::after{content:none}
+.branch .b-img{display:block;margin:calc(-1 * clamp(22px,2.4vw,30px)) calc(-1 * clamp(22px,2.4vw,30px)) 4px;aspect-ratio:3/2;overflow:hidden;background:#0A142E}
+.branch .b-img img{width:100%;height:100%;object-fit:cover;transition:transform 900ms var(--ease)}
+.branch:hover .b-img img{transform:scale(1.04)}
+.tile>picture{position:absolute;inset:0;z-index:-2}
+.tile>picture img{width:100%;height:100%;object-fit:cover;transition:transform 1100ms var(--ease)}
+.tile:hover>picture img{transform:scale(1.05)}
+.tile.ember>picture{left:auto;width:66%;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 38%);mask-image:linear-gradient(90deg,transparent 0,#000 38%)}
+.tile.ember::before{background:linear-gradient(90deg,rgba(10,20,46,.9) 0%,rgba(10,20,46,.45) 42%,rgba(10,20,46,0) 70%),linear-gradient(180deg,rgba(10,20,46,0) 55%,rgba(10,20,46,.7) 100%)}
+.tile.ember .t-in{max-width:58%}
+@media (max-width:560px){.tile.ember>picture{width:100%;-webkit-mask-image:none;mask-image:none;opacity:.55}.tile.ember .t-in{max-width:none}}
+.page-hero .illu{position:relative}
+.page-hero .illu img{width:100%;height:auto;-webkit-mask-image:radial-gradient(closest-side,#000 55%,transparent 100%);mask-image:radial-gradient(closest-side,#000 55%,transparent 100%)}
+@media (max-width:860px){.page-hero .illu{max-width:440px;margin-inline:auto}}
+.sec-head.media{align-items:center}
+.illu-card{border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--sh-3);background:#0A142E}
+.illu-card img{width:100%;height:auto}
+.nf-illu{max-width:440px;margin:0 auto 28px;border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--sh-3)}
+.nf-illu img{width:100%;height:auto}
+.cta-glut::after{content:"";position:absolute;inset:0;z-index:-2;pointer-events:none;background:linear-gradient(90deg,#0A142E 0%,rgba(10,20,46,.9) 38%,rgba(10,20,46,.35) 100%),url("../img/glut-1672.webp") right center/cover no-repeat;background:linear-gradient(90deg,#0A142E 0%,rgba(10,20,46,.9) 38%,rgba(10,20,46,.35) 100%),image-set(url("../img/glut-1672.avif") type("image/avif"),url("../img/glut-1672.webp") type("image/webp")) right center/cover no-repeat}
+@media (max-width:860px){.cta-glut::after{background:linear-gradient(180deg,rgba(10,20,46,.55) 0%,rgba(10,20,46,.92) 55%,#0A142E 100%),url("../img/glut-960.webp") right top/cover no-repeat;background:linear-gradient(180deg,rgba(10,20,46,.55) 0%,rgba(10,20,46,.92) 55%,#0A142E 100%),image-set(url("../img/glut-960.avif") type("image/avif"),url("../img/glut-960.webp") type("image/webp")) right top/cover no-repeat}}
+.site-foot::after{content:"";position:absolute;inset:0;z-index:-2;pointer-events:none;background:url("../img/textur-holz-960.webp") center/cover;background:image-set(url("../img/textur-holz-960.avif") type("image/avif"),url("../img/textur-holz-960.webp") type("image/webp")) center/cover;opacity:.08}
